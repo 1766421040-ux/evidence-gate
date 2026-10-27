@@ -10,8 +10,8 @@ const scenarioNames = {
   current: "有效证据", valid: "有效证据", supported: "有效证据", stale: "过期证据", expired: "过期证据",
   missing: "缺少证据", no_evidence: "缺少证据", conflict: "证据冲突", conflicting: "证据冲突",
   irrelevant: "无关证据", budget_zero: "预算耗尽", exhausted: "预算耗尽", outdated: "过期证据",
-  value_changed: "证据值改变", distractor: "加入干扰证据", reordered: "证据顺序改变", missing_search: "无证据 · 可查询",
-  missing_stop: "无证据 · 无预算", expired_search: "已过期 · 可查询", expired_stop: "已过期 · 无预算", future_search: "未生效 · 可查询",
+  value_changed: "证据值改变", distractor: "干扰证据", reordered: "证据顺序改变", missing_search: "缺少依据 · 可查询",
+  missing_stop: "缺少依据 · 无预算", expired_search: "已过期 · 可查询", expired_stop: "已过期 · 无预算", future_search: "未生效 · 可查询",
   conflict_search: "证据冲突 · 可查询", conflict_stop: "证据冲突 · 无预算", ambiguous: "问题范围不明确",
   untrusted_search: "非可信来源 · 可查询", untrusted_stop: "非可信来源 · 无预算",
 };
@@ -143,11 +143,16 @@ function renderDetail() {
   const decision = el("div", {}, el("div", { class: "decision-grid" }, decisionCard(item.expected, "期望动作与答案", false), decisionCard(item.prediction, outputTitle, true)),
     el("div", { class: "checklist" }, checks), el("p", { class: `failure-note${metrics.success === true ? " success" : ""}` }, note),
     el("details", { class: "raw-output" }, el("summary", {}, `${method().kind === "rule" ? "规则" : method().kind === "model" ? "模型" : "方法"}原始输出 · 未加工文本`), el("pre", {}, pretty(item.raw))));
+  const batchSize = item.generation?.batch_size;
+  const latencyLabel = method().kind === "rule" ? "规则执行耗时"
+    : method().kind === "model" && Number.isInteger(batchSize) && batchSize > 1 ? "批量均摊耗时（非单请求）"
+    : method().kind === "model" && batchSize === 1 ? "单例生成耗时（不含加载）"
+    : "记录耗时（口径未记录）";
   const header = el("div", { class: "detail-head" }, el("div", { class: "detail-kicker" }, badge(scenarioName(item.variant)), statusBadge(metrics), el("code", {}, text(item.id))),
     el("h2", {}, text(observation.question, "问题未记录")), el("div", { class: "detail-meta" },
       el("span", {}, "判断日期", el("strong", {}, text(observation.as_of))),
       el("span", {}, "剩余查询预算", el("strong", {}, text(observation.budget))),
-      el("span", {}, "执行耗时", el("strong", {}, typeof item.latency_ms === "number" ? `${item.latency_ms.toFixed(1)} ms` : "未记录")),
+      el("span", {}, latencyLabel, el("strong", {}, typeof item.latency_ms === "number" ? `${item.latency_ms.toFixed(1)} ms` : "未记录")),
       el("span", {}, "问题组", el("strong", {}, text(item.group_id)))));
   $("#case-detail").replaceChildren(header,
     section("01", "模型可见的证据", documents.length ? el("div", { class: "evidence-grid" }, documents.map(evidenceCard)) : empty("当前输入没有证据文档", "是否继续查询或拒答，应结合问题、预算与监督目标判断。"), badge(`${documents.length} 份文档`)),
@@ -203,6 +208,12 @@ function trainingRuns() {
 function lossPoints(records) {
   return records.map(record => ({ step: firstValue(record, ["step", "iteration", "global_step", "iter"]), loss: firstValue(record, ["loss", "train_loss", "training_loss"]), record })).filter(point => typeof point.step === "number" && Number.isFinite(point.step) && typeof point.loss === "number" && Number.isFinite(point.loss)).sort((a, b) => a.step - b.step);
 }
+function formatLoss(value, decimalPlaces = 4) {
+  if (typeof value !== "number" || !Number.isFinite(value)) return "未记录";
+  if (value === 0) return "0";
+  return Math.abs(value) < 10 ** -decimalPlaces || Math.abs(value) >= 10000
+    ? value.toExponential(3) : value.toFixed(decimalPlaces);
+}
 function lossChart(points, name) {
   const width = 950, height = 300, left = 56, right = 22, top = 20, bottom = 42;
   const minStep = Math.min(...points.map(point => point.step)), maxStep = Math.max(...points.map(point => point.step));
@@ -216,7 +227,7 @@ function lossChart(points, name) {
   chart.append(svg("desc", {}, `横轴为已记录 step，纵轴为 loss。初始记录 ${points[0].loss}，最终记录 ${points[points.length - 1].loss}；损失不等于任务成功率。`));
   for (let tick = 0; tick <= 4; tick++) {
     const loss = low + (high - low) * tick / 4, yy = y(loss);
-    chart.append(svg("line", { x1: left, x2: width - right, y1: yy, y2: yy, class: "chart-grid" }), svg("text", { x: left - 10, y: yy + 4, "text-anchor": "end", class: "chart-label" }, loss.toFixed(2)));
+    chart.append(svg("line", { x1: left, x2: width - right, y1: yy, y2: yy, class: "chart-grid" }), svg("text", { x: left - 10, y: yy + 4, "text-anchor": "end", class: "chart-label" }, formatLoss(loss, 2)));
     const step = minStep + (maxStep - minStep) * tick / 4;
     if (maxStep !== minStep || tick === 2) chart.append(svg("text", { x: x(step), y: height - 17, "text-anchor": "middle", class: "chart-label" }, Number.isInteger(step) ? String(step) : step.toFixed(1)));
   }
@@ -234,7 +245,7 @@ function renderTraining() {
     const points = lossPoints(run.records);
     return el("article", { class: "training-card" }, el("div", { class: "panel-heading" }, el("h3", {}, run.name), badge(`${run.records.length} 条记录`)),
       points.length ? el("div", { class: "chart-wrap" }, lossChart(points, run.name)) : empty("没有可绘制的 step / loss", "原始训练记录保留如下，未将缺失值当作零。"),
-      points.length ? el("div", { class: "chart-legend" }, el("span", {}, "首个 loss", el("strong", {}, points[0].loss.toFixed(4))), el("span", {}, "末个 loss", el("strong", {}, points[points.length - 1].loss.toFixed(4))), el("span", {}, "记录步范围", el("strong", {}, `${points[0].step} – ${points[points.length - 1].step}`)), el("span", {}, "训练损失变化不代表任务能力提升")) : null,
+      points.length ? el("div", { class: "chart-legend" }, el("span", {}, "首个 loss", el("strong", {}, formatLoss(points[0].loss))), el("span", {}, "末个 loss", el("strong", {}, formatLoss(points[points.length - 1].loss))), el("span", {}, "记录步范围", el("strong", {}, `${points[0].step} – ${points[points.length - 1].step}`)), el("span", {}, "训练损失变化不代表任务能力提升")) : null,
       el("details", { class: "raw-output training-records" }, el("summary", {}, "查看完整训练记录与元数据"), el("pre", {}, pretty({ metadata: run.metadata, records: run.records }))));
   }));
 }
@@ -307,7 +318,7 @@ async function init() {
   }
 }
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { buildMetricCards };
+  module.exports = { buildMetricCards, formatLoss };
 } else {
   init();
 }

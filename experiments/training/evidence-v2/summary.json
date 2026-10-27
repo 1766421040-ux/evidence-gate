@@ -1,0 +1,29 @@
+{
+  "format": "evidence-gate-selected-training-summary-v1",
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "device": "mps",
+  "dtype": "bfloat16",
+  "seed": 42,
+  "optimizer_steps": 600,
+  "selected_step": 600,
+  "total_training_budget_steps": 600,
+  "completed_training_steps": 600,
+  "first_loss": 1.2928035150874744,
+  "last_loss": 0.01927651834141995,
+  "elapsed_s": 1322.857999083004,
+  "total_training_elapsed_s": 1322.857999083004,
+  "trainable_parameters": 540672,
+  "total_parameters": 494573440,
+  "binding": {
+    "data_sha256": "11629323ee99030472ccabd944301d9f4fec4a3a4c0624c574d1e00d5487f23a",
+    "config_sha256": "b7db06d009008454127de3efa963bc959237792cd7e3e76cc9b324a219e97938",
+    "model_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7"
+  },
+  "adapter_sha256": "5af71346aa50dc90b3f7cfc130127a94e3b97c83076c84ac6503b62fb5d4c9e5",
+  "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+  "checkpoint_sha256": "83beefece74c8595ee0461ab5cdd92accdea3e68b643f84a94fa6d09ab6e68e1",
+  "selection_split": "dev",
+  "test_used_for_selection": false,
+  "training_is_quality_evidence": false,
+  "history_scope": "Only the selected checkpoint prefix is plotted. Total completed training budget is recorded separately; later-step losses are not attributed to these weights."
+}

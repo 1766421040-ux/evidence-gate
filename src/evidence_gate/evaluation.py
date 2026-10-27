@@ -139,7 +139,10 @@ def summarize(cases):
     return {"n": n, "success_rate": count("success") / n,
             "success_group_bootstrap_95ci": bootstrap_group_ci(cases),
             "format_valid_rate": count("format_valid") / n,
-            "action_accuracy": count("action_correct") / n, "action_macro_f1": sum(f1s) / 4,
+            # sum(float) changed in Python 3.12. Explicit fsum keeps released
+            # metrics identical across supported Python versions without
+            # weakening exact audit comparisons or rounding away differences.
+            "action_accuracy": count("action_correct") / n, "action_macro_f1": math.fsum(f1s) / 4,
             "answer_coverage": len(emitted) / n,
             "answerable_success": ratio(sum(c["metrics"]["success"] for c in answers), len(answers)),
             "unsupported_answer_rate": ratio(sum(c["metrics"]["unsupported_answer"] for c in emitted), len(emitted)),
@@ -148,7 +151,7 @@ def summarize(cases):
             "unnecessary_search_rate": ratio(count("unnecessary_search"), len(answers)),
             "citation_exact_rate": ratio(sum(c["metrics"]["citation_correct"] for c in emitted), len(emitted)),
             "all_variants_correct_rate": sum(all(c["metrics"]["success"] for c in g) for g in groups.values()) / len(groups),
-            "groups": len(groups), "mean_latency_ms": sum(c["latency_ms"] for c in cases) / n,
+            "groups": len(groups), "mean_latency_ms": math.fsum(c["latency_ms"] for c in cases) / n,
             "denominators": {"answerable": len(answers), "unanswerable": len(denied), "emitted_answers": len(emitted)},
             "confusion": confusion, "pairs": pair_scores,
             "by_variant": {v: {"n": len(cs), "success_rate": sum(c["metrics"]["success"] for c in cs) / len(cs)} for v, cs in variants.items()}}

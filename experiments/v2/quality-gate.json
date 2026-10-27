@@ -1,0 +1,240 @@
+{
+  "format": "evidence-gate-quality-audit-v1",
+  "name": "selected-v2",
+  "kind": "model",
+  "status": "fail",
+  "passed": false,
+  "integrity": {
+    "verified": true,
+    "test_rows": 280,
+    "test_groups": 20,
+    "dataset_sha256": "2fc1199b519ce0bf7dca68d05e9dacaa92f4eafa70d18cba347d517084b16be2",
+    "case_identity_checked": true,
+    "raw_outputs_rescored": true,
+    "stored_summary_matches": true
+  },
+  "sources": {
+    "evaluation": {
+      "name": "selected-v2.json",
+      "sha256": "b431ffb02b39b4af91617d20e5672b5b60397350f3795bfe5573ff55bb46054b"
+    },
+    "data": {
+      "name": "test.jsonl",
+      "sha256": "c60fb70ba876b5c8f543784f5226d791d283bca00d5c5aaa17f261bb247eb6cc"
+    },
+    "protocol": {
+      "name": "protocol.json",
+      "sha256": "425939930f234cff4ff2887944715483ca3d304d988976372da504ca859d5d2d"
+    }
+  },
+  "checks": [
+    {
+      "gate": "strict_success_min",
+      "metric": "success_rate",
+      "actual": 0.7285714285714285,
+      "threshold": 0.85,
+      "direction": ">=",
+      "eligible": true,
+      "passed": false,
+      "reason": "Threshold not met."
+    },
+    {
+      "gate": "answerable_success_min",
+      "metric": "answerable_success",
+      "actual": 0.125,
+      "threshold": 0.8,
+      "direction": ">=",
+      "eligible": true,
+      "passed": false,
+      "reason": "Threshold not met."
+    },
+    {
+      "gate": "action_macro_f1_min",
+      "metric": "action_macro_f1",
+      "actual": 0.7122803986997132,
+      "threshold": 0.8,
+      "direction": ">=",
+      "eligible": true,
+      "passed": false,
+      "reason": "Threshold not met."
+    },
+    {
+      "gate": "all_variants_correct_min",
+      "metric": "all_variants_correct_rate",
+      "actual": 0.0,
+      "threshold": 0.5,
+      "direction": ">=",
+      "eligible": true,
+      "passed": false,
+      "reason": "Threshold not met."
+    },
+    {
+      "gate": "over_answer_rate_max",
+      "metric": "over_answer_rate",
+      "actual": 0.03,
+      "threshold": 0.05,
+      "direction": "<=",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "format_valid_rate_min",
+      "metric": "format_valid_rate",
+      "actual": 1.0,
+      "threshold": 1.0,
+      "direction": ">=",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    }
+  ],
+  "recomputed_summary": {
+    "n": 280,
+    "success_rate": 0.7285714285714285,
+    "success_group_bootstrap_95ci": [
+      0.7071428571428572,
+      0.75
+    ],
+    "format_valid_rate": 1.0,
+    "action_accuracy": 0.7285714285714285,
+    "action_macro_f1": 0.7122803986997132,
+    "answer_coverage": 0.05714285714285714,
+    "answerable_success": 0.125,
+    "unsupported_answer_rate": 0.375,
+    "over_answer_rate": 0.03,
+    "over_refusal_rate": 0.4125,
+    "unnecessary_search_rate": 0.4625,
+    "citation_exact_rate": 0.625,
+    "all_variants_correct_rate": 0.0,
+    "groups": 20,
+    "mean_latency_ms": 202.26090107524735,
+    "denominators": {
+      "answerable": 80,
+      "unanswerable": 200,
+      "emitted_answers": 16
+    },
+    "confusion": {
+      "answer": {
+        "answer": 10,
+        "search": 37,
+        "clarify": 0,
+        "abstain": 33,
+        "invalid": 0
+      },
+      "search": {
+        "answer": 4,
+        "search": 96,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "clarify": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 20,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "abstain": {
+        "answer": 2,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 78,
+        "invalid": 0
+      }
+    },
+    "pairs": {
+      "value_change": {
+        "correct": 0,
+        "total": 20,
+        "accuracy": 0.0
+      },
+      "distractor_invariance": {
+        "correct": 0,
+        "total": 20,
+        "accuracy": 0.0
+      },
+      "order_invariance": {
+        "correct": 0,
+        "total": 20,
+        "accuracy": 0.0
+      },
+      "evidence_removal": {
+        "correct": 0,
+        "total": 20,
+        "accuracy": 0.0
+      },
+      "budget_exhaustion": {
+        "correct": 20,
+        "total": 20,
+        "accuracy": 1.0
+      },
+      "expiry_boundary": {
+        "correct": 0,
+        "total": 20,
+        "accuracy": 0.0
+      }
+    },
+    "by_variant": {
+      "supported": {
+        "n": 20,
+        "success_rate": 0.0
+      },
+      "value_changed": {
+        "n": 20,
+        "success_rate": 0.0
+      },
+      "distractor": {
+        "n": 20,
+        "success_rate": 0.45
+      },
+      "reordered": {
+        "n": 20,
+        "success_rate": 0.05
+      },
+      "missing_search": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "missing_stop": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "expired_search": {
+        "n": 20,
+        "success_rate": 0.9
+      },
+      "expired_stop": {
+        "n": 20,
+        "success_rate": 0.9
+      },
+      "future_search": {
+        "n": 20,
+        "success_rate": 0.9
+      },
+      "conflict_search": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "conflict_stop": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "ambiguous": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "untrusted_search": {
+        "n": 20,
+        "success_rate": 1.0
+      },
+      "untrusted_stop": {
+        "n": 20,
+        "success_rate": 1.0
+      }
+    }
+  },
+  "risk_eligibility": "Risk-rate gates require a defined metric and at least one parseable emitted answer. Numerical zeros and null metrics are not substituted for safety evidence.",
+  "interpretation": "Quality failure is preserved. Audit completion verifies consistency, not that the model meets the protocol gates or is production-ready."
+}

@@ -1,0 +1,8 @@
+{
+  "adapter/adapter_model.safetensors": "5af71346aa50dc90b3f7cfc130127a94e3b97c83076c84ac6503b62fb5d4c9e5",
+  "adapter/adapter_config.json": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+  "adapter/checkpoint.json": "83beefece74c8595ee0461ab5cdd92accdea3e68b643f84a94fa6d09ab6e68e1",
+  "summary.json": "559695a9f98e0e41940c61974bf3b25de43d373e5351e318c67b6ac8d492c984",
+  "metrics.json": "75b8a8a3d8a535ff672853490eebf70c101b9a99deb0c1b93631a8d94abde9d7",
+  "run_manifest.json": "3455de71d77107c487082b1003ec6b44643232da16b2dca7e81b5a291be6fb29"
+}

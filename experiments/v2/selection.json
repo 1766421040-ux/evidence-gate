@@ -1,0 +1,148 @@
+{
+  "format": "evidence-gate-dev-selection-v1",
+  "selection_rule": "Highest mean strict task success over four gold actions; exact ties choose earlier optimizer step",
+  "predeclared_steps": [
+    200,
+    400,
+    600
+  ],
+  "selection_split": "dev",
+  "selection_data_file": "data/v2/dev.jsonl",
+  "selection_data_file_sha256": "7c1fa90582d9d289bd798e9ea90634bced6f833666f69f0fdcf053071d9b66bf",
+  "selection_dataset_sha256": "45a4deab5c799cb6364b84b2040adf5d2f316a083224dd121b73919d3c63a04a",
+  "selection_examples": 168,
+  "selection_groups": 12,
+  "training_binding": {
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "training_data_sha256": "11629323ee99030472ccabd944301d9f4fec4a3a4c0624c574d1e00d5487f23a",
+    "training_config_sha256": "b7db06d009008454127de3efa963bc959237792cd7e3e76cc9b324a219e97938",
+    "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308"
+  },
+  "inference": {
+    "decoding": "greedy free generation",
+    "max_new_tokens": 72,
+    "dtype": "bfloat16",
+    "batch_size": 4,
+    "device": "mps",
+    "output_repair": false
+  },
+  "candidates": [
+    {
+      "step": 200,
+      "evaluation_file": "experiments/v2/dev-step-000200.json",
+      "evaluation_file_sha256": "2c2f49135904cc800f8c1c2ac1c5490b6edd5e62c09b5c2e6a90a55beb0a0f94",
+      "adapter_sha256": "606001d9cd2c41f25ebbdfc678506c58abe09a9741e2f1de9b8b207ea0c07135",
+      "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+      "checkpoint_sha256": "07aca738a5083aacc3998a103fcd87e7ca3eec14c429ea289a55e7c20a1b4db2",
+      "macro_strict_success": 0.6041666666666666,
+      "macro_strict_success_fraction": "29/48",
+      "strict_success": {
+        "correct": 113,
+        "total": 168,
+        "rate": 0.6726190476190477
+      },
+      "by_action": {
+        "answer": {
+          "correct": 0,
+          "total": 48,
+          "rate": 0.0
+        },
+        "search": {
+          "correct": 60,
+          "total": 60,
+          "rate": 1.0
+        },
+        "clarify": {
+          "correct": 5,
+          "total": 12,
+          "rate": 0.4166666666666667
+        },
+        "abstain": {
+          "correct": 48,
+          "total": 48,
+          "rate": 1.0
+        }
+      }
+    },
+    {
+      "step": 400,
+      "evaluation_file": "experiments/v2/dev-step-000400.json",
+      "evaluation_file_sha256": "bc9d4e8982bbd8cc7eee44316c363950809e61af67236011bd1ff9e795b2a917",
+      "adapter_sha256": "87abcc6ff7bd83690bc30f7a8591d6afb69d11af708ff5365c637168846b5b50",
+      "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+      "checkpoint_sha256": "875cace63f96d7026d68edd95dc7349720ed8170ba23e3a83b88c74cf7c111bd",
+      "macro_strict_success": 0.7677083333333333,
+      "macro_strict_success_fraction": "737/960",
+      "strict_success": {
+        "correct": 123,
+        "total": 168,
+        "rate": 0.7321428571428571
+      },
+      "by_action": {
+        "answer": {
+          "correct": 23,
+          "total": 48,
+          "rate": 0.4791666666666667
+        },
+        "search": {
+          "correct": 58,
+          "total": 60,
+          "rate": 0.9666666666666667
+        },
+        "clarify": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "abstain": {
+          "correct": 30,
+          "total": 48,
+          "rate": 0.625
+        }
+      }
+    },
+    {
+      "step": 600,
+      "evaluation_file": "experiments/v2/dev-step-000600.json",
+      "evaluation_file_sha256": "399dcbec0dcec8f281f6918e7f155b9ce60202bb95a9408c254e266a7e6ea716",
+      "adapter_sha256": "5af71346aa50dc90b3f7cfc130127a94e3b97c83076c84ac6503b62fb5d4c9e5",
+      "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+      "checkpoint_sha256": "83beefece74c8595ee0461ab5cdd92accdea3e68b643f84a94fa6d09ab6e68e1",
+      "macro_strict_success": 0.7739583333333333,
+      "macro_strict_success_fraction": "743/960",
+      "strict_success": {
+        "correct": 123,
+        "total": 168,
+        "rate": 0.7321428571428571
+      },
+      "by_action": {
+        "answer": {
+          "correct": 13,
+          "total": 48,
+          "rate": 0.2708333333333333
+        },
+        "search": {
+          "correct": 52,
+          "total": 60,
+          "rate": 0.8666666666666667
+        },
+        "clarify": {
+          "correct": 12,
+          "total": 12,
+          "rate": 1.0
+        },
+        "abstain": {
+          "correct": 46,
+          "total": 48,
+          "rate": 0.9583333333333334
+        }
+      }
+    }
+  ],
+  "selected_step": 600,
+  "selected_adapter_sha256": "5af71346aa50dc90b3f7cfc130127a94e3b97c83076c84ac6503b62fb5d4c9e5",
+  "selected_adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+  "selected_checkpoint_sha256": "83beefece74c8595ee0461ab5cdd92accdea3e68b643f84a94fa6d09ab6e68e1",
+  "test_used_for_selection": false,
+  "limitations": "Development metrics are used for selection and are not an unbiased final test estimate. No test data is read by this script."
+}

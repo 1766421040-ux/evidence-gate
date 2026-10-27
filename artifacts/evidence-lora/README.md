@@ -69,7 +69,7 @@ python -m evidence_gate.cli evaluate \
   --policy hf --model .cache/base-model \
   --adapter artifacts/evidence-lora \
   --data data/main/test.jsonl --device mps --dtype bfloat16 \
-  --batch-size 8 --max-new-tokens 72 \
+  --batch-size 4 --max-new-tokens 72 \
   --output experiments/evidence-lora-rerun.json
 ```
 
