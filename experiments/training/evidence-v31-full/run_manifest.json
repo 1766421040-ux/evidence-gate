@@ -1,0 +1,83 @@
+{
+  "format": "evidence-gate-training-v1",
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "binding": {
+    "data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+    "config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+    "model_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7"
+  },
+  "config": {
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "seed": 42,
+    "device": "mps",
+    "dtype": "bfloat16",
+    "max_steps": 2400,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "max_length": 512,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0,
+    "warmup_steps": 60,
+    "max_grad_norm": 1.0,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "save_steps": 600,
+    "gradient_checkpointing": true,
+    "attention_implementation": "sdpa",
+    "num_threads": 4
+  },
+  "model_files": {
+    "config.json": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45",
+    "generation_config.json": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+    "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+    "model.safetensors": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+    "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+    "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+    "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "data_audit": {
+    "examples": 1920,
+    "max_sequence_tokens": 499,
+    "mean_sequence_tokens": 481.3833333333333,
+    "supervised_tokens": 35568,
+    "total_tokens": 924256,
+    "supervised_fraction": 0.038482844579856665,
+    "truncated_examples": 0,
+    "eos_supervised_examples": 1920
+  },
+  "dataset_contract_audit": {
+    "schema_version": 1,
+    "rows": 1920,
+    "groups": 80,
+    "split_rows": {
+      "train": 1920
+    },
+    "actions": {
+      "answer": 960,
+      "abstain": 400,
+      "search": 400,
+      "clarify": 160
+    },
+    "dataset_sha256": "08d6a697c7fca4b27622b3b926c749907a0f937accff2730f4ce1ba3f620ae17",
+    "group_leaks": 0,
+    "identical_prompt_cross_split": 0,
+    "labels_in_messages": false
+  },
+  "versions": {
+    "torch": "2.14.1",
+    "transformers": "4.57.6",
+    "peft": "0.21.2"
+  },
+  "supervision": "final assistant completion and EOS only; no truncation",
+  "batch_padding": "Fixed max_length shape to bound MPS graph-cache shape diversity; padding labels are masked"
+}

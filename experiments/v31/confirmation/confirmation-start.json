@@ -1,0 +1,31 @@
+{
+  "format": "evidence-gate-v3-confirmation-start-v1",
+  "started_at": "2026-10-27T14:31:03.237712+00:00",
+  "selected": {
+    "id": "crossed-r8-step2400",
+    "step": 2400,
+    "registration_order": 3,
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+    "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+    "adapter_sha256": "8f4416485a369460f97b0cf47ec2e56e298588c46d3df60c3e94b31541715c19",
+    "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+    "checkpoint_sha256": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771"
+  },
+  "source_sha256": {
+    "selection": "c69064b566e281d6d511f2c2f423da3d6b5491cd8aa1fcd59b8004157fce0121",
+    "protocol": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56",
+    "registry": "46c12b21392dd2df619dc51ce3bdcf6057a2a408a02d1abfa5b25533fdaa9bc5",
+    "test_data": "ef204aa1f2f23246aeda1498bafb3ae995af0d1d213368b3357ff9cedfe6f8f0",
+    "dev_data": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+  },
+  "dev_evaluation_sha256": {
+    "crossed-r8-step600": "6df314ca91ce2cb7454d4ca7b44fc0ae8df60b985f43509b780d345543fe9cf6",
+    "crossed-r8-step1200": "d36cd763611ad363b0154855bdfa7f09def06105c6385d5995cece33ad1975f3",
+    "crossed-r8-step1800": "35965121dd3b59cbbe99ec999f31868e0e2c6091d79ac2e48b1d6f6e9ffa95c9",
+    "crossed-r8-step2400": "91c9e9248078fadb720e1b97ec36da701a7273c9dfb0cced445a6886f27e2d12"
+  },
+  "dev_revalidated": true,
+  "test_used_for_selection": false,
+  "failure_policy": "Retain every failure. Any development informed by this test makes it seen; do not reuse it as fresh confirmation."
+}

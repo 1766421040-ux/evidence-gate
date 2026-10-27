@@ -1,0 +1,23 @@
+{
+  "format": "evidence-gate-v3-freeze-v1",
+  "created_at": "2026-10-27T12:20:11.567889+00:00",
+  "model_predictions_read": false,
+  "test_model_inference_performed": false,
+  "data_directory": "data/v3",
+  "files": {
+    "experiments/v3/protocol.json": "72a1197b2245af3e46ec04b889e34a1cc5ed1e0d902cabed70a4c491d9f56189",
+    "experiments/v3/data-audit.json": "7c2ee94916a330f9a697f8e49b13c6e94acc7a37688ac935ebac2f1e27eaf6b9",
+    "data/v3/manifest.json": "6f7fd4c90940bfbd9d2a35f9eccae84c5cfbe03877230b7ff345e094e560e637",
+    "experiments/v3/acceptance-plan.md": "9c412db9eced0496fd727591e17ab69bd9bd6f3c8e3156715259e18633e08e25",
+    "scripts/build_v3.py": "ef2d5a4467ca5d58930feec6f79416fb7563a73fb87e97d4f43127e31def7dd9",
+    "scripts/audit_v3_data.py": "a44da03d7b461a8824d403d91653c3983b98bad43ecc5e41ab81bd9d6e976629",
+    "scripts/build_v2.py": "22260106ea5dac7b36f6b28edc03b777c4e58d6f2d5f6273cc62d264774b348a",
+    "src/evidence_gate/data.py": "a2db3e0b351ed2b3f329ed41618a41759417ffd7b428e8f7fde4ba03d05eb711",
+    "src/evidence_gate/evaluation.py": "39adabdf16cb7eab666ea229e3003dc905ce91cbf47668bee6e92860cc31d89c",
+    "src/evidence_gate/agent.py": "e980e806659ae4084bf11d6d6209d3a7d7c27c5d4d8e01ae5f3a407cef940a57",
+    "data/v3/train.jsonl": "38b20db7fff7569a610adc7ea727adabd2d6bbea619b22e53ef2716df926ea2b",
+    "data/v3/dev.jsonl": "a659be39646aa8df6307ce5941a254b19d830c5e1239adaeb3cabbff75b2f947",
+    "data/v3/test.jsonl": "d6799407f90a17b2605562747b126a38deeeee9079f8ee736f2c307e280c6311"
+  },
+  "meaning": "Hashes freeze the declared data/contract/code; they are not proof of access secrecy or model quality."
+}

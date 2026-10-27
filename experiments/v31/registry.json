@@ -1,0 +1,68 @@
+{
+  "format": "evidence-gate-v3-candidate-registry-v1",
+  "registered_at": "2026-10-27T12:40:53.152743+00:00",
+  "protocol_sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56",
+  "config": {
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "seed": 42,
+    "device": "mps",
+    "dtype": "bfloat16",
+    "max_steps": 2400,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 4,
+    "max_length": 512,
+    "learning_rate": 0.0003,
+    "weight_decay": 0.0,
+    "warmup_steps": 60,
+    "max_grad_norm": 1.0,
+    "lora_rank": 8,
+    "lora_alpha": 16,
+    "lora_dropout": 0.05,
+    "target_modules": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "save_steps": 600,
+    "gradient_checkpointing": true,
+    "attention_implementation": "sdpa",
+    "num_threads": 4
+  },
+  "source_config_sha256": "024df0b679e491d62b44ada471f3cb9fef6eb70780e9a9acd14bc7f0990fbb90",
+  "training_code_sha256": "5e6a47a9285110bf263aa1f4e9776ab3385b23d5b443586db4d3df29ece7024a",
+  "candidates": [
+    {
+      "id": "crossed-r8-step600",
+      "checkpoint_step": 600,
+      "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+      "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781"
+    },
+    {
+      "id": "crossed-r8-step1200",
+      "checkpoint_step": 1200,
+      "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+      "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781"
+    },
+    {
+      "id": "crossed-r8-step1800",
+      "checkpoint_step": 1800,
+      "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+      "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781"
+    },
+    {
+      "id": "crossed-r8-step2400",
+      "checkpoint_step": 2400,
+      "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+      "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781"
+    }
+  ],
+  "selection_scope": "This entire declared round; every registered dev evaluation is required. No test data is read by registration."
+}

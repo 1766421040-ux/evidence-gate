@@ -21,6 +21,7 @@ jobs:
       - run: node --test tests/test_viewer_metrics.cjs
       - run: evidence-gate audit data/main/train.jsonl data/main/dev.jsonl data/main/test.jsonl
       - run: python scripts/verify_artifacts.py
+      - run: python scripts/verify_v31_release.py --root .
   tiny-training:
     runs-on: ubuntu-latest
     steps:

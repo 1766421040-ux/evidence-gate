@@ -127,6 +127,18 @@ def summarize(cases):
         matched = []
         for members in groups.values():
             lookup = {c["variant"]: c for c in members}
+            if "supported_b0" in lookup:
+                # V3 crosses each semantic intervention with both budgets.
+                # Count both matched-budget pairs, never silently reduce a
+                # 20-cell group to one arbitrary last-seen variant.
+                if name == "budget_exhaustion":
+                    keys = [("missing_b0", "missing_b1")]
+                else:
+                    keys = [(f"{a}_b{budget}", f"{b}_b{budget}") for budget in (0, 1)]
+                for left, right in keys:
+                    if left in lookup and right in lookup:
+                        matched.append(lookup[left]["metrics"]["success"] and lookup[right]["metrics"]["success"])
+                continue
             # Isolate the evidence intervention: do not change budget along
             # with evidence now that supported states have either budget.
             actual_b = b
@@ -136,6 +148,20 @@ def summarize(cases):
                 matched.append(lookup[a]["metrics"]["success"] and lookup[actual_b]["metrics"]["success"])
         pair_scores[name] = {"correct": sum(matched), "total": len(matched),
                              "accuracy": ratio(sum(matched), len(matched))}
+    if any("supported_b0" == case["variant"] for case in cases):
+        # These reports only exist in V3, preserving every released V1/V2
+        # summary byte-for-byte under independent raw-output verification.
+        for name, left, right in (
+            ("answer_budget_invariance", "supported_b0", "supported_b1"),
+            ("clarify_budget_invariance", "ambiguous_b0", "ambiguous_b1"),
+        ):
+            matched = []
+            for members in groups.values():
+                lookup = {case["variant"]: case for case in members}
+                if left in lookup and right in lookup:
+                    matched.append(lookup[left]["metrics"]["success"] and lookup[right]["metrics"]["success"])
+            pair_scores[name] = {"correct": sum(matched), "total": len(matched),
+                                 "accuracy": ratio(sum(matched), len(matched))}
     return {"n": n, "success_rate": count("success") / n,
             "success_group_bootstrap_95ci": bootstrap_group_ci(cases),
             "format_valid_rate": count("format_valid") / n,

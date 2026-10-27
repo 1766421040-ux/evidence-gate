@@ -1,0 +1,45 @@
+task: Improve EvidenceGate answerable-case success without weakening evidence requirements
+status: final_confirmation_passed
+user_authorization: Continue model optimization on this computer only; no cloud fees; update README and GitHub only after verified quality
+active_protocol: experiments/v31/protocol.json
+active_registry: experiments/v31/registry.json
+active_run: runs/v31-crossed-r8
+active_config: configs/v31.json
+candidate_steps: [600, 1200, 1800, 2400]
+model: Qwen/Qwen2.5-0.5B-Instruct
+hardware: Mac M4 Pro, 24 GB, MPS
+concurrency: One MPS job at a time
+branches:
+  - id: implementation_audit
+    status: completed
+    result: No label-shift, prompt-mask, accumulation, truncation or loss-calculation defect found
+    evidence: experiments/v3/diagnostics/v2-selected-64.json
+  - id: broaden_lora
+    status: completed_negative_for_quality
+    result: Answer recall improved but over-answering increased; all-group success remained zero
+    evidence: experiments/v3/capacity-probe/comparison.json
+  - id: correct_coverage_and_train_longer
+    status: completed_pass
+    result: All seven final gates pass; 1437/1440 strict, 720/720 answerable, 58/60 complete groups; three cross-month future errors remain
+    evidence: experiments/v31/dev-analysis.md
+  - id: action_loss_weight
+    status: deferred
+    reason: Action tokens already account for almost all observed residual NLL; this is not a measured gradient decomposition
+  - id: auxiliary_evidence_supervision
+    status: fallback_proposal_only
+    condition: Reconsider only after train/dev evidence from corrected-data standard SFT
+    evidence: experiments/v3/auxiliary-supervision-proposal.md
+test_state:
+  v1_v2: Previously seen and published; diagnostic use only
+  v3: Superseded before model inference after a train/dev-only static coverage audit
+  v31: One frozen confirmation completed; selected model and fixed references independently re-scored; holdout is now seen
+known_limitation:
+  - Post-hoc cross-month future subset is 1/4 correct across two groups; production/date generalization remains unverified
+release_checks:
+  - Four dev candidates and all four final methods independently re-scored
+  - Exact adapter and complete 2400-step history exported; new and historical CPU verifiers pass
+  - 264 Python tests plus 30 subtests and 12 Node tests pass
+  - Real 1440-case report visually inspected, including failure filtering, dual citations and training identity
+future_work_boundaries:
+  - Preserve this seen holdout and all three errors; any new model development requires a separately frozen confirmation
+  - Cross-month dates, natural language and real-document generalization remain unverified beyond the disclosed synthetic results

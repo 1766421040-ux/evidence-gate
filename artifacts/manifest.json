@@ -36,6 +36,21 @@
     "experiments/training/evidence/artifact_manifest.json": "ae40bbf9b7e5aa20622d0605fb7ee1bc81e3ac944b68bff103db520ac9c1bb5f",
     "experiments/training/evidence/metrics.json": "d46d5b42fd31a1acb460fae117735b6b9a9c27227a0c8b55c504dfca157358b3",
     "experiments/training/evidence/run_manifest.json": "f65f7b79c02bd4e8a328f7c788d5fdf989f8c6e6d06744421018c437c8e6b897",
-    "experiments/training/evidence/summary.json": "e50710cb9d2ec2a385feecba9c9e0263b524cb43f9dde0989e4fc156e4ed4f1a"
+    "experiments/training/evidence/summary.json": "e50710cb9d2ec2a385feecba9c9e0263b524cb43f9dde0989e4fc156e4ed4f1a",
+    "artifacts/evidence-v31-lora/adapter_model.safetensors": "8f4416485a369460f97b0cf47ec2e56e298588c46d3df60c3e94b31541715c19",
+    "artifacts/evidence-v31-lora/checkpoint.json": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771",
+    "artifacts/evidence-v31-lora/LICENSE": "832dd9e00a68dd83b3c3fb9f5588dad7dcf337a0db50f7d9483f310cd292e92e",
+    "artifacts/evidence-v31-lora/README.md": "2ca97c31a8d2f2f452ac22f943ba4cd26261b4d50b0a8ebef0f10a3f1afd40e5",
+    "artifacts/evidence-v31-lora/adapter_config.json": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+    "experiments/training/evidence-v31/metrics.json": "195fef488f31d9045b9182a624e01c7cf8648886dea1cd3059d4b75c8c6b1174",
+    "experiments/training/evidence-v31/summary.json": "f0891843741cf86ce36ee057fd1470d3496a4b549bb4b83f1d87b7c5b2a3c75e",
+    "experiments/training/evidence-v31/artifact_manifest.json": "0d4076bd106c11131cff1f78a16f8913ca176e71b18b98913d1133aa07b60f5e",
+    "experiments/training/evidence-v31/run_manifest.json": "0a669fabedf244b922065078dcc390dad388fd9220dfd22485687e85a44c060a",
+    "experiments/training/evidence-v31-full/metrics.json": "195fef488f31d9045b9182a624e01c7cf8648886dea1cd3059d4b75c8c6b1174",
+    "experiments/training/evidence-v31-full/summary.json": "aa644a0133255809a232dfcc61236c6e33cd6397f0603155d26e75625d9294dd",
+    "experiments/training/evidence-v31-full/README.md": "b57987b2cc3c883eeb041297d1574f686b744e9580e82d604c005357e80b2b4f",
+    "experiments/training/evidence-v31-full/checkpoint-step-002400.json": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771",
+    "experiments/training/evidence-v31-full/artifact_manifest.json": "319b3d5df19dd41a3b3d92a13830491e972e48ffe2dd9b48fbb139c55904eb09",
+    "experiments/training/evidence-v31-full/run_manifest.json": "0a669fabedf244b922065078dcc390dad388fd9220dfd22485687e85a44c060a"
   }
 }

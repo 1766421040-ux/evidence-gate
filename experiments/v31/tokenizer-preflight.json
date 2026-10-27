@@ -1,0 +1,26 @@
+{
+  "format": "evidence-gate-v31-tokenizer-preflight-v1",
+  "splits": {
+    "train": {
+      "rows": 1920,
+      "file_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "max_sequence_tokens": 499,
+      "mean_sequence_tokens": 481.3833333333333
+    },
+    "dev": {
+      "rows": 576,
+      "file_sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5",
+      "max_sequence_tokens": 497,
+      "mean_sequence_tokens": 481.75
+    }
+  },
+  "test_read": false,
+  "rule": "Only increase from 512 to next multiple of 64 when required; no truncation",
+  "max_length_before": 512,
+  "max_length_selected": 512,
+  "protocol_sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56",
+  "model_weights_loaded": false,
+  "gpu_calls": 0,
+  "tokenizer_local_files_only": true,
+  "inference_performed": false
+}

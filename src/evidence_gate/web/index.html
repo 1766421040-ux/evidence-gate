@@ -28,7 +28,7 @@
         <section id="view-cases" aria-label="案例回放">
           <div class="method-toolbar"><div><label for="method-select">评测方法</label><select id="method-select"></select><span id="method-kind" class="badge"></span></div><p id="method-note" class="muted"></p></div>
           <div id="metrics" class="metric-grid" aria-label="方法指标"></div>
-          <p class="metric-footnote">指标读取自当前方法的完整评测摘要；筛选不改变分母。无依据比例仅在可解析的 answer 中计算，须结合格式有效率、可答成功率与整组表现阅读。</p>
+          <p class="metric-footnote">指标读取自当前方法的完整评测摘要；筛选不改变分母。证据合同未通过包括错值、错引或缺引，以及不应回答时回答，不能直接等同于事实幻觉。该比例仅在可解析的 answer 中计算，须结合格式有效率、可答成功率与整组表现阅读。</p>
           <div class="replay-layout">
             <aside class="case-panel" aria-labelledby="case-list-title"><div class="panel-heading"><h2 id="case-list-title">测试案例</h2><span id="filtered-count" class="muted"></span></div><div class="filters"><label class="search-label" for="case-search">搜索问题或案例 ID</label><input id="case-search" type="search" placeholder="搜索问题或案例 ID…" autocomplete="off"><div class="filter-row"><label>场景<select id="scenario-select"><option value="">全部场景</option></select></label><label>结果<select id="result-select"><option value="">全部结果</option><option value="failed">未通过</option><option value="passed">已通过</option><option value="unknown">未记录</option></select></label></div></div><div id="case-list" class="case-list" aria-label="测试案例列表"></div></aside>
             <article id="case-detail" class="detail-panel" aria-live="polite"></article>

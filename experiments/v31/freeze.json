@@ -1,0 +1,25 @@
+{
+  "format": "evidence-gate-v31-freeze-v1",
+  "created_at": "2026-10-27T12:39:35.611846+00:00",
+  "model_predictions_read": false,
+  "test_model_inference_performed": false,
+  "files": {
+    "experiments/v31/protocol.json": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56",
+    "experiments/v31/data-audit.json": "9b6223e16104db21318ae8adbd71352ba8f0be97a5634f22bf58eea67f832c49",
+    "experiments/v31/supersession.json": "330fc84208e153dc8e9783c72457470eb3155f701f2713b427250495d9ad1144",
+    "data/v31/manifest.json": "b7e2303670bc3c43058d67f1665a5aaae9f9509f0bbf410be58bc169a594075e",
+    "experiments/v31/acceptance-plan.md": "2b8c66f805cc9c569697a66098f54ab172d14963dee4997250ceb1481cb0d11e",
+    "scripts/build_v31.py": "dd69513866093cd1c652d3dc8ab1d87ac561f7d857a87d3f9340ed61784f4d1b",
+    "scripts/audit_v31_data.py": "d8f060f646fa477bade4e09670b76fd68ed95644189e203629e1c72618e4578a",
+    "scripts/build_v3.py": "ef2d5a4467ca5d58930feec6f79416fb7563a73fb87e97d4f43127e31def7dd9",
+    "scripts/audit_v3_data.py": "a44da03d7b461a8824d403d91653c3983b98bad43ecc5e41ab81bd9d6e976629",
+    "scripts/build_v2.py": "22260106ea5dac7b36f6b28edc03b777c4e58d6f2d5f6273cc62d264774b348a",
+    "src/evidence_gate/data.py": "a2db3e0b351ed2b3f329ed41618a41759417ffd7b428e8f7fde4ba03d05eb711",
+    "src/evidence_gate/evaluation.py": "39adabdf16cb7eab666ea229e3003dc905ce91cbf47668bee6e92860cc31d89c",
+    "src/evidence_gate/agent.py": "e980e806659ae4084bf11d6d6209d3a7d7c27c5d4d8e01ae5f3a407cef940a57",
+    "data/v31/train.jsonl": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+    "data/v31/dev.jsonl": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5",
+    "data/v31/test.jsonl": "ef204aa1f2f23246aeda1498bafb3ae995af0d1d213368b3357ff9cedfe6f8f0"
+  },
+  "meaning": "Data/contract/code hashes; no claim of model quality or secret test access control."
+}

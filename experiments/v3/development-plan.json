@@ -1,0 +1,46 @@
+{
+  "format": "evidence-gate-v3-development-plan-v1",
+  "created_at": "2026-10-27T12:09:04.724261+00:00",
+  "authorization": "User reopened model development after V2 failed; local computer only, no cloud fees. README and GitHub publication follow successful verification.",
+  "known_evidence": [
+    "V2 train/dev exploratory 64-row diagnostic: answer action remains poorly learned on training examples; correct-prefix value and citation copying is near perfect.",
+    "Mean completion NLL hides the hard action decision; nevertheless action tokens account for over 99% of observed residual NLL, so loss weighting is not established as the solution.",
+    "V2 text features still correlate with answer labels; counterexamples and budget-paired support examples are needed."
+  ],
+  "rounds": [
+    {
+      "name": "capacity-probe",
+      "purpose": "Isolate broader trainable LoRA projections using the same V2 data, optimizer schedule and number of updates. Diagnostic development evidence only.",
+      "train_data": "data/v2/train.jsonl",
+      "config": "configs/v3-capacity-probe.json",
+      "run": "runs/v3-capacity-probe",
+      "dev_data": "data/v2/dev.jsonl",
+      "checkpoint_steps": [
+        200,
+        400,
+        600
+      ],
+      "change_from_v2": "q/v rank8 -> q/k/v/o/gate/up/down rank8; all other training settings unchanged",
+      "test_access": false
+    },
+    {
+      "name": "batch-throughput-smoke",
+      "purpose": "Check batch4 throughput/memory for the next local run; weights are not candidates and no dev/test model inference is allowed.",
+      "train_data": "data/v3/train.jsonl",
+      "config": "configs/v3-batch-smoke.json",
+      "run": "runs/v3-batch-smoke",
+      "checkpoint_steps": [
+        20
+      ],
+      "test_access": false,
+      "dev_access": false
+    }
+  ],
+  "fresh_holdout": "V3 generator and seven-gate protocol will be frozen before V3 model selection. New test remains unopened for model inference until every dev gate passes.",
+  "rejected_shortcuts": [
+    "No lower quality thresholds",
+    "No hidden rule oracle in model inference",
+    "No output repair or test-driven checkpoint selection"
+  ],
+  "next_decision": "Use capacity probe dev results and corrected V3 data audit to choose the next training round; record it before execution."
+}

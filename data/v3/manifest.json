@@ -1,0 +1,334 @@
+{
+  "schema_version": 1,
+  "rows": 3280,
+  "groups": 164,
+  "split_rows": {
+    "train": 1600,
+    "dev": 480,
+    "test": 1200
+  },
+  "actions": {
+    "answer": 1312,
+    "abstain": 820,
+    "search": 820,
+    "clarify": 328
+  },
+  "dataset_sha256": "1b20b03f75559d60a10cb8607015ca86a55b9d80b741f80105d50b736c686d3e",
+  "group_leaks": 0,
+  "identical_prompt_cross_split": 0,
+  "labels_in_messages": false,
+  "variants": [
+    "supported_b0",
+    "supported_b1",
+    "value_changed_b0",
+    "value_changed_b1",
+    "distractor_b0",
+    "distractor_b1",
+    "reordered_b0",
+    "reordered_b1",
+    "missing_b0",
+    "missing_b1",
+    "expired_b0",
+    "expired_b1",
+    "future_b0",
+    "future_b1",
+    "conflict_b0",
+    "conflict_b1",
+    "ambiguous_b0",
+    "ambiguous_b1",
+    "untrusted_b0",
+    "untrusted_b1"
+  ],
+  "cells_per_group": 20,
+  "public_rule_target_agreements": 3280,
+  "recovery_world_agreements": 3280,
+  "shortcut_audit": {
+    "train": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 640,
+            "abstain": 400,
+            "search": 400,
+            "clarify": 160
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 640,
+            "abstain": 400,
+            "search": 400,
+            "clarify": 160
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 640,
+            "abstain": 400,
+            "search": 400,
+            "clarify": 160
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "abstain": 134,
+            "search": 134,
+            "answer": 216,
+            "clarify": 54
+          },
+          "community:V,official:F,official:V": {
+            "abstain": 132,
+            "search": 132,
+            "answer": 208,
+            "clarify": 52
+          },
+          "community:V,official:V,official:V": {
+            "answer": 216,
+            "abstain": 134,
+            "search": 134,
+            "clarify": 54
+          }
+        },
+        "mutual_information_bits": 2.0470296433082588e-05,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      }
+    },
+    "dev": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 192,
+            "abstain": 120,
+            "search": 120,
+            "clarify": 48
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 192,
+            "abstain": 120,
+            "search": 120,
+            "clarify": 48
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 192,
+            "abstain": 120,
+            "search": 120,
+            "clarify": 48
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "abstain": 40,
+            "search": 40,
+            "answer": 64,
+            "clarify": 16
+          },
+          "community:V,official:F,official:V": {
+            "abstain": 40,
+            "search": 40,
+            "answer": 64,
+            "clarify": 16
+          },
+          "community:V,official:V,official:V": {
+            "answer": 64,
+            "abstain": 40,
+            "search": 40,
+            "clarify": 16
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      }
+    },
+    "test": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 480,
+            "abstain": 300,
+            "search": 300,
+            "clarify": 120
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 480,
+            "abstain": 300,
+            "search": 300,
+            "clarify": 120
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 480,
+            "abstain": 300,
+            "search": 300,
+            "clarify": 120
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "abstain": 100,
+            "search": 100,
+            "answer": 160,
+            "clarify": 40
+          },
+          "community:V,official:F,official:V": {
+            "answer": 160,
+            "abstain": 100,
+            "search": 100,
+            "clarify": 40
+          },
+          "community:V,official:V,official:V": {
+            "abstain": 100,
+            "search": 100,
+            "answer": 160,
+            "clarify": 40
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.4,
+        "constant_majority_action_accuracy": 0.4
+      }
+    }
+  },
+  "previously_seen_entity_overlap": 0,
+  "cross_group_entity_overlap": 0,
+  "forbidden_entities_checked": 336,
+  "entity_count": 248,
+  "split_identity": {
+    "train": {
+      "groups": 80,
+      "group_ids_sha256": "c9c9f2d0c5a5436195a233b5fc96baa4fe6e141e6eab0628edd0ca24c9bbab38",
+      "entities": 122,
+      "entities_sha256": "0160477a1917b4aa982e69633b17db89fad8908f8a8c3b2f67f104b14e13c231"
+    },
+    "dev": {
+      "groups": 24,
+      "group_ids_sha256": "21a8a982675a514320818511543b5e7a8253a2c5e3aa0a97b5bfde9655c73627",
+      "entities": 36,
+      "entities_sha256": "a055d958bf3599ee903f43e94ddbe91cd91a76d966661a868fcd7e35144e5302"
+    },
+    "test": {
+      "groups": 60,
+      "group_ids_sha256": "4a9c7551925491e57bd5b91d51c4ec21bb0e9f411462f3a28787e14331d65930",
+      "entities": 90,
+      "entities_sha256": "be66d5595885909fc0c44b3a22f5d95f0e11dd5301cb9280c2848ab97c7ca6ef"
+    }
+  },
+  "identity_scope": "All entity-shaped strings in each row: question, visible documents, private catalogue and gold; query-only checks are insufficient.",
+  "format": "evidence-gate-v3-data-manifest-v1",
+  "generator": "build_v3.py",
+  "created_at": "2026-10-27T12:20:11.567889+00:00",
+  "seed": 20261029,
+  "license": "MIT",
+  "models_called": 0,
+  "model_predictions_read": false,
+  "test_model_inference_performed": false,
+  "messages_changed_from_v2_contract": false,
+  "random_streams": "Independent seed domains per split; train expansion leaves dev/test bytes unchanged",
+  "entity_extraction": "(?<![A-Za-z0-9_])[A-Z]{2,}-\\d+(?![A-Za-z0-9_])",
+  "forbidden_entities_sha256": "aca940cd58c4cb53809396a5ce67b8cb3028c1d84c21c573e1039f05f6b2e461",
+  "previously_seen_files_sha256": {
+    "main/train.jsonl": "b3b46d93c1b4e0c21d5c5fb17a7117ff0fdadd0ff260fd9c758157299b2dc560",
+    "main/dev.jsonl": "45c5593c98632953e44ec72462072f45bc7a2aac6c46eae965747fde02f8cc42",
+    "main/test.jsonl": "58b095b473c23b81dbec4a2af7d6bd0680ca9e2cc6517af05cf432b89713257f",
+    "v2/train.jsonl": "11629323ee99030472ccabd944301d9f4fec4a3a4c0624c574d1e00d5487f23a",
+    "v2/dev.jsonl": "7c1fa90582d9d289bd798e9ea90634bced6f833666f69f0fdcf053071d9b66bf",
+    "v2/test.jsonl": "c60fb70ba876b5c8f543784f5226d791d283bca00d5c5aaa17f261bb247eb6cc"
+  },
+  "protocol_sha256": "72a1197b2245af3e46ec04b889e34a1cc5ed1e0d902cabed70a4c491d9f56189",
+  "independent_audit_sha256": "7c2ee94916a330f9a697f8e49b13c6e94acc7a37688ac935ebac2f1e27eaf6b9",
+  "code_sha256": {
+    "scripts/build_v3.py": "ef2d5a4467ca5d58930feec6f79416fb7563a73fb87e97d4f43127e31def7dd9",
+    "scripts/audit_v3_data.py": "a44da03d7b461a8824d403d91653c3983b98bad43ecc5e41ab81bd9d6e976629",
+    "scripts/build_v2.py": "22260106ea5dac7b36f6b28edc03b777c4e58d6f2d5f6273cc62d264774b348a",
+    "src/evidence_gate/data.py": "a2db3e0b351ed2b3f329ed41618a41759417ffd7b428e8f7fde4ba03d05eb711",
+    "src/evidence_gate/evaluation.py": "39adabdf16cb7eab666ea229e3003dc905ce91cbf47668bee6e92860cc31d89c",
+    "src/evidence_gate/agent.py": "e980e806659ae4084bf11d6d6209d3a7d7c27c5d4d8e01ae5f3a407cef940a57"
+  },
+  "files": {
+    "train.jsonl": {
+      "sha256": "38b20db7fff7569a610adc7ea727adabd2d6bbea619b22e53ef2716df926ea2b",
+      "rows": 1600,
+      "actions": {
+        "answer": 640,
+        "abstain": 400,
+        "search": 400,
+        "clarify": 160
+      }
+    },
+    "dev.jsonl": {
+      "sha256": "a659be39646aa8df6307ce5941a254b19d830c5e1239adaeb3cabbff75b2f947",
+      "rows": 480,
+      "actions": {
+        "answer": 192,
+        "abstain": 120,
+        "search": 120,
+        "clarify": 48
+      }
+    },
+    "test.jsonl": {
+      "sha256": "d6799407f90a17b2605562747b126a38deeeee9079f8ee736f2c307e280c6311",
+      "rows": 1200,
+      "actions": {
+        "answer": 480,
+        "abstain": 300,
+        "search": 300,
+        "clarify": 120
+      }
+    }
+  },
+  "statistical_unit": "Complete product group; twenty budget/semantic cells are not independent products",
+  "scope": "Same observable task contract, twenty cells: ten semantic states times two budgets. Original message projection; one applicable official document in answer states. Not a multiple-agreeing-officials benchmark. Static rule checks verify labels, not model competence."
+}

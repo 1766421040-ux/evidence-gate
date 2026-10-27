@@ -1,0 +1,1417 @@
+{
+  "format": "evidence-gate-v3-selection-v1",
+  "status": "selected",
+  "selection_split": "dev",
+  "test_used_for_selection": false,
+  "selected": {
+    "id": "crossed-r8-step2400",
+    "step": 2400,
+    "registration_order": 3,
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+    "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+    "adapter_sha256": "8f4416485a369460f97b0cf47ec2e56e298588c46d3df60c3e94b31541715c19",
+    "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+    "checkpoint_sha256": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771"
+  },
+  "test_allowed": true,
+  "sources": {
+    "protocol": {
+      "name": "protocol.json",
+      "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+    },
+    "registry": {
+      "name": "registry.json",
+      "sha256": "46c12b21392dd2df619dc51ce3bdcf6057a2a408a02d1abfa5b25533fdaa9bc5"
+    },
+    "data": {
+      "name": "dev.jsonl",
+      "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+    }
+  },
+  "ordering": [
+    {
+      "metric": "answerable_success",
+      "direction": "max"
+    },
+    {
+      "metric": "all_variants_correct_rate",
+      "direction": "max"
+    },
+    {
+      "metric": "success_rate",
+      "direction": "max"
+    },
+    {
+      "metric": "unsupported_answer_rate",
+      "direction": "min"
+    },
+    {
+      "metric": "registration_order",
+      "direction": "min"
+    }
+  ],
+  "candidate_audits": [
+    {
+      "id": "crossed-r8-step600",
+      "registration_order": 0,
+      "artifact": {
+        "id": "crossed-r8-step600",
+        "step": 600,
+        "registration_order": 0,
+        "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+        "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+        "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+        "adapter_sha256": "e2e4b408b9187cc979f060f399ad08e351188c74b075a35b4ac207c30661b013",
+        "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+        "checkpoint_sha256": "6676f677438b4e15d10c37f8623621baa526fde8d4ac4f22daace1f9986e4d59"
+      },
+      "audit": {
+        "format": "evidence-gate-v3-quality-audit-v1",
+        "name": "crossed-r8-step600",
+        "kind": "model",
+        "split": "dev",
+        "status": "fail",
+        "passed": false,
+        "integrity": {
+          "verified": true,
+          "dev_rows": 576,
+          "dev_groups": 24,
+          "dataset_sha256": "9ef499c240df27d517cd1214956d32f27d5f4ab077734fd33b925c935a5056ec",
+          "case_identity_checked": true,
+          "raw_outputs_rescored": true,
+          "stored_summary_matches": true
+        },
+        "sources": {
+          "evaluation": {
+            "name": "dev-step-000600.json",
+            "sha256": "6df314ca91ce2cb7454d4ca7b44fc0ae8df60b985f43509b780d345543fe9cf6"
+          },
+          "data": {
+            "name": "dev.jsonl",
+            "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+          },
+          "protocol": {
+            "name": "protocol.json",
+            "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+          }
+        },
+        "answer_risk_eligibility": {
+          "required_emitted_answers": 231,
+          "actual_emitted_answers": 198
+        },
+        "checks": [
+          {
+            "gate": "strict_success_min",
+            "metric": "success_rate",
+            "actual": 0.5798611111111112,
+            "threshold": 0.85,
+            "direction": ">=",
+            "numerator": 334,
+            "denominator": 576,
+            "exact_fraction": "167/288",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "answerable_success_min",
+            "metric": "answerable_success",
+            "actual": 0.4340277777777778,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": 125,
+            "denominator": 288,
+            "exact_fraction": "125/288",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "action_macro_f1_min",
+            "metric": "action_macro_f1",
+            "actual": 0.6608357309958484,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": null,
+            "denominator": null,
+            "exact_fraction": "5741095/8687628",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "all_variants_correct_min",
+            "metric": "all_variants_correct_rate",
+            "actual": 0.0,
+            "threshold": 0.5,
+            "direction": ">=",
+            "numerator": 0,
+            "denominator": 24,
+            "exact_fraction": "0",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "over_answer_rate_max",
+            "metric": "over_answer_rate",
+            "actual": 0.25,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 72,
+            "denominator": 288,
+            "exact_fraction": "1/4",
+            "eligible": false,
+            "passed": false,
+            "reason": "Too few parseable emitted answers for the declared risk denominator rule."
+          },
+          {
+            "gate": "format_valid_rate_min",
+            "metric": "format_valid_rate",
+            "actual": 1.0,
+            "threshold": 1.0,
+            "direction": ">=",
+            "numerator": 576,
+            "denominator": 576,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "unsupported_answer_rate_max",
+            "metric": "unsupported_answer_rate",
+            "actual": 0.3686868686868687,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 73,
+            "denominator": 198,
+            "exact_fraction": "73/198",
+            "eligible": false,
+            "passed": false,
+            "reason": "Too few parseable emitted answers for the declared risk denominator rule."
+          }
+        ],
+        "recomputed_summary": {
+          "n": 576,
+          "success_rate": 0.5798611111111112,
+          "success_group_bootstrap_95ci": [
+            0.5486111111111112,
+            0.6076388888888888
+          ],
+          "format_valid_rate": 1.0,
+          "action_accuracy": 0.5815972222222222,
+          "action_macro_f1": 0.6608357309958484,
+          "answer_coverage": 0.34375,
+          "answerable_success": 0.4340277777777778,
+          "unsupported_answer_rate": 0.3686868686868687,
+          "over_answer_rate": 0.25,
+          "over_refusal_rate": 0.3263888888888889,
+          "unnecessary_search_rate": 0.2361111111111111,
+          "citation_exact_rate": 0.6313131313131313,
+          "all_variants_correct_rate": 0.0,
+          "groups": 24,
+          "mean_latency_ms": 230.8381095159954,
+          "denominators": {
+            "answerable": 288,
+            "unanswerable": 288,
+            "emitted_answers": 198
+          },
+          "confusion": {
+            "answer": {
+              "answer": 126,
+              "search": 68,
+              "clarify": 0,
+              "abstain": 94,
+              "invalid": 0
+            },
+            "search": {
+              "answer": 44,
+              "search": 69,
+              "clarify": 0,
+              "abstain": 7,
+              "invalid": 0
+            },
+            "clarify": {
+              "answer": 0,
+              "search": 0,
+              "clarify": 48,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "abstain": {
+              "answer": 28,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 92,
+              "invalid": 0
+            }
+          },
+          "pairs": {
+            "value_change": {
+              "correct": 11,
+              "total": 48,
+              "accuracy": 0.22916666666666666
+            },
+            "distractor_invariance": {
+              "correct": 5,
+              "total": 48,
+              "accuracy": 0.10416666666666667
+            },
+            "order_invariance": {
+              "correct": 6,
+              "total": 48,
+              "accuracy": 0.125
+            },
+            "evidence_removal": {
+              "correct": 4,
+              "total": 48,
+              "accuracy": 0.08333333333333333
+            },
+            "budget_exhaustion": {
+              "correct": 13,
+              "total": 24,
+              "accuracy": 0.5416666666666666
+            },
+            "expiry_boundary": {
+              "correct": 1,
+              "total": 48,
+              "accuracy": 0.020833333333333332
+            },
+            "answer_budget_invariance": {
+              "correct": 3,
+              "total": 24,
+              "accuracy": 0.125
+            },
+            "clarify_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            }
+          },
+          "by_variant": {
+            "supported_b0": {
+              "n": 24,
+              "success_rate": 0.16666666666666666
+            },
+            "supported_b1": {
+              "n": 24,
+              "success_rate": 0.3333333333333333
+            },
+            "value_changed_b0": {
+              "n": 24,
+              "success_rate": 0.16666666666666666
+            },
+            "value_changed_b1": {
+              "n": 24,
+              "success_rate": 0.2916666666666667
+            },
+            "distractor_b0": {
+              "n": 24,
+              "success_rate": 0.041666666666666664
+            },
+            "distractor_b1": {
+              "n": 24,
+              "success_rate": 0.375
+            },
+            "reordered_b0": {
+              "n": 24,
+              "success_rate": 0.16666666666666666
+            },
+            "reordered_b1": {
+              "n": 24,
+              "success_rate": 0.2916666666666667
+            },
+            "missing_b0": {
+              "n": 24,
+              "success_rate": 0.9166666666666666
+            },
+            "missing_b1": {
+              "n": 24,
+              "success_rate": 0.5416666666666666
+            },
+            "expired_b0": {
+              "n": 24,
+              "success_rate": 0.8333333333333334
+            },
+            "expired_b1": {
+              "n": 24,
+              "success_rate": 0.7083333333333334
+            },
+            "future_b0": {
+              "n": 24,
+              "success_rate": 0.8333333333333334
+            },
+            "future_b1": {
+              "n": 24,
+              "success_rate": 0.7083333333333334
+            },
+            "conflict_b0": {
+              "n": 24,
+              "success_rate": 0.25
+            },
+            "conflict_b1": {
+              "n": 24,
+              "success_rate": 0.20833333333333334
+            },
+            "ambiguous_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b1": {
+              "n": 24,
+              "success_rate": 0.7083333333333334
+            },
+            "irrelevant_topic_b0": {
+              "n": 24,
+              "success_rate": 0.6666666666666666
+            },
+            "irrelevant_topic_b1": {
+              "n": 24,
+              "success_rate": 0.9583333333333334
+            },
+            "consensus_b0": {
+              "n": 24,
+              "success_rate": 0.875
+            },
+            "consensus_b1": {
+              "n": 24,
+              "success_rate": 0.875
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "crossed-r8-step1200",
+      "registration_order": 1,
+      "artifact": {
+        "id": "crossed-r8-step1200",
+        "step": 1200,
+        "registration_order": 1,
+        "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+        "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+        "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+        "adapter_sha256": "06cfd062c502d74c49d2291066e0602789f9ce0ed07e98609935f0a3dc74e2f6",
+        "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+        "checkpoint_sha256": "4a4b7963b15c9668255ebeaad7cd6810fb5a3c4eb6df94db4802e0dca020c55f"
+      },
+      "audit": {
+        "format": "evidence-gate-v3-quality-audit-v1",
+        "name": "crossed-r8-step1200",
+        "kind": "model",
+        "split": "dev",
+        "status": "fail",
+        "passed": false,
+        "integrity": {
+          "verified": true,
+          "dev_rows": 576,
+          "dev_groups": 24,
+          "dataset_sha256": "9ef499c240df27d517cd1214956d32f27d5f4ab077734fd33b925c935a5056ec",
+          "case_identity_checked": true,
+          "raw_outputs_rescored": true,
+          "stored_summary_matches": true
+        },
+        "sources": {
+          "evaluation": {
+            "name": "dev-step-001200.json",
+            "sha256": "d36cd763611ad363b0154855bdfa7f09def06105c6385d5995cece33ad1975f3"
+          },
+          "data": {
+            "name": "dev.jsonl",
+            "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+          },
+          "protocol": {
+            "name": "protocol.json",
+            "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+          }
+        },
+        "answer_risk_eligibility": {
+          "required_emitted_answers": 231,
+          "actual_emitted_answers": 98
+        },
+        "checks": [
+          {
+            "gate": "strict_success_min",
+            "metric": "success_rate",
+            "actual": 0.6597222222222222,
+            "threshold": 0.85,
+            "direction": ">=",
+            "numerator": 380,
+            "denominator": 576,
+            "exact_fraction": "95/144",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "answerable_success_min",
+            "metric": "answerable_success",
+            "actual": 0.3298611111111111,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": 95,
+            "denominator": 288,
+            "exact_fraction": "95/288",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "action_macro_f1_min",
+            "metric": "action_macro_f1",
+            "actual": 0.7267870347388126,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": null,
+            "denominator": null,
+            "exact_fraction": "2248807/3094176",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "all_variants_correct_min",
+            "metric": "all_variants_correct_rate",
+            "actual": 0.0,
+            "threshold": 0.5,
+            "direction": ">=",
+            "numerator": 0,
+            "denominator": 24,
+            "exact_fraction": "0",
+            "eligible": true,
+            "passed": false,
+            "reason": "Threshold not met."
+          },
+          {
+            "gate": "over_answer_rate_max",
+            "metric": "over_answer_rate",
+            "actual": 0.010416666666666666,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 3,
+            "denominator": 288,
+            "exact_fraction": "1/96",
+            "eligible": false,
+            "passed": false,
+            "reason": "Too few parseable emitted answers for the declared risk denominator rule."
+          },
+          {
+            "gate": "format_valid_rate_min",
+            "metric": "format_valid_rate",
+            "actual": 1.0,
+            "threshold": 1.0,
+            "direction": ">=",
+            "numerator": 576,
+            "denominator": 576,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "unsupported_answer_rate_max",
+            "metric": "unsupported_answer_rate",
+            "actual": 0.030612244897959183,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 3,
+            "denominator": 98,
+            "exact_fraction": "3/98",
+            "eligible": false,
+            "passed": false,
+            "reason": "Too few parseable emitted answers for the declared risk denominator rule."
+          }
+        ],
+        "recomputed_summary": {
+          "n": 576,
+          "success_rate": 0.6597222222222222,
+          "success_group_bootstrap_95ci": [
+            0.6510416666666666,
+            0.6666666666666666
+          ],
+          "format_valid_rate": 1.0,
+          "action_accuracy": 0.6597222222222222,
+          "action_macro_f1": 0.7267870347388126,
+          "answer_coverage": 0.1701388888888889,
+          "answerable_success": 0.3298611111111111,
+          "unsupported_answer_rate": 0.030612244897959183,
+          "over_answer_rate": 0.010416666666666666,
+          "over_refusal_rate": 0.3333333333333333,
+          "unnecessary_search_rate": 0.3368055555555556,
+          "citation_exact_rate": 0.9693877551020408,
+          "all_variants_correct_rate": 0.0,
+          "groups": 24,
+          "mean_latency_ms": 212.08661233766986,
+          "denominators": {
+            "answerable": 288,
+            "unanswerable": 288,
+            "emitted_answers": 98
+          },
+          "confusion": {
+            "answer": {
+              "answer": 95,
+              "search": 97,
+              "clarify": 0,
+              "abstain": 96,
+              "invalid": 0
+            },
+            "search": {
+              "answer": 1,
+              "search": 119,
+              "clarify": 0,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "clarify": {
+              "answer": 0,
+              "search": 0,
+              "clarify": 48,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "abstain": {
+              "answer": 2,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 118,
+              "invalid": 0
+            }
+          },
+          "pairs": {
+            "value_change": {
+              "correct": 0,
+              "total": 48,
+              "accuracy": 0.0
+            },
+            "distractor_invariance": {
+              "correct": 0,
+              "total": 48,
+              "accuracy": 0.0
+            },
+            "order_invariance": {
+              "correct": 0,
+              "total": 48,
+              "accuracy": 0.0
+            },
+            "evidence_removal": {
+              "correct": 0,
+              "total": 48,
+              "accuracy": 0.0
+            },
+            "budget_exhaustion": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            },
+            "expiry_boundary": {
+              "correct": 0,
+              "total": 48,
+              "accuracy": 0.0
+            },
+            "answer_budget_invariance": {
+              "correct": 0,
+              "total": 24,
+              "accuracy": 0.0
+            },
+            "clarify_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            }
+          },
+          "by_variant": {
+            "supported_b0": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "supported_b1": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "value_changed_b0": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "value_changed_b1": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "distractor_b0": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "distractor_b1": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "reordered_b0": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "reordered_b1": {
+              "n": 24,
+              "success_rate": 0.0
+            },
+            "missing_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "missing_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "future_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "future_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "conflict_b0": {
+              "n": 24,
+              "success_rate": 0.9166666666666666
+            },
+            "conflict_b1": {
+              "n": 24,
+              "success_rate": 0.9583333333333334
+            },
+            "ambiguous_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b1": {
+              "n": 24,
+              "success_rate": 0.9583333333333334
+            },
+            "consensus_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "consensus_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "crossed-r8-step1800",
+      "registration_order": 2,
+      "artifact": {
+        "id": "crossed-r8-step1800",
+        "step": 1800,
+        "registration_order": 2,
+        "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+        "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+        "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+        "adapter_sha256": "2a0b2929c48e8dcd5de62595d4478dbd039f798af62be1fd41bb3123ef90d502",
+        "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+        "checkpoint_sha256": "75627d6e08c104c02f524d4d7233287073e6c43ae7fc24ac52e3caf4e0c754ce"
+      },
+      "audit": {
+        "format": "evidence-gate-v3-quality-audit-v1",
+        "name": "crossed-r8-step1800",
+        "kind": "model",
+        "split": "dev",
+        "status": "pass",
+        "passed": true,
+        "integrity": {
+          "verified": true,
+          "dev_rows": 576,
+          "dev_groups": 24,
+          "dataset_sha256": "9ef499c240df27d517cd1214956d32f27d5f4ab077734fd33b925c935a5056ec",
+          "case_identity_checked": true,
+          "raw_outputs_rescored": true,
+          "stored_summary_matches": true
+        },
+        "sources": {
+          "evaluation": {
+            "name": "dev-step-001800.json",
+            "sha256": "35965121dd3b59cbbe99ec999f31868e0e2c6091d79ac2e48b1d6f6e9ffa95c9"
+          },
+          "data": {
+            "name": "dev.jsonl",
+            "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+          },
+          "protocol": {
+            "name": "protocol.json",
+            "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+          }
+        },
+        "answer_risk_eligibility": {
+          "required_emitted_answers": 231,
+          "actual_emitted_answers": 293
+        },
+        "checks": [
+          {
+            "gate": "strict_success_min",
+            "metric": "success_rate",
+            "actual": 0.9895833333333334,
+            "threshold": 0.85,
+            "direction": ">=",
+            "numerator": 570,
+            "denominator": 576,
+            "exact_fraction": "95/96",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "answerable_success_min",
+            "metric": "answerable_success",
+            "actual": 0.9965277777777778,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": 287,
+            "denominator": 288,
+            "exact_fraction": "287/288",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "action_macro_f1_min",
+            "metric": "action_macro_f1",
+            "actual": 0.9925831397070037,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": null,
+            "denominator": null,
+            "exact_fraction": "442569/445876",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "all_variants_correct_min",
+            "metric": "all_variants_correct_rate",
+            "actual": 0.8333333333333334,
+            "threshold": 0.5,
+            "direction": ">=",
+            "numerator": 20,
+            "denominator": 24,
+            "exact_fraction": "5/6",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "over_answer_rate_max",
+            "metric": "over_answer_rate",
+            "actual": 0.017361111111111112,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 5,
+            "denominator": 288,
+            "exact_fraction": "5/288",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "format_valid_rate_min",
+            "metric": "format_valid_rate",
+            "actual": 1.0,
+            "threshold": 1.0,
+            "direction": ">=",
+            "numerator": 576,
+            "denominator": 576,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "unsupported_answer_rate_max",
+            "metric": "unsupported_answer_rate",
+            "actual": 0.020477815699658702,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 6,
+            "denominator": 293,
+            "exact_fraction": "6/293",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          }
+        ],
+        "recomputed_summary": {
+          "n": 576,
+          "success_rate": 0.9895833333333334,
+          "success_group_bootstrap_95ci": [
+            0.9791666666666666,
+            0.9982638888888888
+          ],
+          "format_valid_rate": 1.0,
+          "action_accuracy": 0.9913194444444444,
+          "action_macro_f1": 0.9925831397070037,
+          "answer_coverage": 0.5086805555555556,
+          "answerable_success": 0.9965277777777778,
+          "unsupported_answer_rate": 0.020477815699658702,
+          "over_answer_rate": 0.017361111111111112,
+          "over_refusal_rate": 0.0,
+          "unnecessary_search_rate": 0.0,
+          "citation_exact_rate": 0.9795221843003413,
+          "all_variants_correct_rate": 0.8333333333333334,
+          "groups": 24,
+          "mean_latency_ms": 228.80410669090958,
+          "denominators": {
+            "answerable": 288,
+            "unanswerable": 288,
+            "emitted_answers": 293
+          },
+          "confusion": {
+            "answer": {
+              "answer": 288,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "search": {
+              "answer": 3,
+              "search": 117,
+              "clarify": 0,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "clarify": {
+              "answer": 0,
+              "search": 0,
+              "clarify": 48,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "abstain": {
+              "answer": 2,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 118,
+              "invalid": 0
+            }
+          },
+          "pairs": {
+            "value_change": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "distractor_invariance": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "order_invariance": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "evidence_removal": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "budget_exhaustion": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            },
+            "expiry_boundary": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "answer_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            },
+            "clarify_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            }
+          },
+          "by_variant": {
+            "supported_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "supported_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "value_changed_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "value_changed_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "distractor_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "distractor_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "reordered_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "reordered_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "missing_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "missing_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "future_b0": {
+              "n": 24,
+              "success_rate": 0.9166666666666666
+            },
+            "future_b1": {
+              "n": 24,
+              "success_rate": 0.875
+            },
+            "conflict_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "conflict_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "consensus_b0": {
+              "n": 24,
+              "success_rate": 0.9583333333333334
+            },
+            "consensus_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "crossed-r8-step2400",
+      "registration_order": 3,
+      "artifact": {
+        "id": "crossed-r8-step2400",
+        "step": 2400,
+        "registration_order": 3,
+        "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+        "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+        "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+        "adapter_sha256": "8f4416485a369460f97b0cf47ec2e56e298588c46d3df60c3e94b31541715c19",
+        "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+        "checkpoint_sha256": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771"
+      },
+      "audit": {
+        "format": "evidence-gate-v3-quality-audit-v1",
+        "name": "crossed-r8-step2400",
+        "kind": "model",
+        "split": "dev",
+        "status": "pass",
+        "passed": true,
+        "integrity": {
+          "verified": true,
+          "dev_rows": 576,
+          "dev_groups": 24,
+          "dataset_sha256": "9ef499c240df27d517cd1214956d32f27d5f4ab077734fd33b925c935a5056ec",
+          "case_identity_checked": true,
+          "raw_outputs_rescored": true,
+          "stored_summary_matches": true
+        },
+        "sources": {
+          "evaluation": {
+            "name": "dev-step-002400.json",
+            "sha256": "91c9e9248078fadb720e1b97ec36da701a7273c9dfb0cced445a6886f27e2d12"
+          },
+          "data": {
+            "name": "dev.jsonl",
+            "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5"
+          },
+          "protocol": {
+            "name": "protocol.json",
+            "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+          }
+        },
+        "answer_risk_eligibility": {
+          "required_emitted_answers": 231,
+          "actual_emitted_answers": 288
+        },
+        "checks": [
+          {
+            "gate": "strict_success_min",
+            "metric": "success_rate",
+            "actual": 1.0,
+            "threshold": 0.85,
+            "direction": ">=",
+            "numerator": 576,
+            "denominator": 576,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "answerable_success_min",
+            "metric": "answerable_success",
+            "actual": 1.0,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": 288,
+            "denominator": 288,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "action_macro_f1_min",
+            "metric": "action_macro_f1",
+            "actual": 1.0,
+            "threshold": 0.8,
+            "direction": ">=",
+            "numerator": null,
+            "denominator": null,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "all_variants_correct_min",
+            "metric": "all_variants_correct_rate",
+            "actual": 1.0,
+            "threshold": 0.5,
+            "direction": ">=",
+            "numerator": 24,
+            "denominator": 24,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "over_answer_rate_max",
+            "metric": "over_answer_rate",
+            "actual": 0.0,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 0,
+            "denominator": 288,
+            "exact_fraction": "0",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "format_valid_rate_min",
+            "metric": "format_valid_rate",
+            "actual": 1.0,
+            "threshold": 1.0,
+            "direction": ">=",
+            "numerator": 576,
+            "denominator": 576,
+            "exact_fraction": "1",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          },
+          {
+            "gate": "unsupported_answer_rate_max",
+            "metric": "unsupported_answer_rate",
+            "actual": 0.0,
+            "threshold": 0.05,
+            "direction": "<=",
+            "numerator": 0,
+            "denominator": 288,
+            "exact_fraction": "0",
+            "eligible": true,
+            "passed": true,
+            "reason": "Threshold met."
+          }
+        ],
+        "recomputed_summary": {
+          "n": 576,
+          "success_rate": 1.0,
+          "success_group_bootstrap_95ci": [
+            1.0,
+            1.0
+          ],
+          "format_valid_rate": 1.0,
+          "action_accuracy": 1.0,
+          "action_macro_f1": 1.0,
+          "answer_coverage": 0.5,
+          "answerable_success": 1.0,
+          "unsupported_answer_rate": 0.0,
+          "over_answer_rate": 0.0,
+          "over_refusal_rate": 0.0,
+          "unnecessary_search_rate": 0.0,
+          "citation_exact_rate": 1.0,
+          "all_variants_correct_rate": 1.0,
+          "groups": 24,
+          "mean_latency_ms": 229.68169293380925,
+          "denominators": {
+            "answerable": 288,
+            "unanswerable": 288,
+            "emitted_answers": 288
+          },
+          "confusion": {
+            "answer": {
+              "answer": 288,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "search": {
+              "answer": 0,
+              "search": 120,
+              "clarify": 0,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "clarify": {
+              "answer": 0,
+              "search": 0,
+              "clarify": 48,
+              "abstain": 0,
+              "invalid": 0
+            },
+            "abstain": {
+              "answer": 0,
+              "search": 0,
+              "clarify": 0,
+              "abstain": 120,
+              "invalid": 0
+            }
+          },
+          "pairs": {
+            "value_change": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "distractor_invariance": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "order_invariance": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "evidence_removal": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "budget_exhaustion": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            },
+            "expiry_boundary": {
+              "correct": 48,
+              "total": 48,
+              "accuracy": 1.0
+            },
+            "answer_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            },
+            "clarify_budget_invariance": {
+              "correct": 24,
+              "total": 24,
+              "accuracy": 1.0
+            }
+          },
+          "by_variant": {
+            "supported_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "supported_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "value_changed_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "value_changed_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "distractor_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "distractor_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "reordered_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "reordered_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "missing_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "missing_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "expired_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "future_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "future_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "conflict_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "conflict_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "ambiguous_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "untrusted_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "irrelevant_topic_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "consensus_b0": {
+              "n": 24,
+              "success_rate": 1.0
+            },
+            "consensus_b1": {
+              "n": 24,
+              "success_rate": 1.0
+            }
+          }
+        }
+      }
+    }
+  ],
+  "eligible_candidate_ids": [
+    "crossed-r8-step2400",
+    "crossed-r8-step1800"
+  ],
+  "interpretation": "All seven development gates precede ranking. Development scores are adaptive selection evidence, not final test estimates."
+}

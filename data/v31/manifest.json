@@ -1,0 +1,112 @@
+{
+  "schema_version": 1,
+  "rows": 3936,
+  "groups": 164,
+  "split_rows": {
+    "train": 1920,
+    "dev": 576,
+    "test": 1440
+  },
+  "actions": {
+    "answer": 1968,
+    "abstain": 820,
+    "search": 820,
+    "clarify": 328
+  },
+  "dataset_sha256": "2697a86b6e02916e04afd002b54b89856457cc290fb9af974726caf9eebb3ad3",
+  "group_leaks": 0,
+  "identical_prompt_cross_split": 0,
+  "labels_in_messages": false,
+  "format": "evidence-gate-v31-data-manifest-v1",
+  "created_at": "2026-10-27T12:39:35.611846+00:00",
+  "seed": 20261030,
+  "generator": "build_v31.py",
+  "license": "MIT",
+  "variants": [
+    "supported_b0",
+    "supported_b1",
+    "value_changed_b0",
+    "value_changed_b1",
+    "distractor_b0",
+    "distractor_b1",
+    "reordered_b0",
+    "reordered_b1",
+    "missing_b0",
+    "missing_b1",
+    "expired_b0",
+    "expired_b1",
+    "future_b0",
+    "future_b1",
+    "conflict_b0",
+    "conflict_b1",
+    "ambiguous_b0",
+    "ambiguous_b1",
+    "untrusted_b0",
+    "untrusted_b1",
+    "irrelevant_topic_b0",
+    "irrelevant_topic_b1",
+    "consensus_b0",
+    "consensus_b1"
+  ],
+  "cells_per_group": 24,
+  "models_called": 0,
+  "model_predictions_read": false,
+  "test_model_inference_performed": false,
+  "original_message_projection_unchanged": true,
+  "previously_seen_files_sha256": {
+    "main/train.jsonl": "b3b46d93c1b4e0c21d5c5fb17a7117ff0fdadd0ff260fd9c758157299b2dc560",
+    "main/dev.jsonl": "45c5593c98632953e44ec72462072f45bc7a2aac6c46eae965747fde02f8cc42",
+    "main/test.jsonl": "58b095b473c23b81dbec4a2af7d6bd0680ca9e2cc6517af05cf432b89713257f",
+    "v2/train.jsonl": "11629323ee99030472ccabd944301d9f4fec4a3a4c0624c574d1e00d5487f23a",
+    "v2/dev.jsonl": "7c1fa90582d9d289bd798e9ea90634bced6f833666f69f0fdcf053071d9b66bf",
+    "v2/test.jsonl": "c60fb70ba876b5c8f543784f5226d791d283bca00d5c5aaa17f261bb247eb6cc",
+    "v3/train.jsonl": "38b20db7fff7569a610adc7ea727adabd2d6bbea619b22e53ef2716df926ea2b",
+    "v3/dev.jsonl": "a659be39646aa8df6307ce5941a254b19d830c5e1239adaeb3cabbff75b2f947",
+    "v3/test.jsonl": "d6799407f90a17b2605562747b126a38deeeee9079f8ee736f2c307e280c6311"
+  },
+  "protocol_sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56",
+  "independent_audit_sha256": "9b6223e16104db21318ae8adbd71352ba8f0be97a5634f22bf58eea67f832c49",
+  "generator_code_sha256": {
+    "scripts/build_v31.py": "dd69513866093cd1c652d3dc8ab1d87ac561f7d857a87d3f9340ed61784f4d1b",
+    "scripts/audit_v31_data.py": "d8f060f646fa477bade4e09670b76fd68ed95644189e203629e1c72618e4578a",
+    "scripts/build_v3.py": "ef2d5a4467ca5d58930feec6f79416fb7563a73fb87e97d4f43127e31def7dd9",
+    "scripts/audit_v3_data.py": "a44da03d7b461a8824d403d91653c3983b98bad43ecc5e41ab81bd9d6e976629",
+    "scripts/build_v2.py": "22260106ea5dac7b36f6b28edc03b777c4e58d6f2d5f6273cc62d264774b348a",
+    "src/evidence_gate/data.py": "a2db3e0b351ed2b3f329ed41618a41759417ffd7b428e8f7fde4ba03d05eb711",
+    "src/evidence_gate/evaluation.py": "39adabdf16cb7eab666ea229e3003dc905ce91cbf47668bee6e92860cc31d89c",
+    "src/evidence_gate/agent.py": "e980e806659ae4084bf11d6d6209d3a7d7c27c5d4d8e01ae5f3a407cef940a57"
+  },
+  "files": {
+    "train.jsonl": {
+      "sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+      "rows": 1920,
+      "actions": {
+        "answer": 960,
+        "abstain": 400,
+        "search": 400,
+        "clarify": 160
+      }
+    },
+    "dev.jsonl": {
+      "sha256": "b445d29813cb150008bb8813dfaccbd8d2cb63374336bc5d836f573ac33bc3b5",
+      "rows": 576,
+      "actions": {
+        "answer": 288,
+        "abstain": 120,
+        "search": 120,
+        "clarify": 48
+      }
+    },
+    "test.jsonl": {
+      "sha256": "ef204aa1f2f23246aeda1498bafb3ae995af0d1d213368b3357ff9cedfe6f8f0",
+      "rows": 1440,
+      "actions": {
+        "answer": 720,
+        "abstain": 300,
+        "search": 300,
+        "clarify": 120
+      }
+    }
+  },
+  "scope": "24 correlated cells per product group. Strict score and model prompt unchanged; no model or deployment result established."
+}

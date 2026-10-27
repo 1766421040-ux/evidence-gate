@@ -1,0 +1,14 @@
+{
+  "format": "evidence-gate-v31-supersession-v1",
+  "created_at": "2026-10-27T12:39:35.611846+00:00",
+  "supersedes": "experiments/v3/protocol.json",
+  "superseded_protocol_sha256": "72a1197b2245af3e46ec04b889e34a1cc5ed1e0d902cabed70a4c491d9f56189",
+  "superseded_freeze_sha256": "8d45c57863b5038d637bf70c236153d42d3a0a13e8d83f24e08937f4002366a8",
+  "reasoning_evidence": {
+    "experiments/v3/train-dev-audit.json": "b010ad7426f82d9e6ddffdc09d8efd43bb81608b1d94e9e2a081cadfc9bc4842"
+  },
+  "decision_inputs": "V3 train/dev and generator-source CPU coverage audit only; no V3 dev/test model prediction used.",
+  "old_artifacts_modified": false,
+  "new_identity_policy": "New seed and split domains; all queried/distractor entities disjoint from main/v2/v3 across every split.",
+  "not_a_model_result": true
+}

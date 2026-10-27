@@ -5,7 +5,7 @@
 const $ = (selector) => document.querySelector(selector);
 const state = { report: null, method: 0, selected: null, query: "", scenario: "", result: "" };
 const actionNames = { answer: "作答", query: "继续查询", search: "继续查询", abstain: "拒答", ask: "请求补充", clarify: "请求澄清", escalate: "转人工" };
-const metricNames = { action_correct: "动作正确", answer_correct: "答案正确", citation_correct: "引用正确", format_valid: "格式有效", success: "整体通过" };
+const metricNames = { action_correct: "动作正确", answer_correct: "可答目标通过", citation_correct: "引用集合正确", format_valid: "格式有效", success: "整体通过" };
 const scenarioNames = {
   current: "有效证据", valid: "有效证据", supported: "有效证据", stale: "过期证据", expired: "过期证据",
   missing: "缺少证据", no_evidence: "缺少证据", conflict: "证据冲突", conflicting: "证据冲突",
@@ -14,12 +14,18 @@ const scenarioNames = {
   missing_stop: "缺少依据 · 无预算", expired_search: "已过期 · 可查询", expired_stop: "已过期 · 无预算", future_search: "未生效 · 可查询",
   conflict_search: "证据冲突 · 可查询", conflict_stop: "证据冲突 · 无预算", ambiguous: "问题范围不明确",
   untrusted_search: "非可信来源 · 可查询", untrusted_stop: "非可信来源 · 无预算",
+  future: "未生效证据", untrusted: "非可信来源", irrelevant_topic: "无关主题干扰", consensus: "多份官方证据一致",
 };
 const isRecord = (value) => value !== null && typeof value === "object" && !Array.isArray(value);
 const text = (value, fallback = "未记录") => value === undefined || value === null || value === "" ? fallback : typeof value === "object" ? JSON.stringify(value) : String(value);
 const pretty = (value) => typeof value === "string" ? value : JSON.stringify(value, null, 2) ?? "未记录";
 const list = (value) => Array.isArray(value) ? value : [];
-const scenarioName = (value) => scenarioNames[value] || text(value, "未标注场景");
+function scenarioName(value) {
+  if (scenarioNames[value]) return scenarioNames[value];
+  const paired = typeof value === "string" && value.match(/^(.+)_b([01])$/);
+  return paired && scenarioNames[paired[1]]
+    ? `${scenarioNames[paired[1]]} · 查询预算 ${paired[2]}` : text(value, "未标注场景");
+}
 const actionName = (value) => actionNames[value] || "报告原始动作";
 
 function el(tag, attrs = {}, ...children) {
@@ -69,15 +75,18 @@ function buildMetricCards(summary = {}) {
   const n = count(summary.n), groups = count(summary.groups);
   const emitted = count(summary.denominators?.emitted_answers);
   const answerable = count(summary.denominators?.answerable);
+  const unanswerable = count(summary.denominators?.unanswerable);
   const format = percent(summary.format_valid_rate);
   return [
     { label: "整体成功率", value: percent(summary.success_rate), note: n === null ? "案例分母未记录" : `${n} 个评测案例；动作、答案、引用均正确` },
     { label: "可答成功率", value: answerable === 0 ? "不适用" : percent(summary.answerable_success), note: answerable === null ? "可答案例分母未记录" : `${answerable} 个本应作答的案例为分母` },
     { label: "整组全通过率", value: percent(summary.all_variants_correct_rate), note: groups === null ? "问题组分母未记录" : `${groups} 个问题组；组内全部变体均须通过` },
     { label: "动作正确率", value: percent(summary.action_accuracy), note: n === null ? "案例分母未记录" : `${n} 个案例；只检查决策动作` },
+    { label: "动作 Macro-F1", value: percent(summary.action_macro_f1), note: "四种动作的 F1 等权平均；不能替代可答成功率" },
+    { label: "不应作答却作答比例", value: unanswerable === 0 ? "不适用" : unanswerable === null ? "—" : percent(summary.over_answer_rate), note: unanswerable === null ? "不应作答案例分母未记录" : `${unanswerable} 个本不应作答的案例为分母；低值不代表模型愿意正确作答` },
     { label: "格式有效率", value: format, note: n === null ? "案例分母未记录" : `${n} 个案例；不可解析的输出计为格式失败` },
-    { label: "无依据作答比例", value: emitted === 0 ? "不可估计" : emitted === null ? "—" : percent(summary.unsupported_answer_rate),
-      note: emitted === 0 ? "没有可解析的 answer；格式失败不能视为安全" : emitted === null ? "未记录可解析 answer 的分母，无法估计风险" : `${emitted} 次可解析 answer 为分母；整体格式有效率 ${format}` },
+    { label: "证据合同未通过的回答比例", value: emitted === 0 ? "不可估计" : emitted === null ? "—" : percent(summary.unsupported_answer_rate),
+      note: emitted === 0 ? "没有可解析的 answer；格式失败不能视为安全" : emitted === null ? "未记录可解析 answer 的分母，无法估计风险" : `${emitted} 次可解析 answer 为分母；含不应回答时回答、错值、错引或缺引；格式有效率 ${format}` },
   ];
 }
 function renderMetrics() {
@@ -98,10 +107,20 @@ function renderCases() {
   $("#filtered-count").textContent = `${visible.length} / ${cases().length}`;
   $("#case-list").replaceChildren(...(visible.length ? visible.map(item => el("button", {
     type: "button", class: `case-row${item === state.selected ? " selected" : ""}`, "aria-pressed": item === state.selected,
-    onClick: () => { state.selected = item; renderCases(); },
+    onClick: event => selectCase(item, event.currentTarget),
   }, el("span", { class: "case-row-top" }, el("span", { class: "case-id", title: text(item.id) }, text(item.id)), statusBadge(item.metrics)),
   el("span", { class: "case-question" }, text(item.observation?.question, "该案例未记录问题")),
   el("span", { class: "case-row-bottom" }, el("span", {}, scenarioName(item.variant)), el("span", { class: "case-action" }, `${text(item.expected?.action, "?")} → ${text(item.prediction?.action, "?")}`)))) : [empty("没有匹配的案例", "调整场景、结果筛选或搜索词后重试。") ]));
+  renderDetail();
+}
+function selectCase(item, row) {
+  // Keep the actual button (and its keyboard focus/scroll position) alive.
+  // Selecting one case must not rebuild the entire long filtered list.
+  const previous = $("#case-list .case-row.selected");
+  if (previous) { previous.classList.remove("selected"); previous.setAttribute("aria-pressed", "false"); }
+  row.classList.add("selected");
+  row.setAttribute("aria-pressed", "true");
+  state.selected = item;
   renderDetail();
 }
 function section(index, title, content, trailing = null) {
@@ -112,13 +131,22 @@ function evidenceCard(document) {
     el("div", { class: "evidence-source" }, `来源：${text(document.source)}`), el("p", {}, text(document.text, "未记录正文")),
     el("div", { class: "evidence-date" }, `有效期 ${text(document.valid_from, "未记录起点")} → ${text(document.valid_until, "未记录终点")}`));
 }
-function decisionCard(value, title, prediction) {
+function decisionCard(value, title, prediction, kind = method().kind) {
   const citations = list(value?.citations);
   return el("div", { class: `decision-card${prediction ? " prediction" : ""}` },
-    el("div", { class: "decision-card-header" }, title, badge(prediction ? knownKind(method().kind) : "监督目标", prediction ? method().kind : "")),
+    el("div", { class: "decision-card-header" }, title, badge(prediction ? knownKind(kind) : "监督目标", prediction ? kind : "")),
     el("div", { class: "decision-body" }, el("div", { class: "decision-action" }, el("span", { class: "action-tag" }, text(value?.action, "未解析")), el("span", { class: "action-explanation" }, value?.action ? actionName(value.action) : "报告中没有有效预测对象")),
       el("div", { class: "decision-value" }, text(value?.value, value?.action === "answer" ? "未记录答案" : "该动作无答案值")),
-      el("div", { class: "citation-line" }, "引用", ...(citations.length ? citations.map(item => el("span", { class: "citation-chip" }, text(item))) : [el("span", {}, "无")]))));
+      el("div", { class: "citation-line" }, `引用（${citations.length}）`, ...(citations.length ? citations.map(item => el("span", { class: "citation-chip" }, text(item))) : [el("span", {}, "无")]))));
+}
+function answerRiskStatus(item) {
+  const metrics = isRecord(item.metrics) ? item.metrics : {};
+  if (metrics.format_valid === false) return { kind: "", label: "· 作答依据检查：格式无效，无法估计" };
+  if (item.prediction && item.prediction.action !== "answer") return { kind: "", label: "· 作答依据检查：本步没有作答" };
+  if (item.prediction?.action !== "answer" || metrics.format_valid !== true) return { kind: "", label: "· 作答依据检查：未记录" };
+  if (metrics.unsupported_answer === true) return { kind: "fail", label: "× 作答依据检查失败（含答案值或引用集合错误）" };
+  if (metrics.unsupported_answer === false) return { kind: "pass", label: "✓ 作答依据检查通过（限本评测规则）" };
+  return { kind: "", label: "· 作答依据检查：未记录" };
 }
 function renderDetail() {
   const item = state.selected;
@@ -130,13 +158,11 @@ function renderDetail() {
     const kind = metrics[key] === true ? "pass" : metrics[key] === false ? "fail" : "";
     return el("span", { class: `check-item ${kind}` }, el("span", { class: "check-symbol", "aria-hidden": true }, kind === "pass" ? "✓" : kind === "fail" ? "×" : "·"), `${label}${kind ? "" : metrics[key] === null ? "：不适用" : "：未记录"}`);
   });
-  const emittedAnswer = item.prediction?.action === "answer" && metrics.format_valid === true;
-  const unsupportedKind = emittedAnswer && metrics.unsupported_answer === false ? "pass" : emittedAnswer && metrics.unsupported_answer === true ? "fail" : "";
-  const riskLabel = metrics.format_valid === false ? "· 无依据风险：格式无效，无法估计" : item.prediction && item.prediction.action !== "answer" ? "· 无依据风险：本步没有作答" : unsupportedKind === "pass" ? "✓ 本次作答有依据" : unsupportedKind === "fail" ? "× 无依据作答" : "· 依据检查：未记录";
-  checks.push(el("span", { class: `check-item ${unsupportedKind}` }, riskLabel));
+  const risk = answerRiskStatus(item);
+  checks.push(el("span", { class: `check-item ${risk.kind}` }, risk.label));
   const failures = [];
-  for (const [key, label] of Object.entries(metricNames)) if (key !== "success" && metrics[key] === false) failures.push(label.replace("正确", "不正确").replace("有效", "无效"));
-  if (metrics.unsupported_answer === true) failures.push("无依据作答");
+  for (const [key, label] of Object.entries(metricNames)) if (key !== "success" && metrics[key] === false) failures.push(label.replace("正确", "不正确").replace("有效", "无效").replace("通过", "未通过"));
+  if (metrics.unsupported_answer === true) failures.push("作答依据检查失败；不应作答、答案值错误或引用集合不完整/不匹配均计入");
   const explicitReason = firstValue(item, ["failure_reason", "failure_reasons", "error", "errors"]);
   const note = explicitReason ? `报告记录：${text(explicitReason)}` : failures.length ? `评测标记：${failures.join("；")}。结合原始输出核查原因。` : metrics.success === true ? "该案例通过了报告定义的成功检查；结论仅适用于当前输入与评测规则。" : "报告未给出明确失败原因，请结合原始输出和评测实现检查。";
   const outputTitle = method().kind === "rule" ? "规则实际输出" : method().kind === "model" ? "模型实际输出" : "方法实际输出";
@@ -188,8 +214,8 @@ function svg(tag, attrs = {}, content = null) {
   if (content !== null) node.textContent = content;
   return node;
 }
-function trainingRuns() {
-  const training = list(state.report.training).map((entry, index) => Array.isArray(entry) ? { name: `训练记录 ${index + 1}`, history: entry } : entry).filter(isRecord);
+function trainingRuns(report = state.report) {
+  const training = list(report.training).map((entry, index) => Array.isArray(entry) ? { name: `训练记录 ${index + 1}`, history: entry } : entry).filter(isRecord);
   const runs = [];
   const flat = new Map();
   for (const entry of training) {
@@ -207,6 +233,23 @@ function trainingRuns() {
 }
 function lossPoints(records) {
   return records.map(record => ({ step: firstValue(record, ["step", "iteration", "global_step", "iter"]), loss: firstValue(record, ["loss", "train_loss", "training_loss"]), record })).filter(point => typeof point.step === "number" && Number.isFinite(point.step) && typeof point.loss === "number" && Number.isFinite(point.loss)).sort((a, b) => a.step - b.step);
+}
+function trainingEvidence(run) {
+  const metadata = isRecord(run.metadata?.metadata) ? run.metadata.metadata : run.metadata || {};
+  const step = value => Number.isInteger(value) && value >= 0 ? value : null;
+  const selected = step(metadata.selected_step);
+  const completed = step(metadata.completed_training_steps ?? (selected === null ? metadata.optimizer_steps : undefined));
+  const budget = step(metadata.total_training_budget_steps);
+  const points = lossPoints(run.records);
+  const fields = [
+    { label: "所选检查点", value: selected === null ? "未记录" : `step ${selected}` },
+    { label: "本轮已完成训练", value: completed === null ? "未记录" : `${completed} steps` },
+    { label: "本轮训练总预算", value: budget === null ? "未记录" : `${budget} steps` },
+  ];
+  let note = selected === null ? "曲线仅呈现报告保存的训练记录；不从名称或记录条数推断选模步骤与总预算。"
+    : `曲线对应所选 step ${selected} 的训练前缀；总预算与已完成步数另列，后续训练损失不归属于该检查点。`;
+  if (selected !== null && points.length && points[points.length - 1].step !== selected) note = "记录不一致：曲线末步与所选检查点不同，请核查原始训练元数据；不能据此归属训练效果。";
+  return { fields, note };
 }
 function formatLoss(value, decimalPlaces = 4) {
   if (typeof value !== "number" || !Number.isFinite(value)) return "未记录";
@@ -243,7 +286,9 @@ function renderTraining() {
   if (!runs.length) { $("#training-content").replaceChildren(el("div", { class: "training-card" }, empty("这份报告没有训练记录", "评测输出不等于已完成微调。请先查看来源与边界，并在实际训练后保存 step / loss 记录。"))); return; }
   $("#training-content").replaceChildren(...runs.map(run => {
     const points = lossPoints(run.records);
+    const evidence = trainingEvidence(run);
     return el("article", { class: "training-card" }, el("div", { class: "panel-heading" }, el("h3", {}, run.name), badge(`${run.records.length} 条记录`)),
+      el("div", { class: "training-scope" }, el("div", { class: "training-scope-fields" }, evidence.fields.map(field => el("span", {}, field.label, el("strong", {}, field.value)))), el("p", { class: "training-scope-note" }, evidence.note)),
       points.length ? el("div", { class: "chart-wrap" }, lossChart(points, run.name)) : empty("没有可绘制的 step / loss", "原始训练记录保留如下，未将缺失值当作零。"),
       points.length ? el("div", { class: "chart-legend" }, el("span", {}, "首个 loss", el("strong", {}, formatLoss(points[0].loss))), el("span", {}, "末个 loss", el("strong", {}, formatLoss(points[points.length - 1].loss))), el("span", {}, "记录步范围", el("strong", {}, `${points[0].step} – ${points[points.length - 1].step}`)), el("span", {}, "训练损失变化不代表任务能力提升")) : null,
       el("details", { class: "raw-output training-records" }, el("summary", {}, "查看完整训练记录与元数据"), el("pre", {}, pretty({ metadata: run.metadata, records: run.records }))));
@@ -318,7 +363,7 @@ async function init() {
   }
 }
 if (typeof module !== "undefined" && module.exports) {
-  module.exports = { buildMetricCards, formatLoss };
+  module.exports = { buildMetricCards, formatLoss, scenarioName, answerRiskStatus, decisionCard, trainingRuns, trainingEvidence };
 } else {
   init();
 }

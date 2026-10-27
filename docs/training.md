@@ -2,11 +2,13 @@
 
 训练器使用 PyTorch / Transformers / PEFT，在冻结基础权重上训练 LoRA；目标是最后一个 assistant completion 与 EOS 的标准 next-token loss。没有新的损失函数、强化学习或付费教师 API。
 
-当前状态：V1 的 answer-only 与 evidence 两次 200 步训练、主测试和诊断均已完成。V2 也已完成独立数据上的 600 步训练、dev 选点与最终 test；选中第 600 步，六项门槛只通过两项，联合结论为 `fail`。实际结果是严格成功 204/280（72.86%）、可答成功 10/80（12.5%）、整组全通过 0/20。项目交付了完整可复现的 SFT 诊断工具，当前模型未达业务使用标准；质量结论可沿 [结果文档](results.md) 回查原始输出。
+当前主流程是 **V3.1**：完成预登记的 2400 步本机训练，由 576 行 dev 在四个候选中选择第 2400 步，再对冻结 test 做一次正式确认。所选模型的七项门槛全部通过：严格成功 **1437/1440**、可答成功 **720/720**、整组全对 **58/60**；3 个失败均在 `future` 情境。证据见 [正式门槛](../experiments/v31/confirmation/quality-gate.json) 和 [独立 raw 复算](../experiments/v31/final-analysis.md)。这只支持冻结的有限合成任务，不等于业务上线认证。
+
+V1/V2 的失败结果完整保留在下文。V2 当轮按协议停止后，用户明确要求进一步诊断并优化至质量门槛，才启动后续 train/dev 诊断、新实体数据和预登记训练；没有改写 V2 结论、重选 V2 checkpoint 或降低门槛。V3.1 的任务与验收边界见 [完整协议](v31_protocol.md)。
 
 ## 模型和环境
 
-需要 Python 3.10+。原始运行环境为 M4 Pro / 24 GB，当前 `configs/main.json` 指定 MPS、bfloat16 和 gradient checkpointing。MPS 不可用时明确报错，不静默改到 CPU。其他设备可以另存配置，但结果应另列，不能冒充同次运行。
+需要 Python 3.10+。原始运行环境为 M4 Pro / 24 GB，当前 `configs/v31.json` 指定 MPS、bfloat16 和 gradient checkpointing。MPS 不可用时明确报错，不静默改到 CPU。其他设备可以另存配置，但结果应另列，不能冒充同次运行。
 
 ```bash
 python3 -m venv .venv
@@ -21,6 +23,75 @@ python scripts/download_model.py --output .cache/base-model
 ```
 
 主权重 `model.safetensors` 的预期 SHA-256 为 `fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe`。脚本默认从 Hugging Face 下载；网络较慢时可加 `--weight-mirror modelscope`，元数据仍来自固定 HF revision，镜像权重必须通过相同哈希检查。“同名模型”不足以保证同一文件。训练器对本地权重、tokenizer 与配置文件另做完整快照哈希，并绑定训练数据和配置。
+
+## V3.1：推荐复现入口
+
+先审计已发布证据，无需下载模型或安装训练依赖：
+
+```bash
+PYTHONPATH=src python3 scripts/verify_v31_release.py --root .
+```
+
+该脚本从保存的 raw 输出重新评分，核验冻结数据/源码、dev 选择、七项门槛、adapter/checkpoint、所选训练前缀、完整预算和确认收据。它不重新执行模型。退出码 0 才是 `verified`；未完成的发布材料为 `pending`/2；不一致或质量失败为 1。正式测试通过与公开文件审计通过是两件事，缺失材料不能默认通过。
+
+查看完整确认流程保存的报告：
+
+```bash
+PYTHONPATH=src python3 -m evidence_gate.cli serve --report experiments/v31/confirmation/report.json --port 8766
+```
+
+浏览器打开 `http://127.0.0.1:8766`。必须先有真实报告文件；页面浏览保存的模型输出，不进行在线推理。
+
+需要完整重训时，完成上面的环境安装与固定底模下载，再执行：
+
+```bash
+PYTHONPATH=src python scripts/run_v31_experiment.py --model .cache/base-model --output runs/v31-reproduction
+```
+
+这是实际训练入口，固定 MPS，不提供 CPU/云端替代。它先核验 freeze、源码、训练配置、三份数据 SHA、底模和 V2 参考 adapter，以及本地 holdout 确认账本，才创建新输出目录。之后按以下顺序执行：
+
+1. 登记固定配置和 600/1200/1800/2400 四个候选，完成全部 2400 步；不按中途 dev 结果提前停止预算。
+2. 对四个 checkpoint 使用相同 dev、MPS/bfloat16、batch 4、greedy、72 新 token 上限进行自由生成，不修补 JSON 或用规则替换决策。
+3. 从 raw 复算七门槛和回答分母资格，只在合格候选中按冻结顺序选点；无合格候选就保存 `no_eligible_candidate`、保留全部 dev 输出并退出 2，禁止 test。
+4. 重新校验所选模型和训练绑定，再做一次 selected test，以及预先固定的 base、V2 adapter、contract 参考；规则结果不算模型结果。
+5. 保存门槛、逐条结果、训练记录、收据和报告。确认通过退出 0；执行失败或最终质量失败退出 1，保留已有证据。
+
+同一测试文件 SHA 对应的 `.cache/confirmation-attempts/` 账本一旦存在，入口在训练前拒绝。不得删除/更名账本来重试已见测试；已执行正式确认的当前工作机因此不能再次运行这条完整实验。新环境重做公开协议也只是**历史复现，不是新的独立盲测**。输出目录必须全新；入口不覆盖、不自动续跑，也没有跳过门槛或账本的开关。
+
+### 固定训练配置与实际预算
+
+| 项目 | V3.1 |
+| --- | --- |
+| 基础模型 | 固定 revision 的 Qwen2.5-0.5B-Instruct，未合并基础权重 |
+| 数据 | 80 train groups × 24 单元 = 1920 行，seed 20261030 |
+| LoRA | rank 8、alpha 16、dropout 0.05；q/k/v/o 与 gate/up/down 七个投影 |
+| 训练 | seed 42，2400 optimizer steps，microbatch 1 × accumulation 4 |
+| 优化 | 学习率 3e-4、warmup 60 步、随后线性衰减 |
+| 本机内存设置 | bfloat16、长度 512、gradient checkpointing |
+| 可训练参数 | 4,399,104 |
+| 候选 | 每 600 步保存，完整预算后统一评估四个候选 |
+
+[仅 train/dev 的 tokenizer 预检](../experiments/v31/tokenizer-preflight.json) 得到最大完整序列 499/497 token，保留 512 上限，不截断。训练按实际 chat template 检查 prompt 前缀，只监督最终 assistant completion 与 EOS，prompt/padding 标签为 `-100`；以有效监督 token 数归一梯度累积。使用标准交叉熵，没有 action 加权、辅助推理目标、教师蒸馏或新的优化算法。
+
+[真实选中训练记录](../experiments/v31/confirmation/selected-training.json) 中完整预算为 2400 步，处理 9600 个样本位置，即每个训练样本恰好五轮；训练耗时 5568.61 秒（约 92.8 分钟，不含下载和评测）。这是本次 M4 Pro 24 GB 运行记录，不是其他机器的耗时保证。所选与最后一步恰好相同；审计仍分别绑定“所选前缀”和“完成预算”，不能用最终 loss 冒充任意较早 checkpoint 的结果。
+
+### 开发选择和公开文件
+
+1800 与 2400 步均通过 dev 七门槛。2400 的可答严格成功为 288/288，高于 1800 的 287/288，按预先冻结的首要排序项选中；不是看到 test 后选择。其 dev 为 576/576，不代表 test 必然全对。完整四候选结果见 [dev 独立复算](../experiments/v31/dev-analysis.md)，最终选点见 [selection.json](../experiments/v31/selection.json)。
+
+| 位置 | 契约 |
+| --- | --- |
+| `runs/v31-reproduction/` | 私有复现树：registry、training、四份 dev、selection、可能产生的 confirmation、outcome/failure |
+| `artifacts/evidence-v31-lora/` | 公开所选 adapter 权重、配置、checkpoint 元数据和模型卡；无 optimizer |
+| `experiments/training/evidence-v31/` | 所选 checkpoint 的训练前缀、summary、run manifest、公开文件 manifest |
+| `experiments/training/evidence-v31-full/` | 完成 2400 步的全部训练记录，另含原字节 `checkpoint-step-002400.json` |
+| `experiments/v31/confirmation/` | 唯一正式确认的 raw、门槛、固定参考、报告与收据 |
+
+一键复现**不自动导出或替换公开模型**，不能把 `verify_v31_release.py --root` 指向 `runs/v31-reproduction`；公开审计器需要完整仓库的约定布局。发布的 adapter 可推理和审计，但不包含恢复优化器所需状态。依赖采用安装区间，实际版本在运行 manifest；MPS 跨环境和新登记时间戳不保证逐字节复现。首次下载后训练/推理只读本地文件，不产生云训练或模型 API 费用。
+
+## 历史实验：V1 / V2
+
+以下命令和数据描述保留原实验语义，不是当前 V3.1 的主入口；已经公开的历史 test 不可重新当作未见测试。
 
 ## V1：已完成的对照与复现
 
@@ -78,7 +149,7 @@ evidence-gate serve --report runs/my-v2/report.json --port 8766
 3. 按 `configs/v2.json` 从基础模型新建 LoRA，完成一次 600 步训练；每 200 步保存，候选限定为第 200、400、600 步。
 4. 对三个候选执行同一 dev 评测：bfloat16、batch 4、greedy、最多 72 个新 token。按四种真值动作等权的**严格成功率均值**选点，精确并列选较早步数；它不是动作 macro F1，也不是总体成功率。
 5. 保存 `selection.json`，核验被选 adapter 和 checkpoint 的实际哈希后，才允许任何 test 模型推理。正式报告包含 selected-v2、contract 规则和 base；规则不是模型训练结果。
-6. 从原始生成文本复算质量门槛，保存 `quality-gate.json` 和最终 `report.json`。未达标也保留报告，不删除难例、不修补输出、不依据 test 再训练第三轮。
+6. 从原始生成文本复算质量门槛，保存 `quality-gate.json` 和最终 `report.json`。未达标也保留报告，不删除难例、不修补输出；该 V2 运行器不会依据 test 自动再训练。后续用户授权的独立开发沿革见本文开头。
 
 V2 与 V1 都采用 rank 8 / alpha 16、q/v 投影、microbatch 1 × accumulation 4、学习率 3e-4 和梯度检查点；V2 的总步数是 600，warmup 是 15，V1 则为 200 / 5。本次预检得到 train / dev 的最大完整序列长度为 492 / 494，因此保留 512 上限，未截断样本。V2 数据与训练预算同时改变，不能与 V1 视作等预算因果消融，也不能把分数变化单独归因于数据修正。
 
@@ -95,7 +166,7 @@ V2 与 V1 都采用 rank 8 / alpha 16、q/v 投影、microbatch 1 × accumulatio
 | 不应回答样本中的过度回答率 | ≤ 5% | 6/200（3%） | 是 |
 | 格式合法率 | 100% | 280/280（100%） | 是 |
 
-模型在 80 个可答样本中错误 search 37 次、abstain 33 次，核心问题仍是不能可靠地依据可用证据作答。过度回答门槛通过也不等于输出可靠：本次一共输出 16 个合法 answer，其中 6 个无依据，即 `unsupported_answer_rate = 6/16 = 37.5%`；其分母与 `over_answer_rate = 6/200 = 3%` 不同。按锁定协议保留失败结果，本轮到此停止，不根据 test 再改数据、换 checkpoint 或降低门槛。
+模型在 80 个可答样本中错误 search 37 次、abstain 33 次，核心问题仍是不能可靠地依据可用证据作答。过度回答门槛通过也不等于输出可靠：本次一共输出 16 个合法 answer，其中 6 个无依据，即 `unsupported_answer_rate = 6/16 = 37.5%`；其分母与 `over_answer_rate = 6/200 = 3%` 不同。按锁定协议保留失败结果，V2 当轮到此停止，没有根据该 test 重选 V2 checkpoint 或降低门槛。后续优化来自用户明确追加授权，使用新版本实体与单独冻结的确认协议；这些历史测试已被看过，不能当作后续独立验证。
 
 这是有限合成任务的验收，不是生产认证。没有可解析 answer 时，风险门槛标为不具备评估条件，不能把数字上的 0 当作安全证据；空分母的 null 也不转换为 0。质量门槛失败与审计执行失败不同：默认退出 0 表示审计完成并保存真实 pass/fail，只有显式加 `--require-pass` 才在未达标时返回 2。数据、案例或摘要与 raw 不一致则报错。
 
@@ -111,15 +182,15 @@ python scripts/quality_gate.py --evaluation experiments/v2/selected-v2.json --da
 python scripts/quality_gate.py --evaluation runs/my-v2/evaluations/selected-v2-test.json --data runs/my-v2/data/test.jsonl --protocol runs/my-v2/protocol.json --output runs/my-v2/quality-gate-recheck.json
 ```
 
-## 为什么修改本机配置
+## 历史资源适配：为什么修改本机配置
 
 最初的 float32 / microbatch 2 / accumulation 2 配置在第 67 步发生 MPS 内存不足，日志只记录了完成的 66 步；它不是完成的 200 步训练。失败运行保存在本地 `runs/failed-float32/`，对外只保留 `experiments/failed-float32/` 的失败说明、metrics 和 manifest，不发布未完成的权重。
 
 随后将训练改为 bfloat16、microbatch 1 / accumulation 4、长度上限 512 和 gradient checkpointing，保持有效 batch 4 与 V1 的 200 步预算；通过 3 步 smoke 后，两次正式 V1 训练均已完成。这是资源适配，不是根据测试成绩选择配置。训练精度降低和激活重计算也会改变数值或耗时，不能把前后两次拼成一次连续训练；失败尝试与正式运行的数据 / 配置指纹不同，必须使用新运行目录。
 
-## 恢复与产物
+## 训练器的手动恢复与产物（不等于 V3.1 一键流程续跑）
 
-保存间隔由配置决定：V1 `configs/main.json` 每 50 步，V2 `configs/v2.json` 每 200 步。恢复只接受同一输出目录下、数据 / 配置 / 模型哈希一致且文件校验通过的 checkpoint。下面是 V1 的手动恢复示例：
+保存间隔由配置决定：V1 `configs/main.json` 每 50 步，V2 `configs/v2.json` 每 200 步，V3.1 `configs/v31.json` 每 600 步。恢复只接受同一输出目录下、数据 / 配置 / 模型哈希一致且文件校验通过的 checkpoint。下面是 V1 的手动恢复示例：
 
 ```bash
 evidence-gate train --data data/main/train.jsonl --model .cache/base-model --config configs/main.json --output runs/reproduce/evidence --resume runs/reproduce/evidence/checkpoints/step-000050

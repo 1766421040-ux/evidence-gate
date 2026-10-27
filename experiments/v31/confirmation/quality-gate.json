@@ -1,0 +1,341 @@
+{
+  "format": "evidence-gate-v3-quality-audit-v1",
+  "name": "selected-v3",
+  "kind": "model",
+  "split": "test",
+  "status": "pass",
+  "passed": true,
+  "integrity": {
+    "verified": true,
+    "test_rows": 1440,
+    "test_groups": 60,
+    "dataset_sha256": "3e6f522402ee62b047f7f27f6a17e08492de3040cd83bc47838acea06c0540be",
+    "case_identity_checked": true,
+    "raw_outputs_rescored": true,
+    "stored_summary_matches": true
+  },
+  "sources": {
+    "evaluation": {
+      "name": "selected-v3.json",
+      "sha256": "d374cf7ad2e8613de49f6b05333a88edc895c9c07f32eafd961cfe267be0185c"
+    },
+    "data": {
+      "name": "test.jsonl",
+      "sha256": "ef204aa1f2f23246aeda1498bafb3ae995af0d1d213368b3357ff9cedfe6f8f0"
+    },
+    "protocol": {
+      "name": "protocol.json",
+      "sha256": "5b53c18cbc3e4dbad0750b542ce8c5bb27f8f2dd8105a87aa417ca3e827cfd56"
+    },
+    "selection": {
+      "name": "selection.json",
+      "sha256": "c69064b566e281d6d511f2c2f423da3d6b5491cd8aa1fcd59b8004157fce0121"
+    }
+  },
+  "answer_risk_eligibility": {
+    "required_emitted_answers": 576,
+    "actual_emitted_answers": 723
+  },
+  "checks": [
+    {
+      "gate": "strict_success_min",
+      "metric": "success_rate",
+      "actual": 0.9979166666666667,
+      "threshold": 0.85,
+      "direction": ">=",
+      "numerator": 1437,
+      "denominator": 1440,
+      "exact_fraction": "479/480",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "answerable_success_min",
+      "metric": "answerable_success",
+      "actual": 1.0,
+      "threshold": 0.8,
+      "direction": ">=",
+      "numerator": 720,
+      "denominator": 720,
+      "exact_fraction": "1",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "action_macro_f1_min",
+      "metric": "action_macro_f1",
+      "actual": 0.998226766808461,
+      "threshold": 0.8,
+      "direction": ">=",
+      "numerator": null,
+      "denominator": null,
+      "exact_fraction": "26459945/26506948",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "all_variants_correct_min",
+      "metric": "all_variants_correct_rate",
+      "actual": 0.9666666666666667,
+      "threshold": 0.5,
+      "direction": ">=",
+      "numerator": 58,
+      "denominator": 60,
+      "exact_fraction": "29/30",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "over_answer_rate_max",
+      "metric": "over_answer_rate",
+      "actual": 0.004166666666666667,
+      "threshold": 0.05,
+      "direction": "<=",
+      "numerator": 3,
+      "denominator": 720,
+      "exact_fraction": "1/240",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "format_valid_rate_min",
+      "metric": "format_valid_rate",
+      "actual": 1.0,
+      "threshold": 1.0,
+      "direction": ">=",
+      "numerator": 1440,
+      "denominator": 1440,
+      "exact_fraction": "1",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    },
+    {
+      "gate": "unsupported_answer_rate_max",
+      "metric": "unsupported_answer_rate",
+      "actual": 0.004149377593360996,
+      "threshold": 0.05,
+      "direction": "<=",
+      "numerator": 3,
+      "denominator": 723,
+      "exact_fraction": "1/241",
+      "eligible": true,
+      "passed": true,
+      "reason": "Threshold met."
+    }
+  ],
+  "recomputed_summary": {
+    "n": 1440,
+    "success_rate": 0.9979166666666667,
+    "success_group_bootstrap_95ci": [
+      0.9944444444444445,
+      1.0
+    ],
+    "format_valid_rate": 1.0,
+    "action_accuracy": 0.9979166666666667,
+    "action_macro_f1": 0.998226766808461,
+    "answer_coverage": 0.5020833333333333,
+    "answerable_success": 1.0,
+    "unsupported_answer_rate": 0.004149377593360996,
+    "over_answer_rate": 0.004166666666666667,
+    "over_refusal_rate": 0.0,
+    "unnecessary_search_rate": 0.0,
+    "citation_exact_rate": 0.995850622406639,
+    "all_variants_correct_rate": 0.9666666666666667,
+    "groups": 60,
+    "mean_latency_ms": 232.70866585913205,
+    "denominators": {
+      "answerable": 720,
+      "unanswerable": 720,
+      "emitted_answers": 723
+    },
+    "confusion": {
+      "answer": {
+        "answer": 720,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "search": {
+        "answer": 2,
+        "search": 298,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "clarify": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 120,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "abstain": {
+        "answer": 1,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 299,
+        "invalid": 0
+      }
+    },
+    "pairs": {
+      "value_change": {
+        "correct": 120,
+        "total": 120,
+        "accuracy": 1.0
+      },
+      "distractor_invariance": {
+        "correct": 120,
+        "total": 120,
+        "accuracy": 1.0
+      },
+      "order_invariance": {
+        "correct": 120,
+        "total": 120,
+        "accuracy": 1.0
+      },
+      "evidence_removal": {
+        "correct": 120,
+        "total": 120,
+        "accuracy": 1.0
+      },
+      "budget_exhaustion": {
+        "correct": 60,
+        "total": 60,
+        "accuracy": 1.0
+      },
+      "expiry_boundary": {
+        "correct": 120,
+        "total": 120,
+        "accuracy": 1.0
+      },
+      "answer_budget_invariance": {
+        "correct": 60,
+        "total": 60,
+        "accuracy": 1.0
+      },
+      "clarify_budget_invariance": {
+        "correct": 60,
+        "total": 60,
+        "accuracy": 1.0
+      }
+    },
+    "by_variant": {
+      "supported_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "supported_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "value_changed_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "value_changed_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "distractor_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "distractor_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "reordered_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "reordered_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "missing_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "missing_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "expired_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "expired_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "future_b0": {
+        "n": 60,
+        "success_rate": 0.9833333333333333
+      },
+      "future_b1": {
+        "n": 60,
+        "success_rate": 0.9666666666666667
+      },
+      "conflict_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "conflict_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "ambiguous_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "ambiguous_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "untrusted_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "untrusted_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "irrelevant_topic_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "irrelevant_topic_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "consensus_b0": {
+        "n": 60,
+        "success_rate": 1.0
+      },
+      "consensus_b1": {
+        "n": 60,
+        "success_rate": 1.0
+      }
+    }
+  },
+  "selected": {
+    "id": "crossed-r8-step2400",
+    "step": 2400,
+    "registration_order": 3,
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "training_data_sha256": "f684041829641485a06650ebb1b7152c9bf9851b08b05f47b0c50ebb520e3876",
+    "training_config_sha256": "0fce6557c90906eec4c7fdac6a96222e135ffa3c2e0f6b9491c03a83d5678781",
+    "adapter_sha256": "8f4416485a369460f97b0cf47ec2e56e298588c46d3df60c3e94b31541715c19",
+    "adapter_config_sha256": "1b2f9300f84334d7d3024d34e77014d1f72e1c251ef5d434055b046ce814947d",
+    "checkpoint_sha256": "025da321c750ee4319e2086f378efcef888b6c45814ee31cbac3235770266771"
+  },
+  "confirmation_status": "confirmed_pass",
+  "interpretation": "Raw-output integrity and seven quality gates are checked separately. A failed final test remains a failed confirmation."
+}

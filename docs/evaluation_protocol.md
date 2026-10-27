@@ -1,113 +1,151 @@
 # 评测协议：动作、证据和格式分别算
 
-## 评测回答的问题
+当前确认协议是 **V3.1：每组 24 情境、60 个全新测试组、七项联合门槛**。其问题是：标准 LoRA SFT 能否让小模型遵守当前可见证据下的有限决策协议？它不评价通用知识能力，也不证明最优 Agent 策略或生产可靠性。
 
-主问题是：标准 LoRA SFT 能否让小模型更稳定地遵守**当前可见证据**下的决策协议？不是比较通用知识能力，也不是证明学到了最优 Agent 策略。
+以 [冻结协议](../experiments/v31/protocol.json)、[候选注册表](../experiments/v31/registry.json)、[选模记录](../experiments/v31/selection.json) 和 [最终质量审计](../experiments/v31/confirmation/quality-gate.json) 为机器可核验证据。协议文件中的 `status` 是冻结当时的记录，不会在训练后改写；后续状态由注册表、选择和确认结果记录。V1/V2 与原 V3 的历史文件保留，不用新协议重写旧成绩。
 
-最终比较必须使用相同测试实例、输入序列化、解码设置和评分器。训练只接触 train；如果调整提示词、训练步数或 checkpoint，只使用 dev。当前主协议预先固定 200 steps，使用最终 adapter；训练器没有自动 dev early stopping。测试集在正式比较前冻结，不能用于反复挑选最佳结果。
+## 数据边界、选模与最终确认
 
-正式模型推理统一为 MPS、bfloat16、batch 4、greedy free generation、最多 72 个新 token，不修补生成输出。预测文件记录这些设置，报告在合并模型结果时检查一致性；具体命令见 [训练与复现](training.md)。单实例的检索 replay 按步执行，不能用其耗时替代 batch 评测耗时。
+V3.1 使用 seed `20261030`；train / dev / test 分别为 80 / 24 / 60 个产品组，共 1,920 / 576 / 1,440 行。同组全部情境归属同一 split。查询产品、干扰产品及恢复目录中的实体，均与其他 split 及 main / V2 / V3 的已见实体隔离。字节哈希、代码哈希、独立审计和旧版本替代记录见 [manifest](../data/v31/manifest.json)、[freeze](../experiments/v31/freeze.json) 与 [supersession](../experiments/v31/supersession.json)。这是可审计的使用约束，不是保密测试服务器。
 
-## 必备对照
+模型 prompt、三字段输出、标准 completion-only SFT loss 和评分器保持不变。正式训练使用 `configs/v31.json`：LoRA rank 8、七类线性投影、2,400 个 optimizer steps、microbatch 1 / accumulation 4，有效 batch 4。训练样本各经历五个 epoch；数据覆盖、LoRA 容量和预算均发生变化，因此它不是相对于 V2 的等预算因果消融。
 
-| 对照 | 输入和行为 | 能解释什么 / 不能解释什么 |
-| --- | --- | --- |
-| 未微调基础模型 + 明确协议提示词 | 与 SFT 相同可见输入和输出格式 | 衡量 adapter 相对于强提示词的增量；不能只用明显缺少规则的弱提示词作比较 |
-| answer-only SFT | 同一模型；仅使用 train 中 supported / value_changed / distractor / reordered 共 320 行 | 观察只训练可回答样本的行为；不是上游 RAFT 的完整复现 |
-| evidence SFT | 同一模型；使用 train 的 1,120 行、全部 14 变体 | 检验异常证据和非回答动作训练的整体作用；不是新优化算法 |
-| `contract` | 根据同样的可见字段确定适用文档、冲突和动作，不读取 gold | 有限生成语法的精确规则参照，不是通用语义核验器 |
-| `first-match` | 匹配产品和套餐后取第一个数值，忽略有效期、来源与冲突 | 展示“检索命中即回答”的具体错误；弱基线不能替代强规则对照 |
+600 / 1,200 / 1,800 / 2,400 步候选在训练前登记。先对全部候选完成同一 dev 评测，再按如下规则选择：
 
-规则基线必须清楚标注是否读取隐藏标签。可见输入规则和读取 `expected_action` 的 oracle 不可混用。推理中如果用规则修正模型输出，须另报“原始模型”和“带守卫系统”；不能把规则修正后的成绩算作模型能力。
+1. 同一候选须通过全部七门槛，并满足已答风险的分母资格。
+2. 合格候选依次比较可答成功率、整组成功率、总体成功率（降序）、已答风险（升序），最后按登记顺序。计数比例用精确分数比较。
+3. 无合格候选则记录 `no_eligible_candidate`、`selected=null`、`test_allowed=false`，禁止最终模型推理。
+4. 完成登记的总训练预算，核验底模、配置、数据、checkpoint 和 adapter 身份，再对选定候选做一次最终确认。保存所有失败；已见 test 不可用于继续挑点后再宣称独立验证。
 
-两种 SFT 都预设 200 个 optimizer steps、microbatch 1、gradient accumulation 4，即各处理 800 个样本位置；均采用 bfloat16、最大长度 512 和 gradient checkpointing。answer-only 的 320 行会重复采样，evidence 的 1,120 行在该预算下不保证遍历一次。实际输入 token、监督 token 和样本覆盖率不相等，应从训练日志披露。这是训练分布的整体对照，不是等 token 消融，更不能单独归因于成组关系。把同一批行打乱后再训练不是成组数据消融，因为标准 SFT 的目标没有因此改变。未执行的扩展对照必须标 `pending`。
+本轮选中 2,400 步；1,800 步也合格，但按预设顺序排名较后。dev 的 576/576 是适应性选模证据。最终 test 严格成功 1,437/1,440、可答 720/720、整组 58/60，七门槛全部通过；三个失败均为提前采信尚未生效的官方证据。主结论限于这次有限合成协议。
 
-已有规则结果保存于 [contract.json](../experiments/contract.json) 和 [first-match.json](../experiments/first-match.json)：同一 280 行 test 上严格成功分别为 280/280 与 140/280。模型结果须在独立模型评测完成后加入。
+所有正式模型推理统一 MPS、bfloat16、batch 4、greedy free generation、最多 72 个新 token，不修补输出。训练有效 batch 与推理 batch 是两项设置。单实例 replay 的生成耗时不等于批量均摊耗时，二者都不是请求 p95。
+
+## 24 情境与引用合同
+
+十二种语义各配预算 0 / 1，命名为 `<semantic>_b0 / _b1`。每行均有两篇 official、一篇 community；模型只看到序列化的公开观察，不看到 variant、目标、组 ID 或恢复目录。公开观察本身的证据 ID 可用于引用。
+
+| 语义 | 正确行为与检验点 |
+| --- | --- |
+| `supported` | 适用且当前有效的官方证据支持作答 |
+| `value_changed` | 只替换适用事实值；回答随证据改变 |
+| `distractor` | 社区干扰变化，不应改变正确作答 |
+| `reordered` | 顺序变化，不应改变值或引用集合 |
+| `missing` | 无适用官方事实；一部分组含混合主题，另一部分组的两篇 official 都是相同错误主题 |
+| `expired` / `future` | 相关证据已过期 / 尚未生效，不能作当前依据 |
+| `conflict` | 两篇当前有效的适用 official 值冲突，不能任取一个 |
+| `ambiguous` | 缺少套餐范围，应 clarify，预算不改变这个要求 |
+| `untrusted` | 相关事实只来自非可信来源，不能按官方依据作答 |
+| `irrelevant_topic` | 两篇 official 均当前有效且同产品套餐，但第二篇主题无关；只引用适用证据作答 |
+| `consensus` | 两篇当前适用 official 的值一致，应回答并引用两个 ID |
+
+在没有可答依据且范围明确时，预算 1 应 search，预算 0 应 abstain。有充分依据的情境在两种预算下都应 answer。当前合同要求**全部适用官方引用**：引用排列不计顺序，但少一个、多一个、引用错误 ID 或重复引用都不能通过。`consensus` 用原有集合评分即可判定，不需要为新情境修改评分器。
+
+相关产品、适用主题、来源权威性、有效日期和剩余预算是任务所需的语义信息；目标不是让所有公开字段与标签统计独立。独立审计检查已知的非因果捷径，如“所有文档提到同一产品”“两官方数值相同”“任意不同主题就拒答”“官方候选数不是一就拒答”，并要求相应反例。审计只能排除所检查的规则，不能证明完全不存在其他捷径。
+
+## 当前固定参照与历史对照
+
+V3.1 最终确认固定比较 `selected-v3`（方法名沿用，实际协议 V3.1）、未微调 base、历史 V2 adapter 和 `contract`。前三者须使用完全相同的可见输入、序列化、解码和评分。历史 V2 adapter 在 V3.1 上的新结果，是固定参照评测；不可把它在旧 V2 测试集上的分数放在同一表内冒充同输入比较。
+
+`contract` 只解析公开字段，检查产品、套餐、主题、时间、来源和事实一致性，不读取 gold。它是有限语法的精确规则参照，不是通用语义核验器。规则成功不构成 SFT 成功，也不支持“部署必须用微调”的结论。若将来使用规则守卫改写模型输出，应分别报告原始模型与带守卫系统。
+
+历史 V1 还包括 answer-only SFT、evidence SFT 和忽略日期/来源/冲突的 `first-match`。V1 两个 SFT 均为 200 步，但分别用 320 行可答数据和 1,120 行全部情境，token 量和覆盖率不等；它们不是等 token 消融，也不是上游 RAFT 的完整复现。
 
 ## 严格评分顺序
 
-1. 保存未经修正的原始输出。
-2. 按协议解析结构，检查动作枚举、字段类型以及动作对应的字段约束。无法解析或不合法是失败，不默默替换成 `abstain`。
-3. 检查动作是否与当前输入的真值一致。
-4. 对 `answer` 检查事实值与目标引用集合完全一致。目标由生成器预先构造，规则一致性测试核对可见输入下的适用范围、有效时间和来源。当前评分器是精确真值比较，不是另一个语义蕴含模型。
-5. 对其他动作检查协议约束和预算；一个正确动作不能遮盖其附带的错误答案或越界调用。
-6. 按实例、变体、group 和配对关系聚合，保留分母。
+1. 保存未经修改的 raw 输出。
+2. 只接受恰好 `action / value / citations` 的单个 JSON 对象。拒绝重复键、额外字段、markdown 包裹、重复引用和非法类型。
+3. 检查动作枚举及字段约束。非 answer 的 value / citations 须为空；answer 必须有非空值和至少一个引用。非法输出是失败，不自动改成 abstain。
+4. 比较动作、值和完整引用集合。值仅去首尾空白、忽略大小写，不做单位换算或同义匹配；引用比较忽略排列顺序。
+5. 按案例、变体、组和合法配对聚合，保留每个分母。独立审计从 data 与 raw 重新评分，同时核对案例身份、完整性、原始指标和摘要。
 
-解析器只接受恰好 `action / value / citations` 的单个 JSON 对象；拒绝重复键、重复引用、额外字段和 markdown 包裹。值比较只去掉首尾空白并忽略大小写，不做单位换算或语义同义匹配。引用不关心排列顺序，但集合必须与全部目标引用一致。不使用另一个付费 LLM 判断，也不允许为了提高分数在测试后不断扩充答案同义规则。小任务中的精确评分不能被称作开放域事实验证。
+真值来自冻结的数据合同，独立规则审计检查可见输入的一致性；评分器是精确目标比较，不是额外的语义蕴含模型或付费 LLM。不能在看到 test 后扩充答案匹配规则来提高成绩。
 
-## 指标及其分母
+## 指标、精确分母与七项门槛
 
-设所有测试样本为 N，应回答的样本为 A，不应回答的样本为 U。格式非法的样本计入失败，并独立列出。
+令 N 为所有案例数，A 为本应回答的案例数，U 为本不应回答的案例数，E 为模型输出**可解析且字段合法的 answer** 数，G 为完整问题组数。本轮 N=1,440、A=720、U=720、E=723、G=60。invalid 计入失败，并在混淆矩阵独立列出。
 
-| 指标 | 定义 | 防止的误读 |
+| 字段 / 展示名 | 定义 | V3.1 test / 联合门槛 |
 | --- | --- | --- |
-| `format_valid_rate` | 合法结构输出数 / N | 它只反映协议格式，不代表答案正确 |
-| `action_accuracy` / `action_macro_f1` | 四动作准确率、各类 F1 的宏平均，附含 invalid 列的混淆矩阵 | 避免多数类掩盖少数动作失败 |
-| `success_rate` | 动作、value 和 citations 全部正确的样本数 / N | 正确动作但错误答案不能过关 |
-| `answerable_success` | 在 A 中严格成功的数量 / A | 拒答不能提高应答任务成功率 |
-| `answer_coverage` | 输出合法 answer 的数量 / N | 与错误率一起显示模型实际回答了多少 |
-| `unsupported_answer_rate` | 所有已回答样本中，动作不应回答、value 错或 citations 错的数量 / 已回答数量 | 分母是模型已回答数；不是 U，不回答时为 null |
-| `over_answer_rate` | 在 U 中输出合法 answer 的数量 / U | 衡量本不应回答却回答；invalid 另计失败，不当作安全 |
-| `over_refusal_rate` | 在 A 中输出 clarify / abstain 的数量 / A | 不含 search；不能单独代表全部延迟回答 |
-| `unnecessary_search_rate` | 在 A 中输出 search 的数量 / A | 和 over_refusal_rate 相加才是合法输出中的多余延迟 |
-| `citation_exact_rate` | 已回答样本中，引用集合与真值完全相同的数量 / 已回答数量 | 不单独检查 value；无回答时为 null，不填 100% |
-| `all_variants_correct_rate` | 组内全部 14 变体严格成功的 group 数 / group 总数 | 显示平均分掩盖的组内缺陷 |
-| `by_variant` | 每种变体的数量与严格成功率 | 必须保留各类分母 |
+| `success_rate` / 严格成功 | 动作、值、引用全部正确数 / N | 1,437/1,440；≥85% |
+| `answerable_success` / 可答成功 | A 中严格成功数 / A | 720/720；≥80% |
+| `action_macro_f1` | answer、search、clarify、abstain 四类 F1 等权平均；各类使用 TP/FP/FN，并计入 invalid 导致的 FN | 0.99822677；≥0.80 |
+| `all_variants_correct_rate` / 整组全通过 | 组内全部 24 情境严格正确的组数 / G | 58/60；≥50% |
+| `over_answer_rate` / 不应作答却作答 | U 中输出合法 answer 数 / U | 3/720；≤5% |
+| `format_valid_rate` / 格式有效 | 合法结构和字段输出数 / N | 1,440/1,440；100% |
+| `unsupported_answer_rate` / 证据合同未通过的回答比例 | E 中不应作答、值错或引用集合错（含缺漏）的数量 / E | 3/723；≤5% |
 
-单步报告当前没有独立 `budget_violations` 汇总列；可从原始预测与零预算条件复算。恢复流程对零预算 `search` 返回 `status=budget_violation`。不能把 planned 指标写成现有汇总字段。
+七项必须同时通过。已答风险另外要求 E ≥ `ceil(0.8 × A)`：dev 至少 231 次、test 至少 576 次合法 answer。没有合法 answer 或分母未定义不能通过风险门槛；格式失败不能解释为安全。此保护防止仅用少数容易案例回答就宣称低风险。
 
-代码或当前报告若尚未实现某个指标，应保留 `pending` 或明确标记计划项；不要用其他近似指标替代却沿用名称。
+`unsupported_answer_rate` 不等于事实幻觉率：即使数值正确，只漏一个必须引用的 official，也会失败。它的分母是 E；`over_answer_rate` 的分母是 U。本轮分别为 3/723（0.4149%）和 3/720（0.4167%），界面一位小数都可能显示 0.4%，应结合原始分数读取。
 
-## 三类成组检查
+其余已实现诊断字段：
 
-### 应改变的动作
+| 字段 | 定义 / 边界 |
+| --- | --- |
+| `action_accuracy` | 动作正确数 / N；不检查值与引用 |
+| `answer_coverage` | E / N；说明模型实际回答多少 |
+| `over_refusal_rate` | A 中输出 clarify 或 abstain 的数量 / A；不含 search |
+| `unnecessary_search_rate` | A 中输出 search 的数量 / A；与上一项相加才覆盖合法输出中的多余延迟 |
+| `citation_exact_rate` | E 中引用集合正确数 / E；不单独检查值，无 answer 时为 null |
+| `by_variant` | 每个变体的数量与严格成功率；V3.1 test 每个变体 60 行 |
+| `success_group_bootstrap_95ci` | 整个 group 为重采样单位的严格成功区间；不是训练种子不确定性 |
 
-对完整证据与缺失证据、正预算与零预算的合法 pair，两侧都必须动作正确。证据移除和过期对会按 supported 的预算匹配 `*_search` 或 `*_stop`，固定预算，仅改变证据；预算对则固定证据，仅改变预算。不能仅计“预测动作发生变化”，否则随机摇摆也能拿高分。
+主单步摘要没有独立 `budget_violations` 列；闭环对零预算 search 报 `budget_violation`。不能把未实现的指标写成现有汇总字段。
 
-### 应改变的事实值
+## 配对检查不能替代完整组检查
 
-问题相同、有效证据中的值不同，两侧都应 `answer`，且各自输出自己的值与有效引用。它用于发现模型记住问题答案而忽略证据的情况。
+所有 pair 要求两侧**动作、值和引用都正确**；仅动作发生变化、字符串保持一致或最终猜中值都不够。固定预算比较证据干预，固定证据比较预算干预。
 
-### 应保持的决定
+| 主摘要 pair | V3.1 关系 | test 分母 |
+| --- | --- | ---: |
+| `value_change` | supported ↔ value_changed，分别匹配 b0、b1 | 120 |
+| `distractor_invariance` | supported ↔ distractor，同预算 | 120 |
+| `order_invariance` | supported ↔ reordered，同预算 | 120 |
+| `evidence_removal` | supported ↔ missing，同预算 | 120 |
+| `expiry_boundary` | supported ↔ expired，同预算 | 120 |
+| `budget_exhaustion` | missing_b0 ↔ missing_b1 | 60 |
+| `answer_budget_invariance` | supported_b0 ↔ supported_b1 | 60 |
+| `clarify_budget_invariance` | ambiguous_b0 ↔ ambiguous_b1 | 60 |
 
-加入 / 重排无关文档后，动作、事实值和目标引用集合仍正确。当前合同要求引用全部适用官方文档，因此引用仅允许顺序变化，不允许任意选择子集。只报告变化对而不报告保持对，会奖励对任何噪声都过度敏感的模型。
+V3.1 另用 [score_scope_pairs.py](../scripts/score_scope_pairs.py) 检查 `topic_filter`（conflict ↔ irrelevant_topic）和 `conflict_agreement`（conflict ↔ consensus），各自按两种预算匹配，test 各有 120 对。它们从原 raw 重评分，单独保存 [诊断结果](../experiments/v31/final-scope-pairs.json)，不改写已冻结主摘要或七门槛。
 
-当前报告实现六种 pair：`value_change`、`distractor_invariance`、`order_invariance`、`evidence_removal`、`budget_exhaustion`、`expiry_boundary`。每种在 test 上有 20 个完整 group pair，输出 correct / total / accuracy。`all_variants_correct_rate` 则覆盖全部 14 变体，不限于这些 pair。
+本轮上述 pair 全通过，仍有三个 future 情境错误；现有 pair 不是穷尽所有干预。`all_variants_correct_rate` 检查全部 24 情境，因此仍是 58/60。120 个相关配对也不能当作 120 个独立产品组。
 
-## 否定性对照与解释规则
+## 历史协议与否定性诊断
 
-最重要的诊断是**证据干预后重新评分**：将某样本的相关证据移除或替换为另一实体的无关证据，保留问题与预算，按新输入重新计算真值。若模型仍给原答案，应记录为未依证据控制；不能沿用原来的 gold 然后误称模型鲁棒。
+| 版本 | 保留的实验边界 |
+| --- | --- |
+| V1 | 14 情境、20 test 组、280 行；两个 200 步 SFT。主摘要六种 pair 各为 20 对。完整报告见 [experiments/report.json](../experiments/report.json) |
+| V2 | 仍为 14 情境、20 test 组；新数据修正、600 步预算，dev 在 200/400/600 中选点；原六门槛通过两项，最终 fail。见 [V2 协议](v2_protocol.md) 与 [审计](../experiments/v2/quality-gate.json) |
+| V3 | 20 情境、每种语义有两个预算；train/dev 静态审计发现主题和候选数量捷径，在最终模型确认前被 V3.1 替代。原冻结与分析全部保留 |
+| V3.1 | 24 情境、24 dev 组与 60 test 组；新实体与新 seed；七门槛及作答数量保护，先合格再排序选模 |
 
-可见输入规则如果能达到完美成绩，不支持“必须用 SFT”这一结论。SFT 的合理结论最多是“小模型在该协议上的可训练性及其失败边界”。只有独立的自然语言挑战或真实失败集表明规则不足，才值得讨论替代规则的收益。
+V1 的 `paraphrase.jsonl / redacted.jsonl` 各 56 行，来自原 test 前四组。它们是历史诊断，不能证明 V3.1 的措辞泛化。redacted 删除文档并重算目标，不沿用原 gold；它没有应回答样本，相关空分母指标保持 null。共享测试组的探针不能相加成更多独立样本，也不能直接沿用原变体名来解释干预效果。
 
-目前已生成的诊断为 `data/diagnostics/paraphrase.jsonl` 与 `redacted.jsonl`，各 56 行，来自同样的前四个 test group。paraphrase 改写问题和官方证据但保留 target；redacted 删除文档并按新观察重算 target。它们是冻结后的探针，不能用于调参，也不是独立于主 test 的新增样本。
+V3.1 的主确认没有自动包含自然文档、措辞迁移或多轮压力测试。未实际运行并冻结的挑战保持 pending。若只提高格式合法性而不提高证据与配对正确性，应报告为格式适配；若减少误答却增加不必要拒答或检索，应同时披露代价。
 
-诊断应按各自哈希单独出报告。特别是 redacted 没有应回答的样本，`answerable_success` 等空分母指标应为 null；保留下来的 variant 名不再代表当前证据状态。主测试的值变化 / 干扰配对名称也不能直接用来解释 redacted 的因果性质，诊断首先检查是否仍输出无依据答案及原始逐例决策。
+## 检索闭环需要单独验收
 
-若 SFT 仅提高 schema validity，但事实与配对指标未改善，应报告为格式适配。若误答降低却过度延迟显著增加，应同时展示这个代价，不能只强调较好的一列。
+[agent.py](../src/evidence_gate/agent.py) 提供 `search → 新证据 → 再决策`：词项重叠检索 catalogue，扣减预算，用检索结果替换 documents，再调用同一策略。没有向量检索、训练 reranker 或模型生成查询。
 
-## 恢复流程的单独评测
+`completed` 只表示非 search 的合法终止。严格闭环成功要求每一步都符合当步可见证据和最终恢复目标；检索前猜中隐藏目录事实不算正确，终止率不能替代成功率。规则闭环分数和 V3.1 单步模型成绩均不能冒充 V3.1 的真实模型多步结果。
 
-单步动作正确不等于完整任务成功。[agent.py](../src/evidence_gate/agent.py) 提供 `search → 新证据 → 再决策` 流程：词项重叠检索环境 catalogue，减少预算，用检索结果替换可见 documents，再调用同一 policy。没有向量检索、训练 reranker 或模型生成查询。事件记录当步 observation、原始输出、decision 与 retrieved_ids；invalid 输出、预算越界和步数用尽分别结束。
+## CPU 复算、身份与不确定性
 
-`status=completed` 只表示生成了非 search 的合法终止动作，不自动证明答案正确。完整任务验收必须查看最终证据与事实；当前单步模型评测不能替代模型恢复流程的结果。
+无需模型或 GPU，即可审计已保存的最终输出：
 
-该流程是预先定义的有限恢复协议，不是长期规划、自由工具使用或最优检索实验。未实际运行流程时，只报告单步决策成绩。
+```bash
+python scripts/selection_v3.py audit-test \
+  --evaluation experiments/v31/confirmation/selected-v3.json \
+  --data data/v31/test.jsonl \
+  --protocol experiments/v31/protocol.json \
+  --selection experiments/v31/selection.json \
+  --output runs/v31-audit-replay.json
+```
 
-## 不确定性与结果保存
+输出路径须尚不存在；退出 0 表示审计完成，质量结论查看 `status / passed / checks`。不要用仅处理 V2 六门槛的 `quality_gate.py` 替代它。`run_v3.py confirm` 属于真正推理流程，已确认的 test 哈希有使用记录，不应为了浏览或复算再次执行。
 
-同一 group 内的多个变体相关，不能把它们当作独立样本估计过窄的置信区间。若计算 bootstrap 区间，应以 group 为重采样单位，保留整个组，并明确少量测试组带来的不稳定性。
+每份模型预测绑定底模快照与 adapter SHA；选择记录还绑定数据、配置和 checkpoint。训练图必须来自所选 checkpoint 自身的 history，同时披露本轮实际完成步数、总预算与总成本。不得把后续步骤 loss 归到早期选中权重；只匹配模型名称或数据集不能建立身份。
 
-一个训练种子的测试区间只描述测试样本变动，不代表训练随机性的稳健性。若只训练一次，报告中直接写明；不要从单次训练推断显著优于另一方案。
-
-每次正式运行保存以下材料：
-
-- 基础模型名称与 revision、adapter 哈希、实际可训练参数与精度配置。
-- 数据 manifest 哈希、训练 / 解码参数、种子、依赖版本和运行设备。
-- 训练日志、完成步数、耗时、实际可得的内存统计；缺失的统计标未知。
-- 原始逐条预测、解析后的结构、评分明细、聚合结果和典型失败。
-- checkpoint 选择理由，以及是否已经观察过测试集结果。
-
-报告表中每一个数字必须能从保存的预测重新计算。未运行的基线、挑战集或消融保持 `pending`；负结果和格式失败也是交付物的一部分。
-
-每份模型预测还保存 `model_provenance` 中的基础快照指纹与 adapter SHA，报告的模型名由这些真实来源产生。附带训练曲线时，使用其相邻 summary 的 adapter 哈希核对预测身份。只匹配数据集还不够：复制错 adapter 的结果不能当作对应训练运行的证据。
+同组情境相关，bootstrap 必须整组重采样。单次训练种子的区间只描述测试组抽样变化，不代表训练随机性稳健性或跨自然文档泛化。保留训练日志、失败、中间候选、原始预测、哈希和所有审计；未运行结果不补零，失败结果不删除，看到 test 后的下一轮研究须建立新的确认边界。

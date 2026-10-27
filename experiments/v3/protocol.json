@@ -1,0 +1,108 @@
+{
+  "format": "evidence-gate-v3-frozen-holdout-protocol-v1",
+  "created_at": "2026-10-27T12:20:11.567889+00:00",
+  "status": "holdout_and_acceptance_frozen_training_registry_pending",
+  "reason": "Post-V2 optimization authorized; V1/V2 test results are already seen and cannot confirm V3.",
+  "data_seed": 20261029,
+  "train_groups": 80,
+  "dev_groups": 24,
+  "test_groups": 60,
+  "variants": [
+    "supported_b0",
+    "supported_b1",
+    "value_changed_b0",
+    "value_changed_b1",
+    "distractor_b0",
+    "distractor_b1",
+    "reordered_b0",
+    "reordered_b1",
+    "missing_b0",
+    "missing_b1",
+    "expired_b0",
+    "expired_b1",
+    "future_b0",
+    "future_b1",
+    "conflict_b0",
+    "conflict_b1",
+    "ambiguous_b0",
+    "ambiguous_b1",
+    "untrusted_b0",
+    "untrusted_b1"
+  ],
+  "cells_per_group": 20,
+  "gate": {
+    "strict_success_min": 0.85,
+    "answerable_success_min": 0.8,
+    "action_macro_f1_min": 0.8,
+    "all_variants_correct_min": 0.5,
+    "over_answer_rate_max": 0.05,
+    "format_valid_rate_min": 1.0,
+    "unsupported_answer_rate_max": 0.05
+  },
+  "answer_risk_eligibility": {
+    "minimum_emitted_answers_fraction_of_answerable": 0.8,
+    "rounding": "ceil",
+    "undefined_metrics_pass": false
+  },
+  "selection": {
+    "split": "dev",
+    "eligibility": "All seven gates and risk denominators pass on the same complete dev evaluation",
+    "ordering": [
+      {
+        "metric": "answerable_success",
+        "direction": "max"
+      },
+      {
+        "metric": "all_variants_correct_rate",
+        "direction": "max"
+      },
+      {
+        "metric": "success_rate",
+        "direction": "max"
+      },
+      {
+        "metric": "unsupported_answer_rate",
+        "direction": "min"
+      },
+      {
+        "metric": "registration_order",
+        "direction": "min"
+      }
+    ],
+    "comparison": "Exact integer fractions for count ratios",
+    "no_eligible_candidate": {
+      "status": "no_eligible_candidate",
+      "selected": null,
+      "test_allowed": false
+    }
+  },
+  "candidate_registry": "Training methods, configurations and checkpoint candidates must be registered before each dev-only run. Freeze the final registry and selection hashes before test; no candidate is registered by this builder.",
+  "inference": {
+    "dtype": "bfloat16",
+    "device": "mps",
+    "batch_size": 4,
+    "decoding": "greedy free generation",
+    "max_new_tokens": 72,
+    "output_repair": false
+  },
+  "model_acceptance": "Only kind=model, verified base/adapter/checkpoint identity and unchanged original raw generations can qualify. Rules remain references.",
+  "test_policy": "No V3 test model inference before eligible dev selection and artifact/hash verification. Evaluate the selected candidate once; references are fixed base, V2 adapter and contract rule. Failed confirmation remains visible and this holdout becomes seen for further development.",
+  "training_source_policy": "Fresh train is provided; combining previously seen train data requires a separate registered training manifest and zero overlap with frozen dev/test entities. No such combination is performed here.",
+  "stress_scope": "Not part of this main-holdout freeze. Any additional stress contract must be separately declared and frozen before confirmation; absent stress results imply no wording-shift or multi-step robustness claim.",
+  "baseline_protocol_sha256": "425939930f234cff4ff2887944715483ca3d304d988976372da504ca859d5d2d",
+  "acceptance_plan_sha256": "9c412db9eced0496fd727591e17ab69bd9bd6f3c8e3156715259e18633e08e25",
+  "generator_code_sha256": {
+    "scripts/build_v3.py": "ef2d5a4467ca5d58930feec6f79416fb7563a73fb87e97d4f43127e31def7dd9",
+    "scripts/audit_v3_data.py": "a44da03d7b461a8824d403d91653c3983b98bad43ecc5e41ab81bd9d6e976629",
+    "scripts/build_v2.py": "22260106ea5dac7b36f6b28edc03b777c4e58d6f2d5f6273cc62d264774b348a",
+    "src/evidence_gate/data.py": "a2db3e0b351ed2b3f329ed41618a41759417ffd7b428e8f7fde4ba03d05eb711",
+    "src/evidence_gate/evaluation.py": "39adabdf16cb7eab666ea229e3003dc905ce91cbf47668bee6e92860cc31d89c",
+    "src/evidence_gate/agent.py": "e980e806659ae4084bf11d6d6209d3a7d7c27c5d4d8e01ae5f3a407cef940a57"
+  },
+  "claims": "Seven-gate success on fresh synthetic product groups only; not proof of broad natural-language generalization or production safety.",
+  "data_sha256": {
+    "train": "38b20db7fff7569a610adc7ea727adabd2d6bbea619b22e53ef2716df926ea2b",
+    "dev": "a659be39646aa8df6307ce5941a254b19d830c5e1239adaeb3cabbff75b2f947",
+    "test": "d6799407f90a17b2605562747b126a38deeeee9079f8ee736f2c307e280c6311"
+  }
+}
