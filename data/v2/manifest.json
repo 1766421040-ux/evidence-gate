@@ -1,0 +1,271 @@
+{
+  "schema_version": 1,
+  "rows": 1568,
+  "groups": 112,
+  "split_rows": {
+    "train": 1120,
+    "dev": 168,
+    "test": 280
+  },
+  "actions": {
+    "answer": 448,
+    "search": 560,
+    "abstain": 448,
+    "clarify": 112
+  },
+  "dataset_sha256": "b27db1de113fa7c6253f7e0f6b4614d195dd9cfc4b210ba5ce8608cec1f094b4",
+  "group_leaks": 0,
+  "identical_prompt_cross_split": 0,
+  "labels_in_messages": false,
+  "products": 112,
+  "v1_product_overlap": 0,
+  "public_rule_target_agreements": 1568,
+  "recovery_world_agreements": 1568,
+  "shortcut_audit": {
+    "train": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 320,
+            "search": 400,
+            "abstain": 320,
+            "clarify": 80
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 320,
+            "search": 400,
+            "abstain": 320,
+            "clarify": 80
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 320,
+            "search": 400,
+            "abstain": 320,
+            "clarify": 80
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "search": 134,
+            "abstain": 107,
+            "answer": 108,
+            "clarify": 27
+          },
+          "community:V,official:F,official:V": {
+            "answer": 104,
+            "search": 132,
+            "abstain": 106,
+            "clarify": 26
+          },
+          "community:V,official:V,official:V": {
+            "search": 134,
+            "abstain": 107,
+            "answer": 108,
+            "clarify": 27
+          }
+        },
+        "mutual_information_bits": 2.399774377633148e-05,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      }
+    },
+    "dev": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 48,
+            "search": 60,
+            "abstain": 48,
+            "clarify": 12
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 48,
+            "search": 60,
+            "abstain": 48,
+            "clarify": 12
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 48,
+            "search": 60,
+            "abstain": 48,
+            "clarify": 12
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "search": 20,
+            "abstain": 16,
+            "answer": 16,
+            "clarify": 4
+          },
+          "community:V,official:F,official:V": {
+            "search": 20,
+            "abstain": 16,
+            "answer": 16,
+            "clarify": 4
+          },
+          "community:V,official:V,official:V": {
+            "answer": 16,
+            "search": 20,
+            "abstain": 16,
+            "clarify": 4
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      }
+    },
+    "test": {
+      "document_count": {
+        "table": {
+          "3": {
+            "answer": 80,
+            "search": 100,
+            "abstain": 80,
+            "clarify": 20
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_counts": {
+        "table": {
+          "(('community', 1), ('official', 2))": {
+            "answer": 80,
+            "search": 100,
+            "abstain": 80,
+            "clarify": 20
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "injection_count": {
+        "table": {
+          "1": {
+            "answer": 80,
+            "search": 100,
+            "abstain": 80,
+            "clarify": 20
+          }
+        },
+        "mutual_information_bits": 0.0,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      },
+      "source_date_signature": {
+        "table": {
+          "community:V,official:E,official:V": {
+            "search": 34,
+            "abstain": 27,
+            "answer": 28,
+            "clarify": 7
+          },
+          "community:V,official:F,official:V": {
+            "answer": 24,
+            "search": 32,
+            "abstain": 26,
+            "clarify": 6
+          },
+          "community:V,official:V,official:V": {
+            "search": 34,
+            "abstain": 27,
+            "answer": 28,
+            "clarify": 7
+          }
+        },
+        "mutual_information_bits": 0.0003940595286947,
+        "best_lookup_action_accuracy": 0.35714285714285715,
+        "constant_majority_action_accuracy": 0.35714285714285715
+      }
+    }
+  },
+  "generator": "evidence-gate-v2",
+  "seed": 20261028,
+  "license": "MIT",
+  "provenance": "New self-authored fictional products after the v1 shortcut diagnosis; no model-generated labels.",
+  "variants": [
+    "supported",
+    "value_changed",
+    "distractor",
+    "reordered",
+    "missing_search",
+    "missing_stop",
+    "expired_search",
+    "expired_stop",
+    "future_search",
+    "conflict_search",
+    "conflict_stop",
+    "ambiguous",
+    "untrusted_search",
+    "untrusted_stop"
+  ],
+  "models_called": 0,
+  "model_predictions_read": false,
+  "v1_files_sha256": {
+    "train.jsonl": "b3b46d93c1b4e0c21d5c5fb17a7117ff0fdadd0ff260fd9c758157299b2dc560",
+    "dev.jsonl": "45c5593c98632953e44ec72462072f45bc7a2aac6c46eae965747fde02f8cc42",
+    "test.jsonl": "58b095b473c23b81dbec4a2af7d6bd0680ca9e2cc6517af05cf432b89713257f"
+  },
+  "files": {
+    "train.jsonl": {
+      "sha256": "11629323ee99030472ccabd944301d9f4fec4a3a4c0624c574d1e00d5487f23a"
+    },
+    "dev.jsonl": {
+      "sha256": "7c1fa90582d9d289bd798e9ea90634bced6f833666f69f0fdcf053071d9b66bf"
+    },
+    "test.jsonl": {
+      "sha256": "c60fb70ba876b5c8f543784f5226d791d283bca00d5c5aaa17f261bb247eb6cc"
+    },
+    "train_answer_only.jsonl": {
+      "sha256": "0bd0f51dc5b36bf8cfca311b4658d32989f9c1527bdf8166c5ebfc9a7613c51f"
+    }
+  },
+  "test_policy": "Locked before v2 model evaluation. Do not inspect test model predictions or use test scores to choose prompts, steps, or checkpoints; development uses dev only.",
+  "revision_reason": "v1 model actions matched a document-count/injection-template shortcut. v2 fixes those cues while retaining the original protocol.",
+  "date_design": "VV/VE/VF official-date signatures are balanced approximately across actions; every signature has all four actions. Semantic expiry/conflict differences remain necessary. Metadata-only lookup does not beat the class-prior baseline.",
+  "scope": "Counts/source composition/injection presence carry zero action information in each split. This does not establish absence of all spurious cues or natural-language generalization.",
+  "catalogue": "Separate current authenticated recovery snapshot with new official document IDs; value interventions propagate to it. Not a static corpus containing all observed historical/conflicting versions.",
+  "statistical_unit": "Product group, not individual variants. v2 and v1 are separate datasets; do not pool their scores."
+}
