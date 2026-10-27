@@ -1,0 +1,40 @@
+{
+  "schema_version": 1,
+  "rows": 1568,
+  "groups": 112,
+  "split_rows": {
+    "train": 1120,
+    "dev": 168,
+    "test": 280
+  },
+  "actions": {
+    "answer": 448,
+    "search": 560,
+    "abstain": 448,
+    "clarify": 112
+  },
+  "dataset_sha256": "2b6dc649ed23e12feabea70135a54b0090b2a5bf179ed35d8ca0c65012542fc5",
+  "group_leaks": 0,
+  "identical_prompt_cross_split": 0,
+  "labels_in_messages": false,
+  "seed": 20261027,
+  "generator": "evidence-gate-v1",
+  "license": "MIT",
+  "provenance": "Self-authored fictional tasks; no scraped customer data",
+  "variants": [
+    "supported",
+    "value_changed",
+    "distractor",
+    "reordered",
+    "missing_search",
+    "missing_stop",
+    "expired_search",
+    "expired_stop",
+    "future_search",
+    "conflict_search",
+    "conflict_stop",
+    "ambiguous",
+    "untrusted_search",
+    "untrusted_stop"
+  ]
+}

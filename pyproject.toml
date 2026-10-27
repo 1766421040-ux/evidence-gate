@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "evidence-gate"
+version = "0.1.0"
+description = "Counterfactual evidence decisions for locally fine-tuned retrieval agents"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+dependencies = []
+
+[project.optional-dependencies]
+train = ["torch>=2.6,<3", "transformers>=4.57,<5", "peft>=0.18,<0.22", "safetensors>=0.4", "accelerate>=1.0,<2"]
+test = ["pytest>=8,<10"]
+
+[project.scripts]
+evidence-gate = "evidence_gate.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+evidence_gate = ["web/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

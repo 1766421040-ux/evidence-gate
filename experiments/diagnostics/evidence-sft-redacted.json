@@ -1,0 +1,2582 @@
+{
+  "name": "evidence-sft",
+  "kind": "model",
+  "dataset_sha256": "fe52318dbe73c1cbb49419f82923b3dbdfe63335644a6c168fde4d7a885694de",
+  "summary": {
+    "n": 56,
+    "success_rate": 0.44642857142857145,
+    "success_group_bootstrap_95ci": [
+      0.32142857142857145,
+      0.5714285714285714
+    ],
+    "format_valid_rate": 1.0,
+    "action_accuracy": 0.44642857142857145,
+    "action_macro_f1": 0.2572413793103448,
+    "answer_coverage": 0.42857142857142855,
+    "answerable_success": null,
+    "unsupported_answer_rate": 1.0,
+    "over_answer_rate": 0.42857142857142855,
+    "over_refusal_rate": null,
+    "unnecessary_search_rate": null,
+    "citation_exact_rate": 0.0,
+    "all_variants_correct_rate": 0.0,
+    "groups": 4,
+    "mean_latency_ms": 133.3785706769309,
+    "denominators": {
+      "answerable": 0,
+      "unanswerable": 56,
+      "emitted_answers": 24
+    },
+    "confusion": {
+      "answer": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "search": {
+        "answer": 22,
+        "search": 1,
+        "clarify": 5,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "clarify": {
+        "answer": 2,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 2,
+        "invalid": 0
+      },
+      "abstain": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 24,
+        "invalid": 0
+      }
+    },
+    "pairs": {
+      "value_change": {
+        "correct": 2,
+        "total": 4,
+        "accuracy": 0.5
+      },
+      "distractor_invariance": {
+        "correct": 2,
+        "total": 4,
+        "accuracy": 0.5
+      },
+      "order_invariance": {
+        "correct": 2,
+        "total": 4,
+        "accuracy": 0.5
+      },
+      "evidence_removal": {
+        "correct": 2,
+        "total": 4,
+        "accuracy": 0.5
+      },
+      "budget_exhaustion": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "expiry_boundary": {
+        "correct": 2,
+        "total": 4,
+        "accuracy": 0.5
+      }
+    },
+    "by_variant": {
+      "supported": {
+        "n": 4,
+        "success_rate": 0.5
+      },
+      "value_changed": {
+        "n": 4,
+        "success_rate": 0.5
+      },
+      "distractor": {
+        "n": 4,
+        "success_rate": 0.5
+      },
+      "reordered": {
+        "n": 4,
+        "success_rate": 0.5
+      },
+      "missing_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "missing_stop": {
+        "n": 4,
+        "success_rate": 1.0
+      },
+      "expired_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "expired_stop": {
+        "n": 4,
+        "success_rate": 1.0
+      },
+      "future_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "conflict_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "conflict_stop": {
+        "n": 4,
+        "success_rate": 1.0
+      },
+      "ambiguous": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "untrusted_search": {
+        "n": 4,
+        "success_rate": 0.25
+      },
+      "untrusted_stop": {
+        "n": 4,
+        "success_rate": 1.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "g0092:supported",
+      "group_id": "g0092",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 125.79787499271333,
+      "generation": {
+        "batch_latency_ms": 503.19149997085333,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:value_changed",
+      "group_id": "g0092",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 125.79787499271333,
+      "generation": {
+        "batch_latency_ms": 503.19149997085333,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:distractor",
+      "group_id": "g0092",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 125.79787499271333,
+      "generation": {
+        "batch_latency_ms": 503.19149997085333,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:reordered",
+      "group_id": "g0092",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 125.79787499271333,
+      "generation": {
+        "batch_latency_ms": 503.19149997085333,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:missing_search",
+      "group_id": "g0092",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 126.64096875232644,
+      "generation": {
+        "batch_latency_ms": 506.5638750093058,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:missing_stop",
+      "group_id": "g0092",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 126.64096875232644,
+      "generation": {
+        "batch_latency_ms": 506.5638750093058,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:expired_search",
+      "group_id": "g0092",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 126.64096875232644,
+      "generation": {
+        "batch_latency_ms": 506.5638750093058,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:expired_stop",
+      "group_id": "g0092",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 126.64096875232644,
+      "generation": {
+        "batch_latency_ms": 506.5638750093058,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:future_search",
+      "group_id": "g0092",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.84904175798874,
+      "generation": {
+        "batch_latency_ms": 599.396167031955,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:conflict_search",
+      "group_id": "g0092",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.84904175798874,
+      "generation": {
+        "batch_latency_ms": 599.396167031955,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:conflict_stop",
+      "group_id": "g0092",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 149.84904175798874,
+      "generation": {
+        "batch_latency_ms": 599.396167031955,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:ambiguous",
+      "group_id": "g0092",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "3 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"3 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.84904175798874,
+      "generation": {
+        "batch_latency_ms": 599.396167031955,
+        "batch_size": 4,
+        "input_tokens": 249,
+        "output_tokens": 15,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:untrusted_search",
+      "group_id": "g0092",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "search",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"search\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 137.1590312483022,
+      "generation": {
+        "batch_latency_ms": 548.6361249932088,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 12,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:untrusted_stop",
+      "group_id": "g0092",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 137.1590312483022,
+      "generation": {
+        "batch_latency_ms": 548.6361249932088,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:supported",
+      "group_id": "g0093",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 137.1590312483022,
+      "generation": {
+        "batch_latency_ms": 548.6361249932088,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:value_changed",
+      "group_id": "g0093",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 137.1590312483022,
+      "generation": {
+        "batch_latency_ms": 548.6361249932088,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:distractor",
+      "group_id": "g0093",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 127.47684375790413,
+      "generation": {
+        "batch_latency_ms": 509.90737503161654,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:reordered",
+      "group_id": "g0093",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 127.47684375790413,
+      "generation": {
+        "batch_latency_ms": 509.90737503161654,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:missing_search",
+      "group_id": "g0093",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 127.47684375790413,
+      "generation": {
+        "batch_latency_ms": 509.90737503161654,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:missing_stop",
+      "group_id": "g0093",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 127.47684375790413,
+      "generation": {
+        "batch_latency_ms": 509.90737503161654,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:expired_search",
+      "group_id": "g0093",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 128.3884164877236,
+      "generation": {
+        "batch_latency_ms": 513.5536659508944,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:expired_stop",
+      "group_id": "g0093",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 128.3884164877236,
+      "generation": {
+        "batch_latency_ms": 513.5536659508944,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:future_search",
+      "group_id": "g0093",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 128.3884164877236,
+      "generation": {
+        "batch_latency_ms": 513.5536659508944,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:conflict_search",
+      "group_id": "g0093",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 128.3884164877236,
+      "generation": {
+        "batch_latency_ms": 513.5536659508944,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:conflict_stop",
+      "group_id": "g0093",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 149.45011449162848,
+      "generation": {
+        "batch_latency_ms": 597.8004579665139,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:ambiguous",
+      "group_id": "g0093",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.45011449162848,
+      "generation": {
+        "batch_latency_ms": 597.8004579665139,
+        "batch_size": 4,
+        "input_tokens": 250,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:untrusted_search",
+      "group_id": "g0093",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.45011449162848,
+      "generation": {
+        "batch_latency_ms": 597.8004579665139,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:untrusted_stop",
+      "group_id": "g0093",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 149.45011449162848,
+      "generation": {
+        "batch_latency_ms": 597.8004579665139,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:supported",
+      "group_id": "g0094",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.22843749844469,
+      "generation": {
+        "batch_latency_ms": 460.91374999377877,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:value_changed",
+      "group_id": "g0094",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.22843749844469,
+      "generation": {
+        "batch_latency_ms": 460.91374999377877,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:distractor",
+      "group_id": "g0094",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.22843749844469,
+      "generation": {
+        "batch_latency_ms": 460.91374999377877,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:reordered",
+      "group_id": "g0094",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.22843749844469,
+      "generation": {
+        "batch_latency_ms": 460.91374999377877,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:missing_search",
+      "group_id": "g0094",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "clarify",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"clarify\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 115.92969800403807,
+      "generation": {
+        "batch_latency_ms": 463.7187920161523,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 13,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:missing_stop",
+      "group_id": "g0094",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.92969800403807,
+      "generation": {
+        "batch_latency_ms": 463.7187920161523,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:expired_search",
+      "group_id": "g0094",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "clarify",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"clarify\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 115.92969800403807,
+      "generation": {
+        "batch_latency_ms": 463.7187920161523,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 13,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:expired_stop",
+      "group_id": "g0094",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 115.92969800403807,
+      "generation": {
+        "batch_latency_ms": 463.7187920161523,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:future_search",
+      "group_id": "g0094",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "clarify",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"clarify\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 136.71307274489664,
+      "generation": {
+        "batch_latency_ms": 546.8522909795865,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 13,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:conflict_search",
+      "group_id": "g0094",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "clarify",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"clarify\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 136.71307274489664,
+      "generation": {
+        "batch_latency_ms": 546.8522909795865,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 13,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:conflict_stop",
+      "group_id": "g0094",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 136.71307274489664,
+      "generation": {
+        "batch_latency_ms": 546.8522909795865,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:ambiguous",
+      "group_id": "g0094",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 136.71307274489664,
+      "generation": {
+        "batch_latency_ms": 546.8522909795865,
+        "batch_size": 4,
+        "input_tokens": 250,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:untrusted_search",
+      "group_id": "g0094",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "clarify",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"clarify\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.6585832501296,
+      "generation": {
+        "batch_latency_ms": 598.6343330005184,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 13,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:untrusted_stop",
+      "group_id": "g0094",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 149.6585832501296,
+      "generation": {
+        "batch_latency_ms": 598.6343330005184,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:supported",
+      "group_id": "g0095",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.6585832501296,
+      "generation": {
+        "batch_latency_ms": 598.6343330005184,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:value_changed",
+      "group_id": "g0095",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 149.6585832501296,
+      "generation": {
+        "batch_latency_ms": 598.6343330005184,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:distractor",
+      "group_id": "g0095",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 124.94144799711648,
+      "generation": {
+        "batch_latency_ms": 499.76579198846593,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:reordered",
+      "group_id": "g0095",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 124.94144799711648,
+      "generation": {
+        "batch_latency_ms": 499.76579198846593,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:missing_search",
+      "group_id": "g0095",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 124.94144799711648,
+      "generation": {
+        "batch_latency_ms": 499.76579198846593,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:missing_stop",
+      "group_id": "g0095",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 124.94144799711648,
+      "generation": {
+        "batch_latency_ms": 499.76579198846593,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:expired_search",
+      "group_id": "g0095",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 129.1957604989875,
+      "generation": {
+        "batch_latency_ms": 516.78304199595,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:expired_stop",
+      "group_id": "g0095",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 129.1957604989875,
+      "generation": {
+        "batch_latency_ms": 516.78304199595,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:future_search",
+      "group_id": "g0095",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 129.1957604989875,
+      "generation": {
+        "batch_latency_ms": 516.78304199595,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:conflict_search",
+      "group_id": "g0095",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 129.1957604989875,
+      "generation": {
+        "batch_latency_ms": 516.78304199595,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:conflict_stop",
+      "group_id": "g0095",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 150.87069799483288,
+      "generation": {
+        "batch_latency_ms": 603.4827919793315,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:ambiguous",
+      "group_id": "g0095",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "3 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"3 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 150.87069799483288,
+      "generation": {
+        "batch_latency_ms": 603.4827919793315,
+        "batch_size": 4,
+        "input_tokens": 249,
+        "output_tokens": 15,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:untrusted_search",
+      "group_id": "g0095",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "answer",
+        "value": "30 days",
+        "citations": [
+          ""
+        ]
+      },
+      "raw": "{\"action\":\"answer\",\"value\":\"30 days\",\"citations\":[\"\"]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": false,
+        "unsupported_answer": true,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "wrong_action",
+      "latency_ms": 150.87069799483288,
+      "generation": {
+        "batch_latency_ms": 603.4827919793315,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 16,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:untrusted_stop",
+      "group_id": "g0095",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": {
+        "action": "abstain",
+        "value": "",
+        "citations": []
+      },
+      "raw": "{\"action\":\"abstain\",\"value\":\"\",\"citations\":[]}",
+      "metrics": {
+        "format_valid": true,
+        "action_correct": true,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": true
+      },
+      "error": null,
+      "latency_ms": 150.87069799483288,
+      "generation": {
+        "batch_latency_ms": 603.4827919793315,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 14,
+        "hit_generation_limit": false
+      }
+    }
+  ],
+  "model_provenance": {
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "base_files": {
+      "config.json": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45",
+      "generation_config.json": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "model.safetensors": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "adapter_sha256": "1a15242a23305e91fe1e487ba88153afa348a887a27632bd59b44830ad3d4283",
+    "adapter_config_sha256": "361c9e943c1fb27ad923633b32ce08a60976c0ef57478a0e92f81fc8cdf96308",
+    "adapter_training_binding_verified": true,
+    "base_dtype": "torch.bfloat16",
+    "adapter_dtypes": [
+      "torch.float32"
+    ]
+  },
+  "inference": {
+    "decoding": "greedy free generation",
+    "max_new_tokens": 72,
+    "device": "mps",
+    "dtype": "bfloat16",
+    "output_repair": false,
+    "batch_size": 4
+  },
+  "diagnostic": "redacted"
+}

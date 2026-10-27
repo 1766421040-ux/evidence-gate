@@ -1,0 +1,13 @@
+{
+  "status": "failed",
+  "last_completed_optimizer_step": 66,
+  "failed_optimizer_step": 67,
+  "planned_optimizer_steps": 200,
+  "failure": "MPS out of memory during the float32 attempt",
+  "failure_evidence": "Runner-observed failure; metrics.json preserves the 66 completed steps. The original terminal traceback is not included in this release.",
+  "weights_published": false,
+  "checkpoints_published": false,
+  "used_as_completed_training_result": false,
+  "follow_up": "Fresh bfloat16 runs with fixed-length padding, micro batch 1, gradient accumulation 4 and gradient checkpointing completed 200 steps each. They did not resume these failed weights.",
+  "comparability": "The failed attempt records a different dataset/config binding. Its partial loss curve is retained for failure provenance, not used as a paired quality comparison."
+}

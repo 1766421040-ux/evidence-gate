@@ -1,0 +1,28 @@
+{
+  "format": "evidence-gate-v2-preregistered-protocol",
+  "created_at": "2026-10-27",
+  "reason": "V1 action predictions were fully compatible with a document-count/budget shortcut; this follow-up is explicitly post-V1 analysis.",
+  "data_seed": 20261028,
+  "train_groups": 80,
+  "dev_groups": 12,
+  "test_groups": 20,
+  "checkpoints": [
+    200,
+    400,
+    600
+  ],
+  "selection": "Highest dev macro-average of per-gold-action STRICT success rate; tie chooses earliest optimizer step.",
+  "training": "Fresh base model initialization; standard LoRA; no changes to objective; train config configs/v2.json",
+  "max_length_rule": "Use tokenizer preflight before training. Start 512; increase to next multiple of64 only if needed. No truncation.",
+  "test_policy": "Do not run any v2 test model inference before dev selection. Evaluate selected adapter once; base and both fixed v1 adapters are reference controls, not equal-budget causal ablations.",
+  "gate": {
+    "strict_success_min": 0.85,
+    "answerable_success_min": 0.8,
+    "action_macro_f1_min": 0.8,
+    "all_variants_correct_min": 0.5,
+    "over_answer_rate_max": 0.05,
+    "format_valid_rate_min": 1.0
+  },
+  "stop_rule": "No third round of model or data changes after viewing v2 test results. Preserve pass/fail honestly.",
+  "claims": "The new dataset and longer training change together; observed differences do not identify the causal contribution of either one alone."
+}

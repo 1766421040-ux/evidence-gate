@@ -1,0 +1,2307 @@
+{
+  "name": "base",
+  "kind": "model",
+  "dataset_sha256": "fe52318dbe73c1cbb49419f82923b3dbdfe63335644a6c168fde4d7a885694de",
+  "summary": {
+    "n": 56,
+    "success_rate": 0.0,
+    "success_group_bootstrap_95ci": [
+      0.0,
+      0.0
+    ],
+    "format_valid_rate": 0.0,
+    "action_accuracy": 0.0,
+    "action_macro_f1": 0.0,
+    "answer_coverage": 0.0,
+    "answerable_success": null,
+    "unsupported_answer_rate": null,
+    "over_answer_rate": 0.0,
+    "over_refusal_rate": null,
+    "unnecessary_search_rate": null,
+    "citation_exact_rate": null,
+    "all_variants_correct_rate": 0.0,
+    "groups": 4,
+    "mean_latency_ms": 301.3543563917795,
+    "denominators": {
+      "answerable": 0,
+      "unanswerable": 56,
+      "emitted_answers": 0
+    },
+    "confusion": {
+      "answer": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 0
+      },
+      "search": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 28
+      },
+      "clarify": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 4
+      },
+      "abstain": {
+        "answer": 0,
+        "search": 0,
+        "clarify": 0,
+        "abstain": 0,
+        "invalid": 24
+      }
+    },
+    "pairs": {
+      "value_change": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "distractor_invariance": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "order_invariance": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "evidence_removal": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "budget_exhaustion": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      },
+      "expiry_boundary": {
+        "correct": 0,
+        "total": 4,
+        "accuracy": 0.0
+      }
+    },
+    "by_variant": {
+      "supported": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "value_changed": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "distractor": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "reordered": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "missing_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "missing_stop": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "expired_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "expired_stop": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "future_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "conflict_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "conflict_stop": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "ambiguous": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "untrusted_search": {
+        "n": 4,
+        "success_rate": 0.0
+      },
+      "untrusted_stop": {
+        "n": 4,
+        "success_rate": 0.0
+      }
+    }
+  },
+  "cases": [
+    {
+      "id": "g0092:supported",
+      "group_id": "g0092",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 167.17387500102632,
+      "generation": {
+        "batch_latency_ms": 668.6955000041053,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:value_changed",
+      "group_id": "g0092",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 167.17387500102632,
+      "generation": {
+        "batch_latency_ms": 668.6955000041053,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:distractor",
+      "group_id": "g0092",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 167.17387500102632,
+      "generation": {
+        "batch_latency_ms": 668.6955000041053,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:reordered",
+      "group_id": "g0092",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 167.17387500102632,
+      "generation": {
+        "batch_latency_ms": 668.6955000041053,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:missing_search",
+      "group_id": "g0092",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 145.17663525475655,
+      "generation": {
+        "batch_latency_ms": 580.7065410190262,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:missing_stop",
+      "group_id": "g0092",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 145.17663525475655,
+      "generation": {
+        "batch_latency_ms": 580.7065410190262,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:expired_search",
+      "group_id": "g0092",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 145.17663525475655,
+      "generation": {
+        "batch_latency_ms": 580.7065410190262,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:expired_stop",
+      "group_id": "g0092",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 145.17663525475655,
+      "generation": {
+        "batch_latency_ms": 580.7065410190262,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:future_search",
+      "group_id": "g0092",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 176.14140624937136,
+      "generation": {
+        "batch_latency_ms": 704.5656249974854,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:conflict_search",
+      "group_id": "g0092",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 176.14140624937136,
+      "generation": {
+        "batch_latency_ms": 704.5656249974854,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:conflict_stop",
+      "group_id": "g0092",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 176.14140624937136,
+      "generation": {
+        "batch_latency_ms": 704.5656249974854,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:ambiguous",
+      "group_id": "g0092",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 176.14140624937136,
+      "generation": {
+        "batch_latency_ms": 704.5656249974854,
+        "batch_size": 4,
+        "input_tokens": 249,
+        "output_tokens": 19,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:untrusted_search",
+      "group_id": "g0092",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 467.39585424074903,
+      "generation": {
+        "batch_latency_ms": 1869.5834169629961,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0092:untrusted_stop",
+      "group_id": "g0092",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-07-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NWMTW-192 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NWMTW-192 on the Starter plan is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 467.39585424074903,
+      "generation": {
+        "batch_latency_ms": 1869.5834169629961,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 23,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:supported",
+      "group_id": "g0093",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 467.39585424074903,
+      "generation": {
+        "batch_latency_ms": 1869.5834169629961,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:value_changed",
+      "group_id": "g0093",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 467.39585424074903,
+      "generation": {
+        "batch_latency_ms": 1869.5834169629961,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:distractor",
+      "group_id": "g0093",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.94914575549774,
+      "generation": {
+        "batch_latency_ms": 1407.796583021991,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:reordered",
+      "group_id": "g0093",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.94914575549774,
+      "generation": {
+        "batch_latency_ms": 1407.796583021991,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:missing_search",
+      "group_id": "g0093",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":1,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"content\":\"The team plan specifies that the audit-log retention period is 30 days.\"},{\"id\":4579,\"title\":\"Audit Log Retention Period\",\"content\":\"The audit-log",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.94914575549774,
+      "generation": {
+        "batch_latency_ms": 1407.796583021991,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:missing_stop",
+      "group_id": "g0093",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.94914575549774,
+      "generation": {
+        "batch_latency_ms": 1407.796583021991,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:expired_search",
+      "group_id": "g0093",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":1,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"content\":\"The team plan specifies that the audit-log retention period is 30 days.\"},{\"id\":4579,\"title\":\"Audit Log Retention Period\",\"content\":\"The audit-log",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 355.5731145024765,
+      "generation": {
+        "batch_latency_ms": 1422.292458009906,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:expired_stop",
+      "group_id": "g0093",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 355.5731145024765,
+      "generation": {
+        "batch_latency_ms": 1422.292458009906,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:future_search",
+      "group_id": "g0093",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":1,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"content\":\"The team plan specifies that the audit-log retention period is 30 days.\"},{\"id\":4579,\"title\":\"Audit Log Retention Period\",\"content\":\"The audit-log",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 355.5731145024765,
+      "generation": {
+        "batch_latency_ms": 1422.292458009906,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:conflict_search",
+      "group_id": "g0093",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":1,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"content\":\"The team plan specifies that the audit-log retention period is 30 days.\"},{\"id\":4579,\"title\":\"Audit Log Retention Period\",\"content\":\"The audit-log",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 355.5731145024765,
+      "generation": {
+        "batch_latency_ms": 1422.292458009906,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:conflict_stop",
+      "group_id": "g0093",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 461.67507299105637,
+      "generation": {
+        "batch_latency_ms": 1846.7002919642255,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:ambiguous",
+      "group_id": "g0093",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"\"days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 461.67507299105637,
+      "generation": {
+        "batch_latency_ms": 1846.7002919642255,
+        "batch_size": 4,
+        "input_tokens": 250,
+        "output_tokens": 4,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0093:untrusted_search",
+      "group_id": "g0093",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":1,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"content\":\"The team plan specifies that the audit-log retention period is 30 days.\"},{\"id\":4579,\"title\":\"Audit Log Retention Period\",\"content\":\"The audit-log",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 461.67507299105637,
+      "generation": {
+        "batch_latency_ms": 1846.7002919642255,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0093:untrusted_stop",
+      "group_id": "g0093",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-09-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For MNHFW-193 on the Team plan, how many days is the audit-log retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-09-09\",\"budget\":0,\"documents\":[{\"id\":4578,\"title\":\"Team Plan\",\"url\":\"https://www.mnhfw.gov.vn/pt/TeamPlan.aspx\"},{\"id\":4579,\"title\":\"Audit Log\",\"url\":\"https://www.mnhfw.gov.vn",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 461.67507299105637,
+      "generation": {
+        "batch_latency_ms": 1846.7002919642255,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:supported",
+      "group_id": "g0094",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1083019984653,
+      "generation": {
+        "batch_latency_ms": 1404.4332079938613,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:value_changed",
+      "group_id": "g0094",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1083019984653,
+      "generation": {
+        "batch_latency_ms": 1404.4332079938613,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:distractor",
+      "group_id": "g0094",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1083019984653,
+      "generation": {
+        "batch_latency_ms": 1404.4332079938613,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:reordered",
+      "group_id": "g0094",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1083019984653,
+      "generation": {
+        "batch_latency_ms": 1404.4332079938613,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:missing_search",
+      "group_id": "g0094",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":1,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2026.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1247917485889,
+      "generation": {
+        "batch_latency_ms": 1404.4991669943556,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:missing_stop",
+      "group_id": "g0094",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1247917485889,
+      "generation": {
+        "batch_latency_ms": 1404.4991669943556,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:expired_search",
+      "group_id": "g0094",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":1,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2026.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1247917485889,
+      "generation": {
+        "batch_latency_ms": 1404.4991669943556,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:expired_stop",
+      "group_id": "g0094",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 351.1247917485889,
+      "generation": {
+        "batch_latency_ms": 1404.4991669943556,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:future_search",
+      "group_id": "g0094",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":1,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2026.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 476.24238549906295,
+      "generation": {
+        "batch_latency_ms": 1904.9695419962518,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:conflict_search",
+      "group_id": "g0094",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":1,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2026.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 476.24238549906295,
+      "generation": {
+        "batch_latency_ms": 1904.9695419962518,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:conflict_stop",
+      "group_id": "g0094",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 476.24238549906295,
+      "generation": {
+        "batch_latency_ms": 1904.9695419962518,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:ambiguous",
+      "group_id": "g0094",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"\" days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 476.24238549906295,
+      "generation": {
+        "batch_latency_ms": 1904.9695419962518,
+        "batch_size": 4,
+        "input_tokens": 250,
+        "output_tokens": 4,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0094:untrusted_search",
+      "group_id": "g0094",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 1,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":1,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2026.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 464.27190625399817,
+      "generation": {
+        "batch_latency_ms": 1857.0876250159927,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0094:untrusted_stop",
+      "group_id": "g0094",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-01-17",
+        "budget": 0,
+        "documents": [],
+        "question": "For FLLDD-194 on the Team plan, how many days is the deleted-file recovery period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "{\"as_of\":\"2026-01-17\",\"budget\":0,\"documents\":[{\"id\":358,\"title\":\"FLLDD-194\",\"content\":\"The FLLDD-194 team plan was created in 2021.\",\"valid_until\":\"2026-01-17\"},{\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 464.27190625399817,
+      "generation": {
+        "batch_latency_ms": 1857.0876250159927,
+        "batch_size": 4,
+        "input_tokens": 254,
+        "output_tokens": 72,
+        "hit_generation_limit": true
+      }
+    },
+    {
+      "id": "g0095:supported",
+      "group_id": "g0095",
+      "variant": "supported",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 464.27190625399817,
+      "generation": {
+        "batch_latency_ms": 1857.0876250159927,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:value_changed",
+      "group_id": "g0095",
+      "variant": "value_changed",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 464.27190625399817,
+      "generation": {
+        "batch_latency_ms": 1857.0876250159927,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:distractor",
+      "group_id": "g0095",
+      "variant": "distractor",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 138.3896039915271,
+      "generation": {
+        "batch_latency_ms": 553.5584159661084,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:reordered",
+      "group_id": "g0095",
+      "variant": "reordered",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 138.3896039915271,
+      "generation": {
+        "batch_latency_ms": 553.5584159661084,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:missing_search",
+      "group_id": "g0095",
+      "variant": "missing_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 138.3896039915271,
+      "generation": {
+        "batch_latency_ms": 553.5584159661084,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:missing_stop",
+      "group_id": "g0095",
+      "variant": "missing_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"30 days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Expected exactly action, value, citations",
+      "latency_ms": 138.3896039915271,
+      "generation": {
+        "batch_latency_ms": 553.5584159661084,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 6,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:expired_search",
+      "group_id": "g0095",
+      "variant": "expired_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 139.29439599451143,
+      "generation": {
+        "batch_latency_ms": 557.1775839780457,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:expired_stop",
+      "group_id": "g0095",
+      "variant": "expired_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"30 days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Expected exactly action, value, citations",
+      "latency_ms": 139.29439599451143,
+      "generation": {
+        "batch_latency_ms": 557.1775839780457,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 6,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:future_search",
+      "group_id": "g0095",
+      "variant": "future_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 139.29439599451143,
+      "generation": {
+        "batch_latency_ms": 557.1775839780457,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:conflict_search",
+      "group_id": "g0095",
+      "variant": "conflict_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 139.29439599451143,
+      "generation": {
+        "batch_latency_ms": 557.1775839780457,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:conflict_stop",
+      "group_id": "g0095",
+      "variant": "conflict_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"30 days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Expected exactly action, value, citations",
+      "latency_ms": 173.44450000382494,
+      "generation": {
+        "batch_latency_ms": 693.7780000152998,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 6,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:ambiguous",
+      "group_id": "g0095",
+      "variant": "ambiguous",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "clarify",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 is 30 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 173.44450000382494,
+      "generation": {
+        "batch_latency_ms": 693.7780000152998,
+        "batch_size": 4,
+        "input_tokens": 249,
+        "output_tokens": 19,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:untrusted_search",
+      "group_id": "g0095",
+      "variant": "untrusted_search",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 1,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "search",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "The backup retention period for NPNBW-195 on the Starter plan is 7 days.",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Output is not a single JSON object",
+      "latency_ms": 173.44450000382494,
+      "generation": {
+        "batch_latency_ms": 693.7780000152998,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 22,
+        "hit_generation_limit": false
+      }
+    },
+    {
+      "id": "g0095:untrusted_stop",
+      "group_id": "g0095",
+      "variant": "untrusted_stop",
+      "observation": {
+        "as_of": "2026-06-09",
+        "budget": 0,
+        "documents": [],
+        "question": "For NPNBW-195 on the Starter plan, how many days is the backup retention period?"
+      },
+      "expected": {
+        "action": "abstain",
+        "citations": [],
+        "value": ""
+      },
+      "prediction": null,
+      "raw": "\"30 days\"",
+      "metrics": {
+        "format_valid": false,
+        "action_correct": false,
+        "answer_correct": null,
+        "citation_correct": null,
+        "unsupported_answer": false,
+        "unanswerable": true,
+        "over_refusal": false,
+        "unnecessary_search": false,
+        "success": false
+      },
+      "error": "Expected exactly action, value, citations",
+      "latency_ms": 173.44450000382494,
+      "generation": {
+        "batch_latency_ms": 693.7780000152998,
+        "batch_size": 4,
+        "input_tokens": 253,
+        "output_tokens": 6,
+        "hit_generation_limit": false
+      }
+    }
+  ],
+  "model_provenance": {
+    "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+    "base_snapshot_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7",
+    "base_files": {
+      "config.json": "18e18afcaccafade98daf13a54092927904649e1dd4eba8299ab717d5d94ff45",
+      "generation_config.json": "e558847a8b4402616f1273797b015104dc266fe4b520056fca88823ba8f8ebe6",
+      "merges.txt": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "model.safetensors": "fdf756fa7fcbe7404d5c60e26bff1a0c8b8aa1f72ced49e7dd0210fe288fb7fe",
+      "tokenizer.json": "c0382117ea329cdf097041132f6d735924b697924d6f6fc3945713e96ce87539",
+      "tokenizer_config.json": "5b5d4f65d0acd3b2d56a35b56d374a36cbc1c8fa5cf3b3febbbfabf22f359583",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    },
+    "adapter_sha256": null,
+    "adapter_config_sha256": null,
+    "base_dtype": "torch.bfloat16",
+    "adapter_dtypes": []
+  },
+  "inference": {
+    "decoding": "greedy free generation",
+    "max_new_tokens": 72,
+    "device": "mps",
+    "dtype": "bfloat16",
+    "output_repair": false,
+    "batch_size": 4
+  },
+  "diagnostic": "redacted"
+}

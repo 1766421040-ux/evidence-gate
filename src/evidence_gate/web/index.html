@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="color-scheme" content="light">
+    <meta name="description" content="EvidenceGate 本地只读实验回放：对比证据约束下的工具决策、训练记录与失败案例。">
+    <title>EvidenceGate · 实验回放</title>
+    <link rel="stylesheet" href="/style.css">
+    <script src="/app.js" defer></script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">跳转到实验内容</a>
+    <header class="masthead">
+      <a href="/" class="brand" aria-label="EvidenceGate 首页"><span class="brand-mark" aria-hidden="true">E</span>EvidenceGate<span class="brand-slash">/</span><span class="brand-sub">Experiment studio</span></a>
+      <div class="local-status"><span class="status-dot"></span>本地报告 · 只读回放</div>
+    </header>
+    <main id="main" class="shell">
+      <div id="load-error" class="load-error" role="alert" hidden></div>
+      <section class="hero" aria-labelledby="page-title">
+        <div><p class="eyebrow">EVIDENCE-AWARE AGENT FINE-TUNING</p><h1 id="page-title">证据约束下的 Agent 决策</h1><p class="intro">沿着一次决策，检查模型读到了什么、选择了什么，以及证据是否真正支持答案。</p></div>
+        <div class="report-meta"><span class="meta-label">报告生成时间</span><time id="generated-at">正在读取…</time><span id="report-kind" class="meta-label">指标来自本地实验文件</span></div>
+      </section>
+      <div id="loading" class="loading" role="status"><span class="spinner"></span>正在载入实验报告…</div>
+      <div id="workspace" hidden>
+        <section class="experiment-strip" aria-label="实验信息"><div><span class="meta-label">模型 / 方法</span><strong id="model-label">未记录</strong></div><div><span class="meta-label">执行环境</span><strong id="device-label">未记录</strong></div><div><span class="meta-label">数据来源</span><strong id="data-label">未记录</strong></div><div><span class="meta-label">实验方法</span><strong id="method-count">—</strong></div></section>
+        <nav class="view-nav" aria-label="报告视图"><button type="button" class="view-tab active" data-view="cases" aria-current="page">案例回放<span id="total-count" class="nav-count">0</span></button><button type="button" class="view-tab" data-view="training">训练记录</button><button type="button" class="view-tab" data-view="provenance">来源与边界</button><a class="raw-report-link" href="/api/report" target="_blank" rel="noopener noreferrer">原始报告 <span aria-hidden="true">↗</span></a></nav>
+        <section id="view-cases" aria-label="案例回放">
+          <div class="method-toolbar"><div><label for="method-select">评测方法</label><select id="method-select"></select><span id="method-kind" class="badge"></span></div><p id="method-note" class="muted"></p></div>
+          <div id="metrics" class="metric-grid" aria-label="方法指标"></div>
+          <p class="metric-footnote">指标读取自当前方法的完整评测摘要；筛选不改变分母。无依据比例仅在可解析的 answer 中计算，须结合格式有效率、可答成功率与整组表现阅读。</p>
+          <div class="replay-layout">
+            <aside class="case-panel" aria-labelledby="case-list-title"><div class="panel-heading"><h2 id="case-list-title">测试案例</h2><span id="filtered-count" class="muted"></span></div><div class="filters"><label class="search-label" for="case-search">搜索问题或案例 ID</label><input id="case-search" type="search" placeholder="搜索问题或案例 ID…" autocomplete="off"><div class="filter-row"><label>场景<select id="scenario-select"><option value="">全部场景</option></select></label><label>结果<select id="result-select"><option value="">全部结果</option><option value="failed">未通过</option><option value="passed">已通过</option><option value="unknown">未记录</option></select></label></div></div><div id="case-list" class="case-list" aria-label="测试案例列表"></div></aside>
+            <article id="case-detail" class="detail-panel" aria-live="polite"></article>
+          </div>
+        </section>
+        <section id="view-training" class="secondary-view" aria-labelledby="training-title" hidden><div class="section-heading"><div><p class="eyebrow">TRAINING EVIDENCE</p><h2 id="training-title">从训练记录到可核验的变化</h2></div><p class="muted">曲线只呈现报告内的记录点，不插补，不推算最终效果。</p></div><div id="training-content"></div></section>
+        <section id="view-provenance" class="secondary-view" aria-labelledby="provenance-title" hidden><div class="section-heading"><div><p class="eyebrow">PROVENANCE & LIMITS</p><h2 id="provenance-title">每一个结论，都保留来路</h2></div><p class="muted">原始记录是判断实验范围与可复现性的依据。</p></div><div id="provenance-content"></div></section>
+      </div>
+      <footer><span>EvidenceGate <span class="footer-dot">·</span> Inspect the evidence, then the answer.</span><span>本地静态回放，不调用模型、不修改报告。</span></footer>
+    </main>
+  </body>
+</html>

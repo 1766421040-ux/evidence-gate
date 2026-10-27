@@ -1,0 +1,31 @@
+{
+  "format": "evidence-gate-training-summary-v1",
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "device": "mps",
+  "dtype": "bfloat16",
+  "seed": 42,
+  "optimizer_steps": 200,
+  "resumed_from_step": 0,
+  "trainable_parameters": 540672,
+  "total_parameters": 494573440,
+  "first_loss": 1.1162790316801805,
+  "last_loss": 0.021831868781841228,
+  "elapsed_s": 389.35836595797446,
+  "data_audit": {
+    "examples": 1120,
+    "max_sequence_tokens": 476,
+    "mean_sequence_tokens": 402.3330357142857,
+    "supervised_tokens": 18177,
+    "total_tokens": 450613,
+    "supervised_fraction": 0.04033838349093346,
+    "truncated_examples": 0,
+    "eos_supervised_examples": 1120
+  },
+  "binding": {
+    "data_sha256": "b3b46d93c1b4e0c21d5c5fb17a7117ff0fdadd0ff260fd9c758157299b2dc560",
+    "config_sha256": "5fcbc9c5fad09f608f2fb24d0a73f2e374b0851672eeb761ce1df03c22289354",
+    "model_sha256": "74bf6dd08049d862b3bd56ac2a84a8e1980ae93acfad71612a9ea00548e887b7"
+  },
+  "adapter_sha256": "1a15242a23305e91fe1e487ba88153afa348a887a27632bd59b44830ad3d4283",
+  "training_is_quality_evidence": false
+}

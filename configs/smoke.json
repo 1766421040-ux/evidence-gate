@@ -1,0 +1,18 @@
+{
+  "model_name": "Qwen/Qwen2.5-0.5B-Instruct",
+  "seed": 42,
+  "device": "mps",
+  "dtype": "bfloat16",
+  "max_steps": 3,
+  "batch_size": 1,
+  "gradient_accumulation_steps": 4,
+  "max_length": 512,
+  "learning_rate": 0.0003,
+  "warmup_steps": 0,
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "target_modules": ["q_proj", "v_proj"],
+  "save_steps": 1,
+  "gradient_checkpointing": true,
+  "num_threads": 4
+}

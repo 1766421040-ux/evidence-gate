@@ -1,0 +1,79 @@
+{
+  "schema_version": 1,
+  "generator": "evidence-gate-diagnostics-v1",
+  "source_file": "test.jsonl",
+  "source_file_sha256": "58b095b473c23b81dbec4a2af7d6bd0680ca9e2cc6517af05cf432b89713257f",
+  "selection": "lexicographically first complete test groups, all 14 variants per group",
+  "group_ids": [
+    "g0092",
+    "g0093",
+    "g0094",
+    "g0095"
+  ],
+  "group_count": 4,
+  "rows_per_diagnostic": 56,
+  "topics": [
+    "audit-log retention",
+    "backup retention",
+    "deleted-file recovery"
+  ],
+  "models_called": 0,
+  "training_data_read": false,
+  "locked_use": "Held-out diagnostic only; do not tune training, prompts, or checkpoints on these results.",
+  "independent_of_main_test": false,
+  "statistical_unit": "Original group_id. These rows share test groups with main and each other; do not pool as independent observations.",
+  "paraphrase": {
+    "changes": "Question and relevant official-document wording only; source, dates, budget, values, identities, targets and citations are preserved.",
+    "unchanged": "Community documents, unrelated custom-theme documents, system instruction, split and private gold metadata.",
+    "interpretation": "A small fixed wording-shift probe, not proof of broad natural-language generalization."
+  },
+  "redacted": {
+    "changes": "Original question retained, all visible documents removed, contract target recomputed from observable plan and budget.",
+    "target_policy": "Missing plan -> clarify; explicit plan and budget>0 -> search; explicit plan and budget=0 -> abstain.",
+    "interpretation": "Evidence-dependence diagnostic, not accuracy against original gold and not a stand-alone SFT gain claim."
+  },
+  "metadata_note": "diagnostic, variant, group_id, id, target and gold are outside model messages. Variant names describe the source case.",
+  "files": {
+    "paraphrase.jsonl": {
+      "sha256": "32e63dc2db700e2ce3a3bf5841b74fcefa83fc47b5f52e802ce516d58839a4ec",
+      "audit": {
+        "schema_version": 1,
+        "rows": 56,
+        "groups": 4,
+        "split_rows": {
+          "test": 56
+        },
+        "actions": {
+          "answer": 16,
+          "search": 20,
+          "abstain": 16,
+          "clarify": 4
+        },
+        "dataset_sha256": "74e1b4978ae13f0f7c54a9b5a9f92c67df73141d729aecd4026158202a8bbeae",
+        "group_leaks": 0,
+        "identical_prompt_cross_split": 0,
+        "labels_in_messages": false
+      }
+    },
+    "redacted.jsonl": {
+      "sha256": "6ece04e9c45414bd9601e9798c0451f7a075e7cb70da6be091ec6790af56ae52",
+      "audit": {
+        "schema_version": 1,
+        "rows": 56,
+        "groups": 4,
+        "split_rows": {
+          "test": 56
+        },
+        "actions": {
+          "search": 28,
+          "abstain": 24,
+          "clarify": 4
+        },
+        "dataset_sha256": "fe52318dbe73c1cbb49419f82923b3dbdfe63335644a6c168fde4d7a885694de",
+        "group_leaks": 0,
+        "identical_prompt_cross_split": 0,
+        "labels_in_messages": false
+      }
+    }
+  }
+}

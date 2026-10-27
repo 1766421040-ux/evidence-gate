@@ -1,0 +1,33 @@
+name: Verify EvidenceGate
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  contracts:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python: ['3.10', '3.12']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '${{ matrix.python }}'
+      - run: pip install -e '.[test]'
+      - run: pytest -q
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/test_viewer_metrics.cjs
+      - run: evidence-gate audit data/main/train.jsonl data/main/dev.jsonl data/main/test.jsonl
+      - run: python scripts/verify_artifacts.py
+  tiny-training:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: pip install 'torch>=2.6,<3' --index-url https://download.pytorch.org/whl/cpu
+      - run: pip install -e '.[train,test]'
+      - run: HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 pytest -q tests/test_training.py
